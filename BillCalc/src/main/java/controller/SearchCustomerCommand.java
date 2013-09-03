@@ -1,4 +1,4 @@
-package controller;
+package main.java.controller;
 
 
 
@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import view.ViewInterface;
+import main.java.view.ViewInterface;
 
 public class SearchCustomerCommand extends AbstractCommand{
 

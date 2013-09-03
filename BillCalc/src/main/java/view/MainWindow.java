@@ -1,4 +1,4 @@
-package view;
+package main.java.view;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ScrollPaneConstants;
 
-import controller.ControllerInterface;
+import main.java.controller.ControllerInterface;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

@@ -1,6 +1,6 @@
-package controller;
+package main.java.controller;
 
-import view.ViewInterface;
+import main.java.view.ViewInterface;
 
 public class newProductCommand extends AbstractCommand {
 

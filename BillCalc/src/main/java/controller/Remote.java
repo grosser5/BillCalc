@@ -1,8 +1,8 @@
-package controller;
+package main.java.controller;
 
 import java.util.Map;
 
-import view.ViewInterface;
+import main.java.view.ViewInterface;
 
 public class Remote {
 

@@ -1,7 +1,7 @@
-package controller;
+package main.java.controller;
 
-import view.MainWindow;
-import view.ViewInterface;
+import main.java.view.MainWindow;
+import main.java.view.ViewInterface;
 
 public class BillController implements ControllerInterface{
 

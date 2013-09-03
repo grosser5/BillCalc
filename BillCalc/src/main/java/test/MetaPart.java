@@ -1,4 +1,4 @@
-package test;
+package main.java.test;
 
 public class MetaPart {
 
