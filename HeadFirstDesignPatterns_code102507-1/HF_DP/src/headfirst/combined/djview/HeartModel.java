@@ -3,8 +3,8 @@ package headfirst.combined.djview;
 import java.util.*;
 
 public class HeartModel implements HeartModelInterface, Runnable {
-	ArrayList beatObservers = new ArrayList();
-	ArrayList bpmObservers = new ArrayList();
+	ArrayList<BeatObserver> beatObservers = new ArrayList();
+	ArrayList<BPMObserver> bpmObservers = new ArrayList();
 	int time = 1000;
     int bpm = 90;
 	Random random = new Random(System.currentTimeMillis());
@@ -72,7 +72,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
 
 	public void notifyBPMObservers() {
 		for(int i = 0; i < bpmObservers.size(); i++) {
-			BPMObserver observer = (BPMObserver)bpmObservers.get(i);
+			BPMObserver observer = bpmObservers.get(i);
 			observer.updateBPM();
 		}
 	}
