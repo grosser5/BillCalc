@@ -1,17 +1,29 @@
 package main.java.model;
 
+import java.util.Set;
+
 public class Employee {
    private int id;
    private String firstName; 
    private String lastName;   
    private int salary;  
-
-   public Employee() {}
+   private Set certificates;
+   
+   
+public Employee() {}
    public Employee(String fname, String lname, int salary) {
       this.firstName = fname;
       this.lastName = lname;
       this.salary = salary;
    }
+   
+   public Set getCertificates() {
+		return certificates;
+	}
+	public void setCertificates(Set certificates) {
+		this.certificates = certificates;
+	}
+	
    public int getId() {
       return id;
    }

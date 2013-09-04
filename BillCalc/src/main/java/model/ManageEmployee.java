@@ -2,7 +2,8 @@ package main.java.model;
 import java.util.List; 
 import java.util.Date;
 import java.util.Iterator; 
- 
+import java.util.Set;
+
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
@@ -19,13 +20,14 @@ public static void setFactory(SessionFactory factory) {
 	ManageEmployee.factory = factory;
 }
 /* Method to CREATE an employee in the database */
-   public Integer addEmployee(String fname, String lname, int salary){
+   public Integer addEmployee(String fname, String lname, int salary, Set cert){
       Session session = factory.openSession();
       Transaction tx = null;
       Integer employeeID = null;
       try{
          tx = session.beginTransaction();
          Employee employee = new Employee(fname, lname, salary);
+         employee.setCertificates(cert);
          employeeID = (Integer) session.save(employee); 
          tx.commit();
       }catch (HibernateException e) {
@@ -48,7 +50,13 @@ public static void setFactory(SessionFactory factory) {
             Employee employee = (Employee) iterator.next(); 
             System.out.print("First Name: " + employee.getFirstName()); 
             System.out.print("  Last Name: " + employee.getLastName()); 
-            System.out.println("  Salary: " + employee.getSalary()); 
+            System.out.println("  Salary: " + employee.getSalary());
+            Set certificates = employee.getCertificates();
+            for (Iterator iterator2 = 
+                         certificates.iterator(); iterator2.hasNext();){
+                  Certificate certName = (Certificate) iterator2.next(); 
+                  System.out.println("Certificate: " + certName.getName()); 
+            }
          }
          tx.commit();
       }catch (HibernateException e) {
