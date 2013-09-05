@@ -28,4 +28,16 @@
       </id>
       <property name="name" column="certificate_name" type="string"/>
    </class>
+   
+   <class name="main.java.model.Customer" table="customer">
+      <meta attribute="class-description">
+         This class contains the customer details. 
+      </meta>
+      <id name="custId" type="int" column="cust_id">
+         <generator class="native"/>
+      </id>
+      <property name="name" column="name" type="string"/>
+      <property name="compType" column="comp_type" type="string"/>
+      <one-to-many name="location" class="main.java.model.Location"/>
+   </class>
 </hibernate-mapping>

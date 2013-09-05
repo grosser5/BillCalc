@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-class ProduktTableModel extends AbstractTableModel {
+public class ProductTableModel extends AbstractTableModel {
 
 	
 	
@@ -13,9 +13,9 @@ class ProduktTableModel extends AbstractTableModel {
     		"Einheit", "Euro/Eh", "Betrag", "MWSt" };
     private Object[][] data = null;
 
-    public ProduktTableModel(){ }
+    public ProductTableModel(){ }
     
-    public ProduktTableModel(Object[][] data) {
+    public ProductTableModel(Object[][] data) {
     	this.data = data;
     }
     

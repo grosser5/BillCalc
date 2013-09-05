@@ -1,0 +1,85 @@
+0 [main] INFO  main.java.BillCalc - start app
+0 [main] INFO  main.java.BillCalc - start app
+379 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+390 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+394 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+397 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+438 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+439 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+575 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+608 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+631 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+642 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+645 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+644 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+737 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+740 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+979 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+1083 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+1156 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : Attribute "name" must be declared for element type "one-to-many".
+1156 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : The content of element type "class" must match "(meta*,subselect?,cache?,synchronize*,comment?,tuplizer*,(id|composite-id),discriminator?,natural-id?,(version|timestamp)?,(property|many-to-one|one-to-one|component|dynamic-component|properties|any|map|set|list|bag|idbag|array|primitive-array)*,((join*,subclass*)|joined-subclass*|union-subclass*),loader?,sql-insert?,sql-update?,sql-delete?,filter*,fetch-profile*,resultset*,(query|sql-query)*)".
+1484 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : Attribute "name" must be declared for element type "one-to-many".
+1488 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : The content of element type "class" must match "(meta*,subselect?,cache?,synchronize*,comment?,tuplizer*,(id|composite-id),discriminator?,natural-id?,(version|timestamp)?,(property|many-to-one|one-to-one|component|dynamic-component|properties|any|map|set|list|bag|idbag|array|primitive-array)*,((join*,subclass*)|joined-subclass*|union-subclass*),loader?,sql-insert?,sql-update?,sql-delete?,filter*,fetch-profile*,resultset*,(query|sql-query)*)".
+0 [main] INFO  main.java.BillCalc - start app
+
+287 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+297 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+301 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+303 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+339 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+339 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+432 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+462 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+664 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : Attribute "name" must be declared for element type "one-to-many".
+664 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : The content of element type "class" must match "(meta*,subselect?,cache?,synchronize*,comment?,tuplizer*,(id|composite-id),discriminator?,natural-id?,(version|timestamp)?,(property|many-to-one|one-to-one|component|dynamic-component|properties|any|map|set|list|bag|idbag|array|primitive-array)*,((join*,subclass*)|joined-subclass*|union-subclass*),loader?,sql-insert?,sql-update?,sql-delete?,filter*,fetch-profile*,resultset*,(query|sql-query)*)".
+0 [main] INFO  main.java.BillCalc - start app
+
+271 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+281 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+284 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+286 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+322 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+322 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+412 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+442 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+650 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : Attribute "name" must be declared for element type "one-to-many".
+650 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : The content of element type "class" must match "(meta*,subselect?,cache?,synchronize*,comment?,tuplizer*,(id|composite-id),discriminator?,natural-id?,(version|timestamp)?,(property|many-to-one|one-to-one|component|dynamic-component|properties|any|map|set|list|bag|idbag|array|primitive-array)*,((join*,subclass*)|joined-subclass*|union-subclass*),loader?,sql-insert?,sql-update?,sql-delete?,filter*,fetch-profile*,resultset*,(query|sql-query)*)".
+0 [main] INFO  main.java.BillCalc - start app
+
+69 [main] INFO  main.java.model.ManageCustomer - constructor called
+322 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+333 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+337 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+340 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+393 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+394 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+524 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+586 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+828 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : Attribute "name" must be declared for element type "one-to-many".
+828 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : The content of element type "class" must match "(meta*,subselect?,cache?,synchronize*,comment?,tuplizer*,(id|composite-id),discriminator?,natural-id?,(version|timestamp)?,(property|many-to-one|one-to-one|component|dynamic-component|properties|any|map|set|list|bag|idbag|array|primitive-array)*,((join*,subclass*)|joined-subclass*|union-subclass*),loader?,sql-insert?,sql-update?,sql-delete?,filter*,fetch-profile*,resultset*,(query|sql-query)*)".
+0 [main] INFO  main.java.BillCalc - start app
+
+71 [main] INFO  main.java.model.ManageCustomer - constructor called
+
+314 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+326 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+330 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+333 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+385 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+386 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+526 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+592 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+907 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : Attribute "name" must be declared for element type "one-to-many".
+913 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : The content of element type "class" must match "(meta*,subselect?,cache?,synchronize*,comment?,tuplizer*,(id|composite-id),discriminator?,natural-id?,(version|timestamp)?,(property|many-to-one|one-to-one|component|dynamic-component|properties|any|map|set|list|bag|idbag|array|primitive-array)*,((join*,subclass*)|joined-subclass*|union-subclass*),loader?,sql-insert?,sql-update?,sql-delete?,filter*,fetch-profile*,resultset*,(query|sql-query)*)".
+0 [main] INFO  main.java.BillCalc - start app
+
+320 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+331 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+336 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+339 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+393 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+394 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+534 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+610 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+884 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : Attribute "name" must be declared for element type "one-to-many".
+889 [main] ERROR org.hibernate.internal.util.xml.ErrorLogger - HHH000196: Error parsing XML (8) : The content of element type "class" must match "(meta*,subselect?,cache?,synchronize*,comment?,tuplizer*,(id|composite-id),discriminator?,natural-id?,(version|timestamp)?,(property|many-to-one|one-to-one|component|dynamic-component|properties|any|map|set|list|bag|idbag|array|primitive-array)*,((join*,subclass*)|joined-subclass*|union-subclass*),loader?,sql-insert?,sql-update?,sql-delete?,filter*,fetch-profile*,resultset*,(query|sql-query)*)".

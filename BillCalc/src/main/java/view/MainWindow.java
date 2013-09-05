@@ -134,7 +134,7 @@ public class MainWindow implements ViewInterface{
 		         "TrainingsPlatz", 7000, "m2", 2.0, 17500, 20}
 		        };
 		
-		productTable.setModel( new ProduktTableModel(data) );
+		productTable.setModel( new ProductTableModel(data) );
 		
 		productTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		

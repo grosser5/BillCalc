@@ -1,11 +1,18 @@
 package main.java;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+
+
+
 import java.util.List;
 
-import main.java.model.Certificate;
 import main.java.model.Employee;
+import main.java.model.Location;
+import main.java.model.ManageCustomer;
 import main.java.model.ManageEmployee;
+import main.java.model.Quotation;
+import main.view.util.Log;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -13,24 +20,35 @@ import org.hibernate.cfg.Configuration;
 
 
 public class BillCalc {
-
+	
+	 
+	 
 	 public static void main(String[] args) {
-	      try{
-	         ManageEmployee.setFactory( new Configuration().configure().buildSessionFactory() );
-	      }catch (Throwable ex) { 
-	         System.err.println("Failed to create sessionFactory object." + ex);
-	         throw new ExceptionInInitializerError(ex); 
-	      }
+
+		 Log.getBillCalcLogger().info("start app\n");
+		 ManageCustomer manage_cust = new ManageCustomer();
+		 
+		 
+		 manage_cust.saveCustomer("Holzbauer", "AG", new Location("Graz","Griesplatz 12",8010 ));
+		 	 
+//	      try{
+//	         ManageEmployee.setFactory( new Configuration().configure().buildSessionFactory() );
+//	      }catch (Throwable ex) { 
+//	         System.err.println("Failed to create sessionFactory object." + ex);
+//	         throw new ExceptionInInitializerError(ex); 
+//	      }
+//	      
+//	      Session session = ManageEmployee.getFactory().openSession();
+//	      
+//	      Criteria cr = session.createCriteria(Employee.class);
+//	      List<Employee> results = cr.list();
+//	      
+//	      for (Employee e : results) {
+//	    	  System.out.println("First Name: " + e.getFirstName() + " Last Name: " + e.getLastName());
+//	      }
+//	      session.close();
 	      
-	      Session session = ManageEmployee.getFactory().openSession();
 	      
-	      Criteria cr = session.createCriteria(Employee.class);
-	      List<Employee> results = cr.list();
-	      
-	      for (Employee e : results) {
-	    	  System.out.println("First Name: " + e.getFirstName() + " Last Name: " + e.getLastName());
-	      }
-	      session.close();
 
 //	      HashSet set1 = new HashSet();
 //	      set1.add(new Certificate("MCA"));

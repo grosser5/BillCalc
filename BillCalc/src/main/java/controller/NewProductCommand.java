@@ -2,10 +2,10 @@ package main.java.controller;
 
 import main.java.view.ViewInterface;
 
-public class newProductCommand extends AbstractCommand {
+public class NewProductCommand extends AbstractCommand {
 
 	
-	public newProductCommand(ViewInterface view) {
+	public NewProductCommand(ViewInterface view) {
 		super(view);
 	}
 	@Override
