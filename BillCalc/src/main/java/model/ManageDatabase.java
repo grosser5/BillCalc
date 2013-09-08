@@ -10,14 +10,14 @@ import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class ManageEmployee {
+public class ManageDatabase {
    private static SessionFactory factory; 
   
    public static SessionFactory getFactory() {
 	return factory;
 }
 public static void setFactory(SessionFactory factory) {
-	ManageEmployee.factory = factory;
+	ManageDatabase.factory = factory;
 }
 /* Method to CREATE an employee in the database */
    public Integer addEmployee(String fname, String lname, int salary, Set cert){

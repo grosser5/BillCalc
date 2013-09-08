@@ -21,6 +21,19 @@ public class QuotationProduct {
 		
 	}
 
+	
+	
+	public QuotationProduct(int prodId, int costPerQuantity,
+			int quantity, int mwst, String place) {
+		super();
+		this.prodId = prodId;
+		this.quotId = quotId;
+		this.costPerQuantity = costPerQuantity;
+		this.quantity = quantity;
+		this.mwst = mwst;
+		this.place = place;
+	}
+
 	public int getQuotProdId() {
 		return quotProdId;
 	}

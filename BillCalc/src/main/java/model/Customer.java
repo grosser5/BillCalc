@@ -19,6 +19,17 @@ public class Customer {
 		this.compType = compType;
 		this.locations = locations;		
 	}
+	
+	
+
+	public Customer(String name, String compType,
+			List<CustomerLocation> locations, List<Quotation> quotations) {
+		super();
+		this.name = name;
+		this.compType = compType;
+		this.locations = locations;
+		this.quotations = quotations;
+	}
 
 	public Integer getCustId() {
 		return custId;

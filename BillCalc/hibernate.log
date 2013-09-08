@@ -2987,3 +2987,1228 @@
 1759 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
 1770 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
 2611 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+471 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+481 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+485 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+487 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+519 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+519 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+609 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+638 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+751 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+865 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+869 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+869 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+869 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+869 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1220 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1244 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1349 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1356 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1969 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+327 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+337 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+340 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+342 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+377 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+377 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+468 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+497 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+621 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+710 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+726 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+726 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+726 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+726 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1081 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1094 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1195 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1202 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1574 [main] INFO  main.java.model.ManageCustomer - factory
+
+1917 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+312 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+322 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+325 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+327 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+361 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+362 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+455 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+489 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+665 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+807 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+813 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+813 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+813 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+813 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1213 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1226 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1327 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1334 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1787 [main] INFO  main.java.model.ManageCustomer - factory
+
+2283 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+315 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+324 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+328 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+330 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+364 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+364 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+457 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+523 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+781 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+932 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+937 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+937 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+937 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+938 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1359 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1384 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1479 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1486 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1686 [main] INFO  main.java.model.Customer - id = 0
+
+1880 [main] INFO  main.java.model.ManageCustomer - factory
+
+2329 [main] INFO  main.java.model.Customer - id = 0
+
+2338 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+328 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+340 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+344 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+347 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+393 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+393 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+553 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+622 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+859 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+993 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+999 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+999 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+999 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+999 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1536 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1566 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1683 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1691 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2047 [main] INFO  main.java.model.Customer - id = 0
+
+2241 [main] INFO  main.java.model.ManageCustomer - factory
+
+2454 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2657 [main] INFO  main.java.model.Customer - id = 0
+
+2664 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+328 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+339 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+344 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+346 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+389 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+390 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+534 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+604 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+815 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+962 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+967 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+967 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+967 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+967 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1321 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1334 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1484 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1497 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1703 [main] INFO  main.java.model.Customer - id = 0
+
+1941 [main] INFO  main.java.model.ManageCustomer - factory
+
+2258 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2392 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2440 [main] INFO  main.java.model.Customer - id = 0
+
+2448 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+330 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+341 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+346 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+348 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+384 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+385 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+512 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+547 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+743 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+840 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+846 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+846 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+846 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+847 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1256 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1287 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1386 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1393 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1605 [main] INFO  main.java.model.Customer - id = 0
+
+1810 [main] INFO  main.java.model.ManageCustomer - factory
+
+2015 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2173 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2186 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+2232 [main] INFO  main.java.model.Customer - id = 0
+
+2240 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+332 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+343 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+347 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+350 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+397 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+397 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+557 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+633 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+975 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1168 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1173 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1174 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1174 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1174 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1705 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1726 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1821 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1828 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2041 [main] INFO  main.java.model.Customer - id = 0
+
+2232 [main] INFO  main.java.model.ManageCustomer - factory
+
+2542 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2690 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2702 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+
+2749 [main] INFO  main.java.model.Customer - id = 0
+
+2757 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+342 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+353 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+357 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+359 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+394 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+394 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+492 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+530 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+702 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+822 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+828 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+828 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+828 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+829 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1216 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1232 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1344 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1352 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1572 [main] INFO  main.java.model.Customer - id = 0
+
+1799 [main] INFO  main.java.model.ManageCustomer - factory
+
+22568 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+30214 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+55657 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+
+104506 [main] INFO  main.java.model.Customer - id = 0
+
+104515 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+324 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+334 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+338 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+340 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+373 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+373 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+463 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+493 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+634 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+746 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+751 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+751 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+751 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+752 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1109 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1122 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1234 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1244 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1447 [main] INFO  main.java.model.Customer - id = 0
+
+1647 [main] INFO  main.java.model.ManageCustomer - factory
+
+1863 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+1982 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+1987 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+
+2020 [main] INFO  main.java.model.Customer - id = 0
+
+2028 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+344 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+354 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+358 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+360 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+395 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+395 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+489 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+519 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+650 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+756 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+760 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+761 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+769 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+770 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1163 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1177 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1304 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1312 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1530 [main] INFO  main.java.model.Customer - id = 0
+
+1749 [main] INFO  main.java.model.ManageCustomer - factory
+
+1966 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2091 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2102 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+
+2157 [main] INFO  main.java.model.Customer - id = 0
+
+2166 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+359 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+371 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+376 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+379 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+429 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+430 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+581 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+661 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+881 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1009 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1013 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1013 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1013 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1013 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1365 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1387 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1563 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1572 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1880 [main] INFO  main.java.model.Customer - id = 0
+
+2103 [main] INFO  main.java.model.ManageCustomer - factory
+
+2296 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2449 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2453 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+
+32039 [main] INFO  main.java.model.Customer - id = 0
+
+32061 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+335 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+346 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+350 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+353 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+390 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+390 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+495 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+534 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+727 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+831 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+835 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+835 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+836 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+836 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1211 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1227 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1352 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1364 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1596 [main] INFO  main.java.model.Customer - id = 0
+
+1811 [main] INFO  main.java.model.ManageCustomer - factory
+
+2067 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2193 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2210 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+
+2257 [main] INFO  main.java.model.Customer - id = 0
+
+2265 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+377 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+392 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+396 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+398 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+449 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+449 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+609 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+688 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+1017 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1179 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1188 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1188 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1189 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1189 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1713 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1745 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1877 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1887 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2280 [main] INFO  main.java.model.Customer - id = 0
+
+2507 [main] INFO  main.java.model.ManageCustomer - factory
+
+2735 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2908 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2925 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+
+2972 [main] INFO  main.java.model.Customer - id = 0
+
+2984 [main] INFO  main.java.model.Customer - id = 10
+
+3130 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+371 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+383 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+387 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+390 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+437 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+437 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+600 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+680 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+837 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+974 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+981 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+981 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+982 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+982 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1447 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1463 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1619 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1628 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1897 [main] INFO  main.java.model.Customer - id = 0
+
+2115 [main] INFO  main.java.model.ManageCustomer - factory
+
+2333 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2479 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2498 [main] INFO  main.java.model.ManageCustomer - after loc.setLocID(...) by saveCustomer
+
+2551 [main] INFO  main.java.model.Customer - id = 0
+
+2558 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+371 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+382 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+387 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+389 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+447 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+447 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+593 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+642 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+953 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1128 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1134 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1134 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1135 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1135 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1690 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1703 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1805 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1813 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2031 [main] INFO  main.java.model.Customer - id = 0
+
+2230 [main] INFO  main.java.model.ManageCustomer - factory
+
+2574 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2720 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2734 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+2744 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2747 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2747 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2794 [main] INFO  main.java.model.Customer - id = 0
+
+2801 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+5 [main] INFO  main.java.BillCalc - start app
+
+472 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+484 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+488 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+490 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+545 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+545 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+708 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+791 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+1170 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1363 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1370 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1370 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1370 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1371 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1997 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+2035 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+2173 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2181 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2536 [main] INFO  main.java.model.Customer - id = 0
+
+2778 [main] INFO  main.java.model.ManageCustomer - factory
+
+3094 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+3367 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+3372 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+3382 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+3386 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+3387 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+3388 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+3430 [main] INFO  main.java.model.Customer - id = 0
+
+3438 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+385 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+398 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+402 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+404 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+459 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+459 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+626 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+707 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+960 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1138 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1145 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1145 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1145 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1145 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1851 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1911 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+2100 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2109 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2591 [main] INFO  main.java.model.Customer - id = 0
+
+2873 [main] INFO  main.java.model.ManageCustomer - factory
+
+3200 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+3410 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+3429 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+3430 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+3433 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+3443 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+3448 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+3504 [main] INFO  main.java.model.Customer - id = 0
+
+3513 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+659 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+689 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+699 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+701 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+802 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+802 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+0 [main] INFO  main.java.BillCalc - start app
+
+1110 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+1181 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+1607 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+955 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+975 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+980 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+983 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+1902 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1913 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1920 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1920 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1920 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1074 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+1074 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+1374 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+1466 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+2843 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+2016 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+2906 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+3077 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+3087 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2428 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2435 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+2435 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+2435 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+2435 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+3504 [main] INFO  main.java.model.Customer - id = 0
+
+3778 [main] INFO  main.java.model.ManageCustomer - factory
+
+4077 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+4311 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+4322 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+4324 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+4337 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+4343 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+4343 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+4391 [main] INFO  main.java.model.Customer - id = 0
+
+4409 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+3601 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+3616 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+3778 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+3789 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+4289 [main] INFO  main.java.model.Customer - id = 0
+
+4537 [main] INFO  main.java.model.ManageCustomer - factory
+
+4834 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+5047 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+5060 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+5061 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+5077 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+5080 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+5080 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+5145 [main] INFO  main.java.model.Customer - id = 0
+
+5153 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+364 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+376 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+381 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+384 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+423 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+424 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+528 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+558 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+732 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+853 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+858 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+858 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+858 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+859 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1206 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1219 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1333 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1340 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1549 [main] INFO  main.java.model.Customer - id = 0
+
+1745 [main] INFO  main.java.model.ManageCustomer - factory
+
+1963 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2098 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2102 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+2103 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+2107 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2109 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2109 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2149 [main] INFO  main.java.model.Customer - id = 0
+
+2157 [main] INFO  main.java.model.Customer - id = 11
+
+2238 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+323 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+334 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+337 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+339 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+375 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+375 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+472 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+502 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+633 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+736 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+740 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+741 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+741 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+741 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1113 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1126 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1250 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1257 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1470 [main] INFO  main.java.model.Customer - id = 0
+
+1659 [main] INFO  main.java.model.ManageCustomer - factory
+
+1872 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2004 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2021 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+2022 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+2026 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2028 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2032 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2079 [main] ERROR org.hibernate.property.BasicPropertyAccessor - HHH000122: IllegalArgumentException in class: main.java.model.CustomerLocation, getter method of property: id
+0 [main] INFO  main.java.BillCalc - start app
+
+315 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+326 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+331 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+333 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+369 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+370 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+464 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+501 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+638 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+728 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+734 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+734 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+734 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+735 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1078 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1091 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1194 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1204 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1404 [main] INFO  main.java.model.Customer - id = 0
+
+1597 [main] INFO  main.java.model.ManageCustomer - factory
+
+1816 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+1918 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+1930 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+1931 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+1941 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+1945 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+1946 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2001 [main] INFO  main.java.model.Customer - id = 0
+
+2012 [main] INFO  main.java.model.Customer - id = 12
+
+2033 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: null
+2033 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - [SQLITE_ERROR] SQL error or missing database (no such column: id)
+2042 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+325 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+337 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+341 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+343 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+378 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+378 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+467 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+502 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+648 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+749 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+753 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+753 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+753 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+754 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1098 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1111 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1221 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1231 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1438 [main] INFO  main.java.model.Customer - id = 0
+
+1636 [main] INFO  main.java.model.ManageCustomer - factory
+
+1861 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+1988 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+1999 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+2000 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+2012 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2014 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2015 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2061 [main] INFO  main.java.model.Customer - id = 0
+
+2071 [main] INFO  main.java.model.Customer - id = 12
+
+2090 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: null
+2090 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - [SQLITE_ERROR] SQL error or missing database (no such column: quotId)
+2098 [main] INFO  main.java.BillCalc - End of App
+1 [main] INFO  main.java.BillCalc - start app
+
+327 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+337 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+341 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+343 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+379 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+379 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+472 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+503 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+623 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+722 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+733 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+733 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+734 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+734 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1113 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1126 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1229 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1236 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1448 [main] INFO  main.java.model.Customer - id = 0
+
+1642 [main] INFO  main.java.model.ManageCustomer - factory
+
+1860 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2003 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2006 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+2008 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+2011 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2013 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2014 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2054 [main] INFO  main.java.model.Customer - id = 0
+
+2063 [main] INFO  main.java.model.Customer - id = 12
+
+2082 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: null
+2082 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - [SQLITE_ERROR] SQL error or missing database (no such column: id)
+2092 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+325 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+335 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+339 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+341 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+374 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+375 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+467 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+505 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+666 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+777 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+781 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+782 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+782 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+782 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1134 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1147 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1251 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1259 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1466 [main] INFO  main.java.model.Customer - id = 0
+
+1675 [main] INFO  main.java.model.ManageCustomer - factory
+
+1901 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2039 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2050 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+2053 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+2057 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2071 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2071 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2114 [main] INFO  main.java.model.Customer - id = 0
+
+2123 [main] INFO  main.java.model.Customer - id = 12
+
+2221 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+383 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+395 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+400 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+402 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+457 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+457 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+603 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+667 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+930 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1114 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1120 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1121 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1121 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1121 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1541 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1554 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1714 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1728 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1955 [main] INFO  main.java.model.Customer - id = 0
+
+2188 [main] INFO  main.java.model.ManageCustomer - factory
+
+2530 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2667 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2678 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+2680 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+2693 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2695 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2696 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2744 [main] INFO  main.java.model.Customer - id = 0
+
+2753 [main] INFO  main.java.model.Customer - id = 1
+
+2841 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+328 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+338 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+341 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+344 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+379 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+379 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+482 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+516 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+711 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+838 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+843 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+843 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+844 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+844 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1204 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1221 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1340 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1348 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1577 [main] INFO  main.java.model.Customer - id = 0
+
+1787 [main] INFO  main.java.model.ManageCustomer - factory
+
+2016 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2160 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2172 [main] INFO  main.java.model.ManageCustomer - bevore loc id = 0 by saveCustomer
+
+2173 [main] INFO  main.java.model.ManageCustomer - after loc id = 1 by saveCustomer
+
+2177 [main] INFO  main.java.model.ManageCustomer - call querry by getLocation 
+
+2179 [main] INFO  main.java.model.ManageCustomer - after querry by getLocation 
+
+2191 [main] INFO  main.java.model.ManageCustomer - loc id = 1
+
+2227 [main] INFO  main.java.model.Customer - id = 0
+
+2239 [main] INFO  main.java.model.Customer - id = 1
+
+2342 [main] INFO  main.java.BillCalc - End of App
+4 [main] INFO  main.java.BillCalc - start app
+
+354 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+366 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+382 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+385 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+454 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+454 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+604 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+675 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+884 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1048 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1056 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1056 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1057 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1058 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1540 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1567 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1703 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1764 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2061 [main] INFO  main.java.model.Customer - id = 0
+
+0 [main] INFO  main.java.BillCalc - start app
+
+416 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+430 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+434 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+436 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+524 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+524 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+647 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+695 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+967 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1164 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1169 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1169 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1169 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1169 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1579 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1595 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1747 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1767 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1996 [main] INFO  main.java.model.Customer - id = 0
+
+2288 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+396 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+408 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+412 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+415 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+466 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+466 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+630 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+705 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+1045 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1178 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1183 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1183 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1183 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1183 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1638 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1657 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1754 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1762 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1987 [main] INFO  main.java.model.Customer - id = 0
+
+2299 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+347 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+358 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+362 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+365 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+414 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+415 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+563 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+639 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+885 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1050 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1054 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1054 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1054 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1055 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1517 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1548 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1655 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1662 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1866 [main] INFO  main.java.model.Customer - id = 0
+
+2236 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+370 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+389 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+393 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+396 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+468 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+468 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+648 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+729 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+1036 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1207 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1213 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1213 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1213 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1213 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1785 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1831 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1960 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1973 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2241 [main] INFO  main.java.model.Customer - id = 0
+
+2562 [main] INFO  main.java.BillCalc - size of cust_list: 0
+
+2571 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+379 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+393 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+397 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+400 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+450 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+450 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+623 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+707 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+1048 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1202 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1206 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1206 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1207 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1207 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1693 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1734 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1861 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1875 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2114 [main] INFO  main.java.model.Customer - id = 0
+
+2625 [main] INFO  main.java.BillCalc - size of cust_list: 1
+
+2629 [main] INFO  main.java.BillCalc - custId=1, custName=Franz mustermann
+
+2631 [main] INFO  main.java.BillCalc - End of App
+1 [main] INFO  main.java.BillCalc - start app
+
+351 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+362 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+366 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+368 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+417 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+417 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+576 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+647 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+946 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1092 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1097 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1097 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1098 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1098 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1546 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1560 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1695 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1703 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+1986 [main] INFO  main.java.model.Customer - id = 0
+
+2306 [main] INFO  main.java.model.ManageCustomer - listCustomers result size: 0
+
+2313 [main] INFO  main.java.BillCalc - size of cust_list: 0
+
+2314 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+371 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+382 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+386 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+389 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+453 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+454 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+622 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+696 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+1022 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1130 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1150 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1150 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1151 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1151 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1593 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1611 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1767 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1782 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2021 [main] INFO  main.java.model.Customer - id = 0
+
+2518 [main] INFO  main.java.BillCalc - size of cust_list: 1
+
+2531 [main] INFO  main.java.BillCalc - custId=1, custName=Franz mustermann
+
+2532 [main] INFO  main.java.BillCalc - End of App
+0 [main] INFO  main.java.BillCalc - start app
+
+362 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+375 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.2.5.Final}
+379 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+382 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+431 [main] INFO  org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+431 [main] INFO  org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+583 [main] WARN  org.hibernate.internal.util.xml.DTDEntityResolver - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+658 [main] INFO  org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sqlite_mapping.hbm.xml
+994 [main] INFO  org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+1156 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+1162 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+1162 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+1163 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [org.sqlite.JDBC] at URL [jdbc:sqlite:billcalc.db]
+1164 [main] INFO  org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=, password=****}
+1627 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: main.java.model.SQLiteDialect
+1662 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+1800 [main] INFO  org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+1813 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+2132 [main] INFO  main.java.model.Customer - id = 0
+
+2752 [main] INFO  main.java.BillCalc - size of cust_list: 1
+
+2754 [main] INFO  main.java.BillCalc - custId=1, custName=Franz mustermann
+
+2879 [main] INFO  main.java.BillCalc - End of App

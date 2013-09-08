@@ -1,5 +1,7 @@
 package main.java.model;
 
+import main.view.util.Log;
+
 public class CustomerLocation {
 
 	private Location location;
@@ -27,6 +29,7 @@ public class CustomerLocation {
 	}
 
 	public int getId() {
+		Log.getCustomerLogger().info("id = " + id + "\n");
 		return id;
 	}
 
