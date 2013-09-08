@@ -2,8 +2,7 @@ package main.java.model;
 
 public class Location {
 	
-	
-	private int custId;
+	private int locId;
 	private String city;
 	private String street;
 	private int postal;
@@ -11,19 +10,10 @@ public class Location {
 	public Location(){}
 	
 	public Location(String city, String street, int postal) {
+		
 		this.city = city;
 		this.street = street;
 		this.postal = postal;
-	}
-
-
-
-	public int getCustId() {
-		return custId;
-	}
-
-	public void setCustId(int custId) {
-		this.custId = custId;
 	}
 
 	public String getCity() {
@@ -49,7 +39,13 @@ public class Location {
 	public void setPostal(int postal) {
 		this.postal = postal;
 	}
-	
-	
 
+	public int getLocId() {
+		return locId;
+	}
+
+	public void setLocId(int locId) {
+		this.locId = locId;
+	}
+	
 }

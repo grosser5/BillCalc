@@ -7,16 +7,13 @@ import java.util.HashSet;
 
 import java.util.List;
 
+import main.java.model.CustomerLocation;
 import main.java.model.Employee;
-import main.java.model.Location;
 import main.java.model.ManageCustomer;
 import main.java.model.ManageEmployee;
+import main.java.model.Product;
 import main.java.model.Quotation;
 import main.view.util.Log;
-
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.cfg.Configuration;
 
 
 public class BillCalc {
@@ -24,13 +21,17 @@ public class BillCalc {
 	 
 	 
 	 public static void main(String[] args) {
-
+		 
+		 
 		 Log.getBillCalcLogger().info("start app\n");
 		 ManageCustomer manage_cust = new ManageCustomer();
 		 
 		 
-		 manage_cust.saveCustomer("Holzbauer", "AG", new Location("Graz","Griesplatz 12",8010 ));
-		 	 
+		 List<CustomerLocation> cl = new ArrayList<CustomerLocation>(); 
+		 cl.add( new CustomerLocation( "tirol","Griesplatz 12",8010 ) );
+		 
+		 manage_cust.saveProduct(new Product("Tiefenlockern",15,"m2"));
+		 
 //	      try{
 //	         ManageEmployee.setFactory( new Configuration().configure().buildSessionFactory() );
 //	      }catch (Throwable ex) { 
@@ -77,6 +78,8 @@ public class BillCalc {
 //
 //	      /* List down all the employees */
 //	      ME.listEmployees();
+		 
+		 Log.getBillCalcLogger().info("End of App");
 	   }
 	
 }

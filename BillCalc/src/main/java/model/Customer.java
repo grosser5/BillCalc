@@ -1,24 +1,23 @@
 package main.java.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
 
 	private Integer custId;
 	private String name;
 	private String compType;
-	private Location location;
-	private ArrayList<Quotation> quotations;
+	private List<CustomerLocation> locations;
+	private List<Quotation> quotations;
 	
 	public Customer() {		
 	}
 
 	public Customer(String name, String compType,
-			Location location) {
+			List<CustomerLocation> locations) {
 		this.name = name;
 		this.compType = compType;
-		this.location = location;
-		//this.quotations = quotations;
+		this.locations = locations;		
 	}
 
 	public Integer getCustId() {
@@ -45,19 +44,19 @@ public class Customer {
 		this.compType = compType;
 	}
 
-	public Location getLocation() {
-		return location;
+	public List<CustomerLocation> getLocations() {
+		return locations;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
+	public void setLocations(List<CustomerLocation> locations) {
+		this.locations = locations;
 	}
 
-	public ArrayList<Quotation> getQuotations() {
+	public List<Quotation> getQuotations() {
 		return quotations;
 	}
 
-	public void setQuotations(ArrayList<Quotation> quotations) {
+	public void setQuotations(List<Quotation> quotations) {
 		this.quotations = quotations;
 	}
 
