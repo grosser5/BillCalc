@@ -1,8 +1,19 @@
 package main.java.view;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import main.java.model.Product;
+import main.java.model.QuotationProduct;
+
+import com.google.common.collect.Multimap;
 
 public class ProductTableModel extends AbstractTableModel {
 
@@ -11,23 +22,29 @@ public class ProductTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 544322;
 	private String[] columnNames = new String[] { "sel", "Produkt", "Ort", "Menge",
     		"Einheit", "Euro/Eh", "Betrag", "MWSt" };
-    private Object[][] data = null;
-
+	private List<ColumnData> data = new ArrayList();
+	private Product[] products = null;
+    
     public ProductTableModel(){ }
     
-    public ProductTableModel(Object[][] data) {
-    	this.data = data;
+    public ProductTableModel(List<QuotationProduct> qot_products, List<Product> products) {
+    	
+    	this.products = (Product[])products.toArray();
+    	for(QuotationProduct p : qot_products) {
+    		JComboBox<Product> box = new JComboBox<Product>( this.products );
+    		box.setEditable(true);
+    		this.data.add( new ColumnData( p, box ) );
+    	}
     }
+    
+    
     
     public int getColumnCount() {
         return columnNames.length;
     }
 
     public int getRowCount() {
-    	if(data != null)
-    		return data.length;
-    	else 
-    		return 0;
+    		return data.size();
     }
 
     public String getColumnName(int col) {
@@ -35,7 +52,27 @@ public class ProductTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int row, int col) {
-        return data[row][col];
+    	
+    	
+    	ColumnData cd = data.get(row);
+    	
+    	switch(col) {
+    	case 0: return cd.products;
+    	case 1: return cd.quotation_product.getPlace();
+    	case 2: return cd.quotation_product.getQuantity();
+    	case 3: {
+    		int sel_item = cd.products.getSelectedIndex();
+    		if( sel_item == -1)
+    			return "";
+    		else
+    			return cd.products.getItemAt(sel_item).getQuantityUnit();
+    	}
+    	case 4: return cd.quotation_product.getCostPerQuantity();
+    	case 5: return cd.quotation_product.getPrice();
+    	case 6: return cd.quotation_product.getMwst();
+    	default: return "";
+    	}
+    	
     }
 
     public Class getColumnClass(int c) {
@@ -62,13 +99,58 @@ public class ProductTableModel extends AbstractTableModel {
      */
     public void setValueAt(Object value, int row, int col) {
     	
-        data[row][col] = value;
+        //data[row][col] = value;
+    	
+ColumnData cd = data.get(row);
+    	
+    	switch(col) {
+    	case 1:  cd.quotation_product.getPlace(); break;
+    	case 2:  cd.quotation_product.getQuantity();break;
+    	case 3: {
+    		int sel_item = cd.products.getSelectedIndex();
+    		if( sel_item == -1)
+    			return;
+    		else
+    			cd.products.getItemAt(sel_item).getQuantityUnit();
+    		
+    		break;
+    	}
+    	case 4: cd.quotation_product.getCostPerQuantity();break;
+    	case 5: cd.quotation_product.getPrice();break;
+    	case 6: cd.quotation_product.getMwst();break;
+    	default: return;
+    	}
+    	
         fireTableCellUpdated(row, col);
     }
     
-    public void setRows(Object[][] data) {
-    	this.data = data;
-    	
+    public void setRows(List<QuotationProduct> qot_products, List<Product> products) {
+    	this.products = (Product[])products.toArray();
+    	for(QuotationProduct p : qot_products) {
+    		JComboBox<Product> box = new JComboBox<Product>( this.products );
+    		box.setEditable(true);
+    		this.data.add( new ColumnData( p, box ) );
+    	}
     }
     
+    public void addQuotProduct(QuotationProduct qot_products) {
+    	JComboBox<Product> box = new JComboBox<Product>( this.products );
+    	box.setEditable(true);
+    	data.add(new ColumnData(qot_products,box ) );
+    }
+    
+    public void setProducts(List<Product> products) {
+    	this.products = (Product[])products.toArray();
+    }
+    
+    public class ColumnData {
+    	public QuotationProduct quotation_product;
+    	public JComboBox<Product> products;
+		public ColumnData(QuotationProduct quotation_product, JComboBox<Product> products) {
+			super();
+			this.quotation_product = quotation_product;
+			this.products = products;
+		}
+    	
+    }
 }

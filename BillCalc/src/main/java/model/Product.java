@@ -2,9 +2,9 @@ package main.java.model;
 
 public class Product {
 	int prodId;
-	String name;
-	int defaultCostPerQuantity;
-	String quantityUnit;
+	String name = "";
+	int defaultCostPerQuantity = 0;
+	String quantityUnit = "";
 	
 	public Product() { }
 
@@ -47,6 +47,8 @@ public class Product {
 		this.quantityUnit = quantityUnit;
 	}
 	
-	
+	public String toString() {
+		return name;
+	}
 	
 }

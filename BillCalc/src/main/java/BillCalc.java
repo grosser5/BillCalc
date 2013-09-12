@@ -1,21 +1,17 @@
 package main.java;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-
-
-
 import java.util.List;
 
+import main.java.controller.BillController;
+import main.java.controller.ControllerInterface;
 import main.java.model.Customer;
 import main.java.model.CustomerLocation;
-import main.java.model.Employee;
-import main.java.model.ManageCustomer;
 import main.java.model.ManageDatabase;
-import main.java.model.Product;
 import main.java.model.Quotation;
 import main.java.model.QuotationProduct;
+import main.java.view.MainWindow;
+import main.java.view.ViewInterface;
 import main.view.util.Log;
 
 
@@ -27,27 +23,32 @@ public class BillCalc {
 		 
 		 
 		 Log.getBillCalcLogger().info("start app\n");
-		 ManageCustomer manage_cust = new ManageCustomer();
+		 
+		 ControllerInterface controll = new BillController();
+		 ViewInterface view = new MainWindow(controll);
 		 
 		 
-		 List<CustomerLocation> cl = new ArrayList<CustomerLocation>(); 
-		 cl.add( new CustomerLocation( "tirol","Griesplatz 12",8010 ) );
-		 
-		 List<Quotation> quotations = new ArrayList<Quotation>();
-		 List<QuotationProduct> qproduct = new ArrayList<QuotationProduct>();
-		 qproduct.add(new QuotationProduct(1, 12,
-					300, 20, "trainingsplatz"));
-		 quotations.add( new Quotation(new java.util.Date(2013,9,20), qproduct) );
-		 
-		 List<Customer> cust_list = manage_cust.listCustomers();
-		 
-		 Log.getBillCalcLogger().info("size of cust_list: " + cust_list.size() + "\n");
-		 for(Customer cust : cust_list) {
-			 Log.getBillCalcLogger().info("custId="+cust.getCustId()+", custName=" + 
-					 	cust.getName()+"\n");
-			 cust.setName("Hannes");
-			 manage_cust.updateCustomer(cust);
-		 }
+//		 ManageDatabase manage_cust = new ManageDatabase();
+//		 
+//		 
+//		 List<CustomerLocation> cl = new ArrayList<CustomerLocation>(); 
+//		 cl.add( new CustomerLocation( "tirol","Griesplatz 12",8010 ) );
+//		 
+//		 List<Quotation> quotations = new ArrayList<Quotation>();
+//		 List<QuotationProduct> qproduct = new ArrayList<QuotationProduct>();
+//		 qproduct.add(new QuotationProduct(1, 12,
+//					300, 20, "trainingsplatz"));
+//		 quotations.add( new Quotation(new java.util.Date(2013,9,20), qproduct) );
+//		 
+//		 List<Customer> cust_list = manage_cust.listCustomers();
+//		 
+//		 Log.getBillCalcLogger().info("size of cust_list: " + cust_list.size() + "\n");
+//		 for(Customer cust : cust_list) {
+//			 Log.getBillCalcLogger().info("custId="+cust.getCustId()+", custName=" + 
+//					 	cust.getName()+"\n");
+//			 cust.setName("Hannes");
+//			 manage_cust.updateCustomer(cust);
+//		 }
 		 
 		 
 		 

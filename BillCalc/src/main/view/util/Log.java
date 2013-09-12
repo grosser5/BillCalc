@@ -42,7 +42,7 @@ public class Log {
 			BasicConfigurator.configure();
 		}
 		billCalcLogger =  Logger.getLogger(BillCalc.class);
-		manageCustomerLogger = Logger.getLogger(ManageCustomer.class);
+		manageCustomerLogger = Logger.getLogger(ManageDatabase.class);
 		customerLogger =  Logger.getLogger(Customer.class);
 		locationLogger =  Logger.getLogger(Location.class);
 		quotationLogger =  Logger.getLogger(Quotation.class);

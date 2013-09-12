@@ -7,10 +7,12 @@ public class QuotationProduct {
 	private int quotProdId;
 	private int prodId;
 	private int quotId;
-	private int costPerQuantity;
+	private int costPerQuantity = 0;
 	private int quantity = 0;
 	private int mwst = 20;
-	private String place;
+	private String place = "";
+	// not in the database 
+	private int price = 0;
 	
 	public QuotationProduct () {	}
 	
@@ -88,6 +90,14 @@ public class QuotationProduct {
 
 	public void setPlace(String place) {
 		this.place = place;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	

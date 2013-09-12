@@ -1,14 +1,15 @@
 package main.java.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
 
 	private Integer custId;
-	private String name;
-	private String compType;
-	private List<CustomerLocation> locations;
-	private List<Quotation> quotations;
+	private String name = "";
+	private String compType = "";
+	private List<CustomerLocation> locations = new ArrayList();
+	private List<Quotation> quotations = new ArrayList();
 	
 	public Customer() {		
 	}
@@ -71,6 +72,9 @@ public class Customer {
 		this.quotations = quotations;
 	}
 
+	public String toString() {
+		return name + " " + compType;
+	}
 
 	
 }
