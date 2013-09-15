@@ -1,13 +1,13 @@
 package main.java.model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class Quotation {
-	private int quotId;
-	private int cutId;
-	private Date date;
-	private List<QuotationProduct> quotProducts;
+	private int quotId = 0;
+	private int cutId = 0;
+	private Date date = null;
+	private List<QuotationProduct> quotProducts = null;
 	
 	public Quotation(){}
 	
@@ -49,5 +49,8 @@ public class Quotation {
 		this.date = date;
 	}
 	
-	
+	public String toString() {
+		
+		return "Nr. " + quotId;
+	}
 }

@@ -5,8 +5,8 @@ import main.view.util.Log;
 public class CustomerLocation {
 
 	private Location location;
-	private int id;
-	private int custId;
+	private int id = 0;
+	private int custId = 0;
 	
 	public CustomerLocation() {}
 	
@@ -29,7 +29,7 @@ public class CustomerLocation {
 	}
 
 	public int getId() {
-		Log.getCustomerLogger().info("id = " + id + "\n");
+		Log.getLog(this).info("id = " + id + "\n");
 		return id;
 	}
 
@@ -45,4 +45,11 @@ public class CustomerLocation {
 		this.custId = custId;
 	}
 	
+	public String toString() {
+		String l = "null";
+		if(location != null) {
+			l = location.toString();
+		}
+		return "CustomerId: " + custId + " Location: "  + l;
+	}
 }

@@ -16,31 +16,35 @@ import org.hibernate.internal.CriteriaImpl.CriterionEntry;
 
 
 
-public class ManageDatabase {
+public class ManageDatabase  {
 
-	public ManageDatabase() { }
+	ModelFactory factory;
+	
+	public ManageDatabase(ModelFactory factory) { 
+		this.factory = factory; 
+	}
+	
+	private void prepareDb(Session session) {
+		session.createSQLQuery("PRAGMA foreign_keys = ON;");
+	}
 	
 	public int saveCustomer(String name, String compType, List<CustomerLocation> locations,
 			List<Quotation> quotations) {
 		Session session = ModelSingleton.getSessionFactory().openSession();
-		Log.getManageCustomerLogger().info("factory\n");
+		Log.getLog(this).info("factory\n");
 		Transaction tx = null;
 		Integer custId = null;
 
 		try {
 			tx = session.beginTransaction();
-			session.createSQLQuery("PRAGMA foreign_keys = ON;");
+			prepareDb(session);
 			
 			//check if the location is already in the database
 			for(Iterator<CustomerLocation> it = locations.iterator(); it.hasNext();) {
 				Location loc = it.next().getLocation();
 				List<Location> fount_locs = getLocation(loc.getCity(),loc.getStreet(),loc.getPostal());
 				if( !fount_locs.isEmpty() ) {
-					Log.getManageCustomerLogger().info("bevore loc id = "+ locations.iterator().next().getLocation().getLocId() +" by saveCustomer\n"); 
 					loc.setLocId(fount_locs.iterator().next().getLocId());
-					Log.getManageCustomerLogger().info("after loc id = "+ locations.iterator().next().getLocation().getLocId() +" by saveCustomer\n"); 
-					Log.getManageCustomerLogger().info("loc id = " + 
-							getLocation(loc.getCity(),loc.getStreet(),loc.getPostal()).iterator().next().getLocId() + "\n");
 				}
 			}
 			//check if the customer is already in the database
@@ -65,6 +69,7 @@ public class ManageDatabase {
 		List<Customer> results = null;
 		try {
 			tx = session.beginTransaction();
+			prepareDb(session);
 			String hql = "FROM Customer C WHERE C.name = '" + name + "' AND"
 					+ " C.compType='"+ compType + "'";
 			Query query = session.createQuery(hql);
@@ -86,12 +91,12 @@ public class ManageDatabase {
 	      List<Customer> result = new ArrayList();
 	      try{
 	         tx = session.beginTransaction();
+	         prepareDb(session);
+	         Criteria cr = session.createCriteria(Customer.class);
+	         result = cr.list();
 	         
-//	         Criteria cr = session.createCriteria(Employee.class);
-//	         customers = cr.list();
-	         
-	         Query query = session.createQuery("FROM Customer");
-	         result = query.list();
+//	         Query query = session.createQuery("FROM Customer");
+//	         result = query.list();
 	         tx.commit();
 	      }catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
@@ -107,7 +112,7 @@ public class ManageDatabase {
 	      Transaction tx = null;
 	      try{
 	         tx = session.beginTransaction();
-	         session.createSQLQuery("PRAGMA foreign_keys = ON;");
+	         prepareDb(session);
 			 session.update(customer); 
 	         tx.commit();
 	      }catch (HibernateException e) {
@@ -124,7 +129,7 @@ public class ManageDatabase {
 		Integer custId = null;
 		try {
 			tx = session.beginTransaction();
-			session.createSQLQuery("PRAGMA foreign_keys = ON;");
+			prepareDb(session);
 			
 			custId = (Integer) session.save(p);
 			tx.commit();
@@ -144,7 +149,7 @@ public class ManageDatabase {
 	      List<Product> result = new ArrayList();
 	      try{
 	         tx = session.beginTransaction();
-	         
+	         prepareDb(session);
 //	         Criteria cr = session.createCriteria(Employee.class);
 //	         customers = cr.list();
 	         
@@ -165,7 +170,7 @@ public class ManageDatabase {
 	      Transaction tx = null;
 	      try{
 	         tx = session.beginTransaction();
-	         session.createSQLQuery("PRAGMA foreign_keys = ON;");
+	         prepareDb(session);
 			 session.update(product); 
 	         tx.commit();
 	      }catch (HibernateException e) {
@@ -182,14 +187,15 @@ public class ManageDatabase {
 		List<Location> results = null;
 		try {
 			tx = session.beginTransaction();
+			prepareDb(session);
 			String hql = "FROM Location L WHERE L.city = '" + city + "' AND"
 					+ " L.street='"+street+"' AND"
 					+ " L.postal=" + postal;
 			Query query = session.createQuery(hql);
-			Log.getManageCustomerLogger().info("call querry by getLocation \n");
+			Log.getLog(this).info("call querry by getLocation \n");
 			results = query.list();
 			tx.commit();
-			Log.getManageCustomerLogger().info("after querry by getLocation \n");
+			Log.getLog(this).info("after querry by getLocation \n");
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();

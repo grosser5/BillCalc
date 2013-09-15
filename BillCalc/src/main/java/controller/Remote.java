@@ -8,7 +8,7 @@ import main.java.view.ViewInterface;
 public class Remote {
 
 	private ViewInterface view;
-	private Map<String,AbstractCommand> slot = new HashMap<String,AbstractCommand>();
+	private Map<Class,AbstractCommand> slot = new HashMap<Class,AbstractCommand>();
 	
 	Remote(ViewInterface view) {
 		this.view = view;
@@ -17,12 +17,12 @@ public class Remote {
 	
 	
 	
-	public void setSlot(String name, AbstractCommand command) {
-		slot.put(name, command);
+	public void setSlot(Class c, AbstractCommand command) {
+		slot.put(c, command);
 	}
 	
-	public void execute(String name) {
-		slot.get(name).execute();
+	public void execute(Class c) {
+		slot.get(c).execute();
 	}
 	
 	

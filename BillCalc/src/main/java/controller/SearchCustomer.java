@@ -1,13 +1,15 @@
 package main.java.controller;
 
+import main.java.model.ModelInterface;
+
 public class SearchCustomer {
-	
-	public SearchCustomer() {
-		
+	ModelInterface model;
+	public SearchCustomer(ModelInterface model) {
+		this.model = model;
 	}
 	
 	public void search(String s) {
-		//TODO
+		model.listCustomers(s);
 	}
 
 }

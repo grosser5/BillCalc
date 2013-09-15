@@ -35,20 +35,28 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ScrollPaneConstants;
 
+import main.java.controller.BillController;
 import main.java.controller.ControllerInterface;
 import main.java.model.Customer;
 import main.java.model.Location;
+import main.java.model.ManageModel;
+import main.java.model.ModelInterface;
 import main.java.model.Product;
 import main.java.model.Quotation;
 import main.java.model.QuotationProduct;
-import main.java.model.observer.ModelObserver;
+import main.java.model.observer.*;
+import main.java.view.ProductTableModel.RowData;
 import main.java.view.TableRenderDemo.MyTableModel;
+import main.view.util.Log;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainWindow implements ViewInterface, ModelObserver{
+public class MainWindow implements ViewInterface, CustomerObserver, CustomerLocationObserver,
+	ProductObserver, QuotationObserver, QuotProductObserver{
 
+	private ControllerInterface controller;
+	private ModelInterface model;
 	private JFrame frame;
 	private JTextField customerSearch;
 	private JList customerList;
@@ -56,9 +64,8 @@ public class MainWindow implements ViewInterface, ModelObserver{
 	private JLabel addProductLabel;
 	private JTable quotProductTable;
 	private JScrollPane quotProductscrollPane;
-	private ControllerInterface controller;
-	private DefaultListModel<String> customer_list_model = new DefaultListModel<String>();
-	private Object[][] QuotationTableData = {{}};
+	private DefaultListModel<Customer> customer_list_model = 
+			new DefaultListModel<Customer>();
 	private final static int QUOTTABLECOLUMNS=8;
 	private JTable productTable;
 	private JTable quotationTable;
@@ -75,10 +82,12 @@ public class MainWindow implements ViewInterface, ModelObserver{
 	private JButton addCustomerButton;
 	private JButton btnLscheKunde;
 	
+	
 	/**
 	 * Launch the application.
 	 */
 //	public static void main(String[] args) {
+//		Log.getMainWindowLogger().info("prog start\n");
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
 //				try {
@@ -89,22 +98,30 @@ public class MainWindow implements ViewInterface, ModelObserver{
 //				}
 //			}
 //		});
+//		Log.getMainWindowLogger().info("prog end\n");
 //	}
 
 	/**
 	 * Create the application.
 	 */
-	public MainWindow(ControllerInterface controller) {
-					  
+	public MainWindow() {
+		this.model = new ManageModel();
+		this.controller = new BillController(this, model);
 		initialize();
-		this.controller = controller;
+		loadInitData();
+	}
+
+	private void loadInitData() {
+		model.registerCustomerObserver(this);
+		controller.updateCustomerList();		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	//@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
+		Log.getLog(this).debug("initialize called");
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1020, 1016);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,27 +132,26 @@ public class MainWindow implements ViewInterface, ModelObserver{
 		customerSearch.setText("search");
 		customerSearch.setBounds(83, 87, 144, 23);
 		customerSearch.addActionListener(new customerSearchActionListener());
-		customerSearch.setVisible(true);
+		
 		frame.getContentPane().add(customerSearch);
-		//customerSearch.setColumns(10);
-		
-		
 		
 		customerScrollPane = new JScrollPane();
 		customerScrollPane.setBounds(12, 118, 323, 165);
 		frame.getContentPane().add(customerScrollPane);
-		customerList = new JList(customer_list_model);
 		
-		customer_list_model.add(0, "test");
+		customerList = new JList(customer_list_model);
+		customerList.setVisible(true);
 		
 		customerScrollPane.setViewportView(customerList);
 		customerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		customerList.setLayoutOrientation(JList.VERTICAL);
 		customerList.setSelectedIndex(1);
 		customerList.setVisibleRowCount(3);
+	
 		
 		JLabel customerLabel = new JLabel("Kunde");
 		customerLabel.setBounds(12, 91, 70, 15);
+		customerLabel.setVisible(true);
 		frame.getContentPane().add(customerLabel);
 		
 		addProductLabel = new JLabel("Produkte des  Angebotes:");
@@ -157,17 +173,11 @@ public class MainWindow implements ViewInterface, ModelObserver{
 		quotProductTable = new JTable();
 		quotProductscrollPane.setViewportView(quotProductTable);
 		
-		
-
-		
-		Object[][] data = {
-		        {false, "Verlegearbeiten",
-		         "TrainingsPlatz", 7000, "m2", 2.0, 17500, 20}
-		        };
-		
-		List<Product> products = new ArrayList<Product>(); products.add(new Product("prod 1", 15, "m2"));
+		List<Product> products = new ArrayList<Product>(); products
+								.add(new Product("prod 1", 15, "m2"));
 		List<QuotationProduct> quot_prod = new ArrayList<QuotationProduct>(); 
 		quot_prod.add(new QuotationProduct(1, 0, 200, 20, "Spielplatz"));
+		
 		ProductTableModel table_model = new ProductTableModel(quot_prod,products);
 		quotProductTable.setModel( table_model );
 		
@@ -224,6 +234,7 @@ public class MainWindow implements ViewInterface, ModelObserver{
 		
 		lblRechnungsadresse = new JLabel("Rechnungsadresse:");
 		lblRechnungsadresse.setBounds(395, 91, 161, 15);
+		lblRechnungsadresse.setVisible(true);
 		frame.getContentPane().add(lblRechnungsadresse);
 		
 		addLocationButton = new JButton("neue Adresse");
@@ -249,15 +260,16 @@ public class MainWindow implements ViewInterface, ModelObserver{
 		frame.getContentPane().add(comboBox);
 		
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		//centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
 		
 		
 		quotProductTable.setDefaultRenderer(Integer.class, centerRenderer);
 		quotProductTable.setDefaultRenderer(String.class, centerRenderer);
 		quotProductTable.setDefaultRenderer(Double.class, centerRenderer);
 		//productTable.setFillsViewportHeight(true);
-		//initColumnSizes(productTable);
-		//productTable.getColumnModel().getColumn(3).setPreferredWidth(200);;
+		//initColumnSizes(quotProductTable);
+		//productTable.getColumnModel().getColumn(1).setPreferredWidth(150);;
+		quotProductTable.getColumnModel().getColumn(0).setPreferredWidth(200);
 	}
 	
 	private void initColumnSizes(JTable table) {
@@ -266,7 +278,7 @@ public class MainWindow implements ViewInterface, ModelObserver{
         Component comp = null;
         int headerWidth = 0;
         int cellWidth = 0;
-        Object[] rowData = model.getRows();
+        List<RowData> rowData = model.getRowData();
         TableCellRenderer headerRenderer =
             table.getTableHeader().getDefaultRenderer();
 
@@ -280,9 +292,9 @@ public class MainWindow implements ViewInterface, ModelObserver{
 
             comp = table.getDefaultRenderer(model.getColumnClass(i)).
                              getTableCellRendererComponent(
-                                 table, rowData[i],
+                                 table, rowData.get(i),
                                  false, false, 0, i);
-  table.getDefaultRenderer(String.class).
+  
             cellWidth = comp.getPreferredSize().width;
 
             column.setPreferredWidth(Math.max(headerWidth, cellWidth));
@@ -297,6 +309,7 @@ public class MainWindow implements ViewInterface, ModelObserver{
 	class newProductButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			Log.getLog(this).debug("newProductButtonActionListener called");
 			controller.newProductButtonPressed();
 		}
 	}
@@ -304,41 +317,41 @@ public class MainWindow implements ViewInterface, ModelObserver{
 	class customerSearchActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			controller.updateCustomerList();
+			Log.getLog(this).debug("customerSearchActionListener called");
+			controller.searchCustomerEntered();
 		}
 	}
 
 	@Override
-	public void updateCustomerField(List<Customer> custList) {
-		list_model.setSize(custList.size());
+	public synchronized void updateCustomerField(List<Customer> custList) {
+		Log.getLog(this).debug("updateCustomerField called");
+		customer_list_model.setSize(custList.size());
 		for(int i=0; i < custList.size(); i++) {
-			list_model.set(i,custList.get(i).getName() );
+			customer_list_model.set(i,custList.get(i));
+			if(custList.get(i).getLocations().isEmpty())
+				Log.getLog(this).debug("custList is emty by customer");
+			//Log.getLog(this).info(custList.get(i).getLocations().get(0).toString() );
 		}
 	}
 
 	@Override
-	public void updateCustomerLocationField(List<Location> locationList) {
+	public synchronized void updateCustomerLocationField(List<Location> locationList) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateQuotationList(List<Quotation> quotList) {
+	public synchronized void updateQuotationList(List<Quotation> quotList) {
 		// TODO Auto-generated method stub		
 	}
 
 	@Override
-	public void updateQuotProductList(List<QuotationProduct> quotProdList) {
-		QuotationTableData = new Object[quotProdList.size()][QUOTTABLECOLUMNS];
-		
-		for(int i=0; i<quotProdList.size(); i++) {
-			//QuotationTableData[i] = {false, quotProdList.get(i).ge}
-		}
+	public synchronized void updateQuotProductList(List<QuotationProduct> quotProdList) {
 		
 	}
 
 	@Override
-	public void updateProductList(List<Product> productList) {
+	public synchronized void updateProductList(List<Product> productList) {
 		// TODO Auto-generated method stub
 		
 	}

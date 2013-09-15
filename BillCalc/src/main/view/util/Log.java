@@ -1,6 +1,8 @@
 package main.view.util;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import main.java.*;
 import main.java.controller.*;
@@ -12,26 +14,14 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 public class Log {
-	private static boolean initialized = false;
-	private static Logger billCalcLogger;
-	private static Logger manageCustomerLogger;
-	private static Logger customerLogger;
-	private static Logger locationLogger;
-	private static Logger quotationLogger;
-	private static Logger abstractCommandLogger;
-	private static Logger billControllerLogger;
-	private static Logger newProductCommandLogger;
-	private static Logger remoteLogger;
-	private static Logger searchCustomerLogger;
-	private static Logger searchCustomerCommandLogger;
-	private static Logger mainWindowLogger;
-	private static Logger productTableModelLogger;
+	private static Log instance = null;
 	
+	private Map<Class,Logger> loggers = new HashMap< Class,Logger>();
 	
 	private Log() {	}
 	
 	private static void initialize() {
-		if (initialized == true) {
+		if (instance != null) {
 			return;
 		}
 		
@@ -41,87 +31,19 @@ public class Log {
 		} else {
 			BasicConfigurator.configure();
 		}
-		billCalcLogger =  Logger.getLogger(BillCalc.class);
-		manageCustomerLogger = Logger.getLogger(ManageDatabase.class);
-		customerLogger =  Logger.getLogger(Customer.class);
-		locationLogger =  Logger.getLogger(Location.class);
-		quotationLogger =  Logger.getLogger(Quotation.class);
-		abstractCommandLogger =  Logger.getLogger(BillController.class);
-		billControllerLogger =  Logger.getLogger(BillController.class);
-		newProductCommandLogger =  Logger.getLogger(NewProductCommand.class);
-		remoteLogger =  Logger.getLogger(Remote.class);
-		searchCustomerLogger =  Logger.getLogger(SearchCustomer.class);
-		mainWindowLogger=  Logger.getLogger(MainWindow.class);		
-		productTableModelLogger =  Logger.getLogger(main.java.view.ProductTableModel.class);
-	}
-	public static Logger getBillCalcLogger() {
-		initialize();
-		return billCalcLogger;
+		instance = new Log();
 	}
 	
-	public static Logger getManageCustomerLogger() {
-		initialize();
-		return manageCustomerLogger;
+	private Map<Class,Logger> getLoggers( ) {
+		return this.loggers;
 	}
-
-	public static boolean isInitialized() {
+	
+	public static Logger getLog(Object obj) {
 		initialize();
-		return initialized;
-	}
-
-	public static Logger getCustomerLogger() {
-		initialize();
-		return customerLogger;
-	}
-
-	public static Logger getLocationLogger() {
-		initialize();
-		return locationLogger;
-	}
-
-	public static Logger getQuotationLogger() {
-		initialize();
-		return quotationLogger;
-	}
-
-	public static Logger getAbstractCommandLogger() {
-		initialize();
-		return abstractCommandLogger;
-	}
-
-	public static Logger getBillControllerLogger() {
-		initialize();
-		return billControllerLogger;
-	}
-
-	public static Logger getNewProductCommandLogger() {
-		initialize();
-		return newProductCommandLogger;
-	}
-
-	public static Logger getRemoteLogger() {
-		initialize();
-		return remoteLogger;
-	}
-
-	public static Logger getSearchCustomerLogger() {
-		initialize();
-		return searchCustomerLogger;
-	}
-
-	public static Logger getSearchCustomerCommandLogger() {
-		initialize();
-		return searchCustomerCommandLogger;
-	}
-
-	public static Logger getMainWindowLogger() {
-		initialize();
-		return mainWindowLogger;
-	}
-
-	public static Logger getProductTableModelLogger() {
-		initialize();
-		return productTableModelLogger;
+		if(! instance.getLoggers().containsKey(obj.getClass())) {
+			instance.getLoggers().put(obj.getClass(), Logger.getLogger(obj.getClass()));
+		}
+		return instance.getLoggers().get(obj.getClass());
 	}
 	
 }

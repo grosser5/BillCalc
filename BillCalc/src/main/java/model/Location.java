@@ -3,9 +3,9 @@ package main.java.model;
 public class Location {
 	
 	private int locId;
-	private String city;
-	private String street;
-	private int postal;
+	private String city = "";
+	private String street = "";
+	private int postal = 0;
 	
 	public Location(){}
 	
@@ -48,4 +48,8 @@ public class Location {
 		this.locId = locId;
 	}
 	
+	public String toString() {
+		return getCity() + " " + getStreet()
+				+  " " + getPostal();
+	}
 }

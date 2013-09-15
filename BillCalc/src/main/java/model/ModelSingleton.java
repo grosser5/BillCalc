@@ -5,11 +5,11 @@ import org.hibernate.cfg.Configuration;
 
 public class ModelSingleton {
 	private static SessionFactory session_factory = null;
-	
+	private static ModelFactory model_factory = null;
 	private ModelSingleton() {	
 	}
 	
-	public static SessionFactory getSessionFactory() {
+	public synchronized static SessionFactory getSessionFactory() {
 		if(session_factory == null) {
 			try{
 		         session_factory = new Configuration().configure().buildSessionFactory();
@@ -19,5 +19,12 @@ public class ModelSingleton {
 		      }
 		}
 		return session_factory;
+	}
+	
+	public static ModelFactory getModelFactory() {
+		if(model_factory == null) {
+			model_factory = new ModelFactory();
+		}
+		return model_factory;
 	}
 }

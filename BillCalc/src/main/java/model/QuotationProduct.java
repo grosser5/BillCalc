@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class QuotationProduct {
 
-	private int quotProdId;
-	private int prodId;
-	private int quotId;
+	private int quotProdId = 0;
+	private int prodId = 0;
+	private int quotId = 0;
 	private int costPerQuantity = 0;
 	private int quantity = 0;
 	private int mwst = 20;
@@ -100,5 +100,8 @@ public class QuotationProduct {
 		this.price = price;
 	}
 	
-	
+	public String toString() {
+		return "Euro/Menge: " + costPerQuantity + " Menge: " + quantity 
+				+ " MWST: " + mwst + " Wo?: " + place;
+	}
 }

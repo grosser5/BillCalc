@@ -1,5 +1,6 @@
 package main.java;
 
+import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +23,19 @@ public class BillCalc {
 	 public static void main(String[] args) {
 		 
 		 
-		 Log.getBillCalcLogger().info("start app\n");
+		 Log.getLog(new BillCalc()).debug("start app");
 		 
-		 ControllerInterface controll = new BillController();
-		 ViewInterface view = new MainWindow(controll);
+
+		 EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						ViewInterface view = new MainWindow();						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		 
 		 
 		 
 //		 ManageDatabase manage_cust = new ManageDatabase();
@@ -103,7 +113,7 @@ public class BillCalc {
 //	      /* List down all the employees */
 //	      ME.listEmployees();
 		 
-		 Log.getBillCalcLogger().info("End of App");
+		 Log.getLog(new BillCalc()).debug("End of App");
 	   }
 	
 }
