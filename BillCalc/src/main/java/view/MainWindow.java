@@ -57,6 +57,18 @@ import main.view.util.Log;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.Dimension;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class MainWindow implements ViewInterface, CustomerObserver, CustomerLocationObserver,
 	ProductObserver, QuotationObserver, QuotProductObserver{
@@ -67,7 +79,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JTextField customerSearch;
 	private JList customerList;
 	private JScrollPane customerScrollPane;
-	private JLabel addProductLabel;
+	private JLabel quotProdLabel;
 	private JTable quotProductTable;
 	private JScrollPane quotProductscrollPane;
 	private DefaultListModel<Customer> customer_list_model = 
@@ -94,6 +106,11 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JButton deleteProductButton;
 	private ViewFactory viewFactory;
 	private JDialog addCustomerDialog;
+	private JPanel customerBelowPanel;
+	private JPanel locationPanel;
+	private JPanel locationBelowPanel;
+	private JPanel quotationPanel;
+	private JPanel quotationBelowPanel;
 	
 	/**
 	 * Launch the application.
@@ -144,130 +161,163 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1020, 1016);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.getContentPane().setLayout(new MigLayout("", "[356px][43px][22px][10px][559px]", "[338px][255px][28px][330px]"));
 		
-		customerSearch = new JTextField();
-		customerSearch.setText("search");
-		customerSearch.setBounds(83, 87, 144, 23);
-		customerSearch.addActionListener(new customerSearchActionListener());
+		JPanel customerPanel = new JPanel();
+		frame.getContentPane().add(customerPanel, "cell 0 0 2 1,grow");
+			customerPanel.setLayout(new BorderLayout(0, 0));
+			
+			JPanel customerAbovePanel = new JPanel();
+			customerPanel.add(customerAbovePanel, BorderLayout.NORTH);
+			
+				
+				JLabel customerLabel = new JLabel("Kunden: ");
+				
+				customerSearch = new JTextField();
+				//customerSearch.setMinimumSize(new Dimension(20, 19));
+				customerSearch.setText("search...");
+				customerSearch.addActionListener(new customerSearchActionListener());
+				GroupLayout gl_customerAbovePanel = new GroupLayout(customerAbovePanel);
+				gl_customerAbovePanel.setHorizontalGroup(
+					gl_customerAbovePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_customerAbovePanel.createSequentialGroup()
+							.addComponent(customerLabel)
+							.addGap(24)
+							.addComponent(customerSearch, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+							.addGap(252))
+				);
+				gl_customerAbovePanel.setVerticalGroup(
+					gl_customerAbovePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_customerAbovePanel.createSequentialGroup()
+							.addGroup(gl_customerAbovePanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(customerSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(customerLabel))
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				);
+				customerAbovePanel.setLayout(gl_customerAbovePanel);
+				customerLabel.setVisible(true);
+			
+			customerScrollPane = new JScrollPane();
+			customerPanel.add(customerScrollPane, BorderLayout.CENTER);
+			
+			customerList = new JList(customer_list_model);
+			customerList.setVisible(true);
+			
+			customerScrollPane.setViewportView(customerList);
+			customerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			customerList.setLayoutOrientation(JList.VERTICAL);
+			customerList.setSelectedIndex(1);
+			
+			customerBelowPanel = new JPanel();
+			customerPanel.add(customerBelowPanel, BorderLayout.SOUTH);
+			
+			addCustomerButton = new JButton("neuer Kunde");
+			customerBelowPanel.add(addCustomerButton);
+			
+			deleteCustomerButton = new JButton("lösche Kunde");
+			customerBelowPanel.add(deleteCustomerButton);
+			deleteCustomerButton.addActionListener(new DeleteCustomerButtonActionListener());
+			addCustomerButton.addActionListener( new AddCustomerButtonActionListener() );
+			customerList.getSelectionModel().addListSelectionListener(new CustomerListSelectionListener());
 		
-		frame.getContentPane().add(customerSearch);
+		locationPanel = new JPanel();
+		frame.getContentPane().add(locationPanel, "cell 2 0 3 1,grow");
+		locationPanel.setLayout(new BorderLayout(0, 0));
 		
-		customerScrollPane = new JScrollPane();
-		customerScrollPane.setBounds(12, 118, 323, 165);
-		frame.getContentPane().add(customerScrollPane);
 		
-		customerList = new JList(customer_list_model);
-		customerList.setVisible(true);
+		lblRechnungsadresse = new JLabel("Rechnungsadresse:");
+		locationPanel.add(lblRechnungsadresse, BorderLayout.NORTH);
+		lblRechnungsadresse.setVisible(true);
 		
-		customerScrollPane.setViewportView(customerList);
-		customerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		customerList.setLayoutOrientation(JList.VERTICAL);
-		customerList.setSelectedIndex(1);
-		customerList.getSelectionModel().addListSelectionListener(new CustomerListSelectionListener());
-	
+		customerLocationTableScrollPane = new JScrollPane();
+		locationPanel.add(customerLocationTableScrollPane, BorderLayout.CENTER);
 		
-		JLabel customerLabel = new JLabel("Kunde");
-		customerLabel.setBounds(12, 91, 70, 15);
-		customerLabel.setVisible(true);
-		frame.getContentPane().add(customerLabel);
+		customerLocationTable = new JTable(new LocationTableModel());
+		customerLocationTableScrollPane.setViewportView(customerLocationTable);
 		
-		addProductLabel = new JLabel("Produkte des  Angebotes:");
-		addProductLabel.setBounds(395, 364, 207, 15);
-		frame.getContentPane().add(addProductLabel);
+		locationBelowPanel = new JPanel();
+		locationPanel.add(locationBelowPanel, BorderLayout.SOUTH);
 		
-		addQuotProduktButton = new JButton("Produkt hinzugeben");
-		addQuotProduktButton.setBounds(395, 565, 178, 25);
-		frame.getContentPane().add(addQuotProduktButton);
+		addLocationButton = new JButton("neue Adresse");
+		locationBelowPanel.add(addLocationButton);
 		
-		quotProductscrollPane = new JScrollPane();
-		quotProductscrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		quotProductscrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		quotProductscrollPane.setBounds(395, 388, 607, 165);
-		quotProductscrollPane.setOpaque(false);
-		frame.getContentPane().add(quotProductscrollPane);
+		deleteLocationButton = new JButton("lösche Adresse");
+		locationBelowPanel.add(deleteLocationButton);
 		
-		quotProductTable = new JTable();
-		quotProductscrollPane.setViewportView(quotProductTable);		
-		quotProductTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		quotationPanel = new JPanel();
+		frame.getContentPane().add(quotationPanel, "cell 0 1 2 2,grow");
+		quotationPanel.setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane productScrollPane = new JScrollPane();
-		productScrollPane.setBounds(12, 654, 396, 152);
-		frame.getContentPane().add(productScrollPane);
-		
-		productTable = new JTable();
-		productScrollPane.setViewportView(productTable);
-		
-		newProductButton = new JButton("neues Produkt");
-		newProductButton.setBounds(18, 815, 138, 25);
-		frame.getContentPane().add(newProductButton);
-		
-		deleteProductButton = new JButton("entferne Produkt");
-		deleteProductButton.setBounds(174, 818, 161, 25);
-		frame.getContentPane().add(deleteProductButton);
-		
-		JLabel lblProduktTabelle = new JLabel("Zu verfuegung stehende Produkte");
-		lblProduktTabelle.setBounds(12, 623, 254, 15);
-		frame.getContentPane().add(lblProduktTabelle);
+		lblGespeicherteAngebote = new JLabel("gespeicherte Angebote:");
+		quotationPanel.add(lblGespeicherteAngebote, BorderLayout.NORTH);
 		
 		quotationTableScrollPane = new JScrollPane();
-		quotationTableScrollPane.setBounds(12, 402, 323, 152);
-		frame.getContentPane().add(quotationTableScrollPane);
+		quotationPanel.add(quotationTableScrollPane);
 		
 		quotationTable = new JTable();
 		quotationTableScrollPane.setViewportView(quotationTable);
 		quotationTable.getSelectionModel().addListSelectionListener(new QuotationTableSelectionListener());
 		
-		lblGespeicherteAngebote = new JLabel("gespeicherte Angebote:");
-		lblGespeicherteAngebote.setBounds(12, 375, 186, 15);
-		frame.getContentPane().add(lblGespeicherteAngebote);
+		quotationBelowPanel = new JPanel();
+		quotationPanel.add(quotationBelowPanel, BorderLayout.SOUTH);
 		
 		addQuotationButton = new JButton("neues Angebot");
-		addQuotationButton.setBounds(12, 565, 144, 25);
-		frame.getContentPane().add(addQuotationButton);
-		
-		deleteQuotProductButton = new JButton("Produkt löschen");
-		deleteQuotProductButton.setBounds(585, 565, 161, 25);
-		frame.getContentPane().add(deleteQuotProductButton);
+		quotationBelowPanel.add(addQuotationButton);
 		
 		deleteQuotationButton = new JButton("lösche Angebot");
-		deleteQuotationButton.setBounds(168, 565, 161, 25);
-		frame.getContentPane().add(deleteQuotationButton);
+		quotationBelowPanel.add(deleteQuotationButton);
 		
-		customerLocationTableScrollPane = new JScrollPane();
-		customerLocationTableScrollPane.setBounds(395, 120, 607, 163);
-		frame.getContentPane().add(customerLocationTableScrollPane);
+		JPanel quotProdPanel = new JPanel();
+		frame.getContentPane().add(quotProdPanel, "cell 4 1 1 2,growx,aligny top");
+		quotProdPanel.setLayout(new BorderLayout(0, 0));
 		
-		customerLocationTable = new JTable(new LocationTableModel());
-		customerLocationTableScrollPane.setViewportView(customerLocationTable);
+		quotProductscrollPane = new JScrollPane();
+		quotProdPanel.add(quotProductscrollPane, BorderLayout.CENTER);
+		quotProductscrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		quotProductscrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		quotProductscrollPane.setOpaque(false);
 		
+		quotProductTable = new JTable();
+		quotProductscrollPane.setViewportView(quotProductTable);		
+		quotProductTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
-		lblRechnungsadresse = new JLabel("Rechnungsadresse:");
-		lblRechnungsadresse.setBounds(395, 91, 161, 15);
-		lblRechnungsadresse.setVisible(true);
-		frame.getContentPane().add(lblRechnungsadresse);
+		quotProdLabel = new JLabel("Produkte des  Angebotes:");
+		quotProdPanel.add(quotProdLabel, BorderLayout.NORTH);
 		
-		addLocationButton = new JButton("neue Adresse");
-		addLocationButton.setBounds(395, 303, 161, 25);
-		frame.getContentPane().add(addLocationButton);
+		JPanel quotProdBelwPanel = new JPanel();
+		quotProdPanel.add(quotProdBelwPanel, BorderLayout.SOUTH);
 		
-		deleteLocationButton = new JButton("lösche Adresse");
-		deleteLocationButton.setBounds(568, 303, 149, 25);
-		frame.getContentPane().add(deleteLocationButton);
+		addQuotProduktButton = new JButton("Produkt hinzugeben");
+		quotProdBelwPanel.add(addQuotProduktButton);
 		
-		addCustomerButton = new JButton("neuer Kunde");
-		addCustomerButton.addActionListener( new AddCustomerButtonActionListener() );
-		addCustomerButton.setBounds(12, 303, 131, 25);
-		frame.getContentPane().add(addCustomerButton);
-		
-		deleteCustomerButton = new JButton("lösche Kunde");
-		deleteCustomerButton.addActionListener(new DeleteCustomerButtonActionListener());
-		deleteCustomerButton.setBounds(155, 303, 138, 25);
-		frame.getContentPane().add(deleteCustomerButton);
+		deleteQuotProductButton = new JButton("Produkt löschen");
+		quotProdBelwPanel.add(deleteQuotProductButton);
 		
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+		
+		JPanel productPanel = new JPanel();
+		frame.getContentPane().add(productPanel, "cell 0 3 3 1,grow");
+		productPanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel productBelowPanel = new JPanel();
+		productPanel.add(productBelowPanel, BorderLayout.SOUTH);
+		
+		newProductButton = new JButton("neues Produkt");
+		productBelowPanel.add(newProductButton);
+		
+		deleteProductButton = new JButton("entferne Produkt");
+		productBelowPanel.add(deleteProductButton);
+		
+		JLabel lblProduktTabelle = new JLabel("Zu verfuegung stehende Produkte");
+		productPanel.add(lblProduktTabelle, BorderLayout.NORTH);
+		
+		JScrollPane productScrollPane = new JScrollPane();
+		productPanel.add(productScrollPane);
+		
+		productTable = new JTable();
+		productScrollPane.setViewportView(productTable);
 		
 		
 		productTable.setFillsViewportHeight(true);
