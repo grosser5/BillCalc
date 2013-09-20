@@ -29,7 +29,6 @@ public class CustomerLocation {
 	}
 
 	public int getId() {
-		Log.getLog(this).info("id = " + id + "\n");
 		return id;
 	}
 

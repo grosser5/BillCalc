@@ -46,4 +46,12 @@ public class Log {
 		return instance.getLoggers().get(obj.getClass());
 	}
 	
+	public static Logger getLog(Class c) {
+		initialize();
+		if(! instance.getLoggers().containsKey(c)) {
+			instance.getLoggers().put(c, Logger.getLogger(c));
+		}
+		return instance.getLoggers().get(c.getClass());
+	}
+	
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import main.view.util.Log;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,7 +19,7 @@ import org.hibernate.internal.CriteriaImpl.CriterionEntry;
 
 public class ManageDatabase  {
 
-	ModelFactory factory;
+	private ModelFactory factory;
 	
 	public ManageDatabase(ModelFactory factory) { 
 		this.factory = factory; 
@@ -85,53 +86,16 @@ public class ManageDatabase  {
 		return results;
 	}
 	
-	public List<Customer> listCustomers( ){
-	      Session session = ModelSingleton.getSessionFactory().openSession();
-	      Transaction tx = null;
-	      List<Customer> result = new ArrayList();
-	      try{
-	         tx = session.beginTransaction();
-	         prepareDb(session);
-	         Criteria cr = session.createCriteria(Customer.class);
-	         result = cr.list();
-	         
-//	         Query query = session.createQuery("FROM Customer");
-//	         result = query.list();
-	         tx.commit();
-	      }catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      }finally {
-	         session.close(); 
-	      }
-	      return result;
-	   }
-	
-	public void updateCustomer( Customer customer ){
-	      Session session = ModelSingleton.getSessionFactory().openSession();
-	      Transaction tx = null;
-	      try{
-	         tx = session.beginTransaction();
-	         prepareDb(session);
-			 session.update(customer); 
-	         tx.commit();
-	      }catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      }finally {
-	         session.close(); 
-	      }
-	   }
-	
-	public int saveProduct(Product p) {
+	public List<Customer> getCustomer( String name ) {
 		Session session = ModelSingleton.getSessionFactory().openSession();
 		Transaction tx = null;
-		Integer custId = null;
+		List<Customer> results = null;
 		try {
 			tx = session.beginTransaction();
 			prepareDb(session);
-			
-			custId = (Integer) session.save(p);
+			String hql = "FROM Customer C WHERE C.name = '" + name + "'";
+			Query query = session.createQuery(hql);
+			results = query.list();
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -140,21 +104,42 @@ public class ManageDatabase  {
 		} finally {
 			session.close();
 		}
-		return custId;
+		return results;
 	}
 	
-	public List<Product> listProducts( ){
+	public Customer getCustomer( int custId ) {
+		Session session = ModelSingleton.getSessionFactory().openSession();
+		Transaction tx = null;
+		List<Customer> results = null;
+		try {
+			tx = session.beginTransaction();
+			prepareDb(session);
+			String hql = "FROM Customer C WHERE C.custId =" + custId ;
+			Query query = session.createQuery(hql);
+			results = query.list();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		if(results.iterator().hasNext())
+			return results.iterator().next();
+		return null;
+	}
+	
+	
+	public List getClasses(Class c ){
 	      Session session = ModelSingleton.getSessionFactory().openSession();
 	      Transaction tx = null;
-	      List<Product> result = new ArrayList();
+	      List result = new ArrayList();
 	      try{
 	         tx = session.beginTransaction();
 	         prepareDb(session);
-//	         Criteria cr = session.createCriteria(Employee.class);
-//	         customers = cr.list();
-	         
-	         Query query = session.createQuery("FROM Product");
-	         result = query.list();
+	         Criteria cr = session.createCriteria(c);        
+	         result = cr.list();
 	         tx.commit();
 	      }catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
@@ -165,13 +150,13 @@ public class ManageDatabase  {
 	      return result;
 	   }
 	
-	public void updateProduct( Product product ){
+	public void updateObj( Object obj ){
 	      Session session = ModelSingleton.getSessionFactory().openSession();
 	      Transaction tx = null;
 	      try{
 	         tx = session.beginTransaction();
 	         prepareDb(session);
-			 session.update(product); 
+			 session.update(obj); 
 	         tx.commit();
 	      }catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
@@ -180,6 +165,42 @@ public class ManageDatabase  {
 	         session.close(); 
 	      }
 	   }
+	
+	public int saveObj(Object obj) {
+		Session session = ModelSingleton.getSessionFactory().openSession();
+		Transaction tx = null;
+		Integer Id = null;
+		try {
+			tx = session.beginTransaction();
+			prepareDb(session);
+			Id = (Integer) session.save(obj);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return Id;
+	}
+	
+	public void deleteObj(Object obj) {
+		Session session = ModelSingleton.getSessionFactory().openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			prepareDb(session);
+			session.delete(obj);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 	
 	public List<Location> getLocation(String city, String street, int postal) {
 		Session session = ModelSingleton.getSessionFactory().openSession();
@@ -189,8 +210,7 @@ public class ManageDatabase  {
 			tx = session.beginTransaction();
 			prepareDb(session);
 			String hql = "FROM Location L WHERE L.city = '" + city + "' AND"
-					+ " L.street='"+street+"' AND"
-					+ " L.postal=" + postal;
+					+ " L.street='" + street + "' AND" + " L.postal=" + postal;
 			Query query = session.createQuery(hql);
 			Log.getLog(this).info("call querry by getLocation \n");
 			results = query.list();
@@ -203,9 +223,28 @@ public class ManageDatabase  {
 		} finally {
 			session.close();
 		}
-		
+
 		return results;
 	}
-	
-	
+
+	public List<QuotationProduct> getQuotationProducts(int quot_id) {
+		Session session = ModelSingleton.getSessionFactory().openSession();
+		Transaction tx = null;
+		List<QuotationProduct> result = new ArrayList();
+		try{
+			tx = session.beginTransaction();
+		    prepareDb(session);
+		    Criteria cr = session.createCriteria(QuotationProduct.class);
+		    cr.add(Restrictions.eq("quotId", quot_id));
+		    result = cr.list();
+		    tx.commit();
+		}catch (HibernateException e) {
+		    if (tx!=null) tx.rollback();
+		    	e.printStackTrace(); 
+		    }finally {
+		    	session.close(); 
+		    }
+		return result;
+	}
+
 }

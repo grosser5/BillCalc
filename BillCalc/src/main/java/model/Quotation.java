@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Quotation {
 	private int quotId = 0;
-	private int cutId = 0;
 	private Date date = null;
 	private List<QuotationProduct> quotProducts = null;
 	
@@ -23,15 +22,6 @@ public class Quotation {
 	public void setQuotId(int quotId) {
 		this.quotId = quotId;
 	}
-
-	public int getCutId() {
-		return cutId;
-	}
-
-	public void setCutId(int cutId) {
-		this.cutId = cutId;
-	}
-
 
 	public List<QuotationProduct> getQuotProducts() {
 		return quotProducts;

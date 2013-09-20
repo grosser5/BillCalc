@@ -10,11 +10,11 @@
       </id>
       <property name="name" column="name" type="string"/>
       <property name="compType" column="comp_type" type="string"/>
-      <bag name="locations" cascade="all">
+      <bag name="locations" cascade="all" lazy="false">
         <key column="cust_id"/>
         <one-to-many class="main.java.model.CustomerLocation" />
       </bag>
-      <bag name="quotations" cascade="all">
+      <bag name="quotations" cascade="all" lazy="false">
         <key column="cust_id"/>
         <one-to-many class="main.java.model.Quotation" />
       </bag>
@@ -26,7 +26,7 @@
      <id name="id" type="int" column="id">
        <generator class="native"/>
      </id>
-     <many-to-one name="location" class="main.java.model.Location" column="loc_id" cascade="all"/>
+     <many-to-one name="location" class="main.java.model.Location" column="loc_id" cascade="all" lazy="false"/>
    </class>
    <class name="main.java.model.Location" table="location">
       <meta attribute="class-descripteion">
@@ -47,7 +47,7 @@
        <generator class="native"/>
      </id>
      <property name="date" column="date" type="date"/>
-     <bag name="quotProducts" cascade="all">
+     <bag name="quotProducts" cascade="all" lazy="false">
         <key column="quot_id"/>
         <one-to-many class="main.java.model.QuotationProduct" />
       </bag>

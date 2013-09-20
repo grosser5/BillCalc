@@ -4,10 +4,16 @@ import java.awt.Component;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.CellEditor;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
+import javax.swing.DefaultSingleSelectionModel;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
@@ -21,6 +27,8 @@ import javax.swing.JDesktopPane;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
@@ -45,8 +53,6 @@ import main.java.model.Product;
 import main.java.model.Quotation;
 import main.java.model.QuotationProduct;
 import main.java.model.observer.*;
-import main.java.view.ProductTableModel.RowData;
-import main.java.view.TableRenderDemo.MyTableModel;
 import main.view.util.Log;
 
 import java.awt.event.ActionListener;
@@ -66,13 +72,15 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JScrollPane quotProductscrollPane;
 	private DefaultListModel<Customer> customer_list_model = 
 			new DefaultListModel<Customer>();
+	private QuotationTableModel q_table_model;
+	private ProductTableModel p_table_model;
 	private final static int QUOTTABLECOLUMNS=8;
 	private JTable productTable;
 	private JTable quotationTable;
 	private JScrollPane quotationTableScrollPane;
 	private JLabel lblGespeicherteAngebote;
 	private JButton addQuotationButton;
-	private JButton deleteQuotProductButton_1;
+	private JButton deleteQuotProductButton;
 	private JButton deleteQuotationButton;
 	private JTable customerLocationTable;
 	private JScrollPane customerLocationTableScrollPane;
@@ -80,8 +88,12 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JButton addLocationButton;
 	private JButton deleteLocationButton;
 	private JButton addCustomerButton;
-	private JButton btnLscheKunde;
-	
+	private JButton deleteCustomerButton;
+	private JButton addQuotProduktButton;
+	private JButton newProductButton;
+	private JButton deleteProductButton;
+	private ViewFactory viewFactory;
+	private JDialog addCustomerDialog;
 	
 	/**
 	 * Launch the application.
@@ -109,11 +121,18 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		this.controller = new BillController(this, model);
 		initialize();
 		loadInitData();
+		disableAllButtons();
 	}
 
 	private void loadInitData() {
 		model.registerCustomerObserver(this);
-		controller.updateCustomerList();		
+		model.registerCustomerLocationObserver(this);
+		model.registerQuotationObserver(this);
+		model.registerQuotProductObserver(this);
+		model.registerProductObserver(this);
+		controller.updateCustomerList();
+		controller.updateProductList();
+		this.viewFactory = new ViewFactory();
 	}
 
 	/**
@@ -146,7 +165,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		customerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		customerList.setLayoutOrientation(JList.VERTICAL);
 		customerList.setSelectedIndex(1);
-		customerList.setVisibleRowCount(3);
+		customerList.getSelectionModel().addListSelectionListener(new CustomerListSelectionListener());
 	
 		
 		JLabel customerLabel = new JLabel("Kunde");
@@ -158,8 +177,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		addProductLabel.setBounds(395, 364, 207, 15);
 		frame.getContentPane().add(addProductLabel);
 		
-		JButton addQuotProduktButton = new JButton("Produkt hinzugeben");
-		addQuotProduktButton.addActionListener(new newProductButtonActionListener());
+		addQuotProduktButton = new JButton("Produkt hinzugeben");
 		addQuotProduktButton.setBounds(395, 565, 178, 25);
 		frame.getContentPane().add(addQuotProduktButton);
 		
@@ -171,16 +189,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		frame.getContentPane().add(quotProductscrollPane);
 		
 		quotProductTable = new JTable();
-		quotProductscrollPane.setViewportView(quotProductTable);
-		
-		List<Product> products = new ArrayList<Product>(); products
-								.add(new Product("prod 1", 15, "m2"));
-		List<QuotationProduct> quot_prod = new ArrayList<QuotationProduct>(); 
-		quot_prod.add(new QuotationProduct(1, 0, 200, 20, "Spielplatz"));
-		
-		ProductTableModel table_model = new ProductTableModel(quot_prod,products);
-		quotProductTable.setModel( table_model );
-		
+		quotProductscrollPane.setViewportView(quotProductTable);		
 		quotProductTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		JScrollPane productScrollPane = new JScrollPane();
@@ -190,11 +199,11 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		productTable = new JTable();
 		productScrollPane.setViewportView(productTable);
 		
-		JButton newProductButton = new JButton("neues Produkt");
+		newProductButton = new JButton("neues Produkt");
 		newProductButton.setBounds(18, 815, 138, 25);
 		frame.getContentPane().add(newProductButton);
 		
-		JButton deleteProductButton = new JButton("entferne Produkt");
+		deleteProductButton = new JButton("entferne Produkt");
 		deleteProductButton.setBounds(174, 818, 161, 25);
 		frame.getContentPane().add(deleteProductButton);
 		
@@ -208,6 +217,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		
 		quotationTable = new JTable();
 		quotationTableScrollPane.setViewportView(quotationTable);
+		quotationTable.getSelectionModel().addListSelectionListener(new QuotationTableSelectionListener());
 		
 		lblGespeicherteAngebote = new JLabel("gespeicherte Angebote:");
 		lblGespeicherteAngebote.setBounds(12, 375, 186, 15);
@@ -217,9 +227,9 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		addQuotationButton.setBounds(12, 565, 144, 25);
 		frame.getContentPane().add(addQuotationButton);
 		
-		deleteQuotProductButton_1 = new JButton("Produkt löschen");
-		deleteQuotProductButton_1.setBounds(585, 565, 161, 25);
-		frame.getContentPane().add(deleteQuotProductButton_1);
+		deleteQuotProductButton = new JButton("Produkt löschen");
+		deleteQuotProductButton.setBounds(585, 565, 161, 25);
+		frame.getContentPane().add(deleteQuotProductButton);
 		
 		deleteQuotationButton = new JButton("lösche Angebot");
 		deleteQuotationButton.setBounds(168, 565, 161, 25);
@@ -229,8 +239,9 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		customerLocationTableScrollPane.setBounds(395, 120, 607, 163);
 		frame.getContentPane().add(customerLocationTableScrollPane);
 		
-		customerLocationTable = new JTable();
+		customerLocationTable = new JTable(new LocationTableModel());
 		customerLocationTableScrollPane.setViewportView(customerLocationTable);
+		
 		
 		lblRechnungsadresse = new JLabel("Rechnungsadresse:");
 		lblRechnungsadresse.setBounds(395, 91, 161, 15);
@@ -246,113 +257,213 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		frame.getContentPane().add(deleteLocationButton);
 		
 		addCustomerButton = new JButton("neuer Kunde");
+		addCustomerButton.addActionListener( new AddCustomerButtonActionListener() );
 		addCustomerButton.setBounds(12, 303, 131, 25);
 		frame.getContentPane().add(addCustomerButton);
 		
-		btnLscheKunde = new JButton("lösche Kunde");
-		btnLscheKunde.setBounds(155, 303, 138, 25);
-		frame.getContentPane().add(btnLscheKunde);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(493, 741, 32, 24);
-		
-		
-		frame.getContentPane().add(comboBox);
+		deleteCustomerButton = new JButton("lösche Kunde");
+		deleteCustomerButton.addActionListener(new DeleteCustomerButtonActionListener());
+		deleteCustomerButton.setBounds(155, 303, 138, 25);
+		frame.getContentPane().add(deleteCustomerButton);
 		
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
 		
 		
-		quotProductTable.setDefaultRenderer(Integer.class, centerRenderer);
-		quotProductTable.setDefaultRenderer(String.class, centerRenderer);
-		quotProductTable.setDefaultRenderer(Double.class, centerRenderer);
-		//productTable.setFillsViewportHeight(true);
-		//initColumnSizes(quotProductTable);
+		productTable.setFillsViewportHeight(true);
+		
 		//productTable.getColumnModel().getColumn(1).setPreferredWidth(150);;
-		quotProductTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+		//quotProductTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+	}
+	private void enableAllButtons() {
+		addQuotationButton.setEnabled(true);
+		deleteQuotProductButton.setEnabled(true);
+		deleteQuotationButton.setEnabled(true);
+		addLocationButton.setEnabled(true);
+		deleteLocationButton.setEnabled(true);
+		addCustomerButton.setEnabled(true);
+		deleteCustomerButton.setEnabled(true);
+		addQuotProduktButton.setEnabled(true);
+		newProductButton.setEnabled(true);
+		deleteProductButton.setEnabled(true);
+	}
+	
+	private void disableAllButtons() {
+		addQuotationButton.setEnabled(false);
+		deleteQuotProductButton.setEnabled(false);
+		deleteQuotationButton.setEnabled(false);
+		addLocationButton.setEnabled(false);
+		deleteLocationButton.setEnabled(false);
+		addCustomerButton.setEnabled(false);
+		deleteCustomerButton.setEnabled(false);
+		addQuotProduktButton.setEnabled(false);
+		newProductButton.setEnabled(false);
+		deleteProductButton.setEnabled(false);
 	}
 	
 	private void initColumnSizes(JTable table) {
-        ProductTableModel model = (ProductTableModel)table.getModel();
+        QuotProductTableModel model = (QuotProductTableModel)table.getModel();
         TableColumn column = null;
         Component comp = null;
         int headerWidth = 0;
-        int cellWidth = 0;
-        List<RowData> rowData = model.getRowData();
+        
         TableCellRenderer headerRenderer =
             table.getTableHeader().getDefaultRenderer();
 
-        for (int i = 0; i < QUOTTABLECOLUMNS; i++) {
-            column = table.getColumnModel().getColumn(i);
+        for (int column_count = 0; column_count < model.getColumnCount(); column_count++) {
+            column = table.getColumnModel().getColumn(column_count);
 
             comp = headerRenderer.getTableCellRendererComponent(
                                  null, column.getHeaderValue(),
                                  false, false, 0, 0);
             headerWidth = comp.getPreferredSize().width;
 
-            comp = table.getDefaultRenderer(model.getColumnClass(i)).
-                             getTableCellRendererComponent(
-                                 table, rowData.get(i),
-                                 false, false, 0, i);
-  
-            cellWidth = comp.getPreferredSize().width;
+            int maxCellWidth = 0;
+            for(int row_count=0; row_count < model.getRowCount(); row_count++) {
+            	comp = table.getDefaultRenderer(model.getColumnClass(column_count)).
+                        getTableCellRendererComponent(
+                            table, model.getValueAt(row_count, column_count),
+                            false, false, row_count, column_count);
+            	maxCellWidth = Math.max(comp.getPreferredSize().width+5, maxCellWidth);
+            }
+            
 
-            column.setPreferredWidth(Math.max(headerWidth, cellWidth));
+            column.setPreferredWidth(Math.max(headerWidth, maxCellWidth));
+            column.setMinWidth(100);
         }
+        table.setFillsViewportHeight(true);
+       
     }
 	
 	public String getCustomerSearchText() {
 		return customerSearch.getText();
 	}
 	
-	
-	class newProductButtonActionListener implements ActionListener {
+	private class CustomerListSelectionListener implements ListSelectionListener {
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			Log.getLog(this).debug("newProductButtonActionListener called");
-			controller.newProductButtonPressed();
+		public void valueChanged(ListSelectionEvent e) {
+			ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+
+			if (!lsm.isSelectionEmpty() && !e.getValueIsAdjusting()) {
+				// Find out which indexes are selected.
+				int index = lsm.getAnchorSelectionIndex();
+				Customer selectedCustomer = customer_list_model
+						.elementAt(index);
+				controller.customerListSelected(selectedCustomer);
+			}
 		}
 	}
 	
-	class customerSearchActionListener implements ActionListener {
+	public class QuotationTableSelectionListener implements ListSelectionListener {
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+			if (!lsm.isSelectionEmpty() && !e.getValueIsAdjusting()) {
+				// Find out which indexes are selected.
+				int index = lsm.getAnchorSelectionIndex();
+				Quotation selectedQuotation = q_table_model.getQuotation(index);
+				controller.quotationTableSelected(selectedQuotation,p_table_model.getProducts());
+			}
+		}
+	}
+	
+	public class AddCustomerButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Log.getLog(this).debug("customerSearchActionListener called");
+			startAddCustomerDialog();
+		}
+	}
+	
+	public class customerSearchActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			controller.searchCustomerEntered();
 		}
+	}
+	
+	public class DeleteCustomerButtonActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			Object[] options = { "Yes", "No" };
+			int n = JOptionPane.showOptionDialog(frame,
+					"Wirklich löschen?",
+					"A Silly Question", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+			if (n == 0) {
+				Customer selected_customer = (Customer) customerList
+						.getSelectedValue();
+				controller.deleteCustomer(selected_customer);
+			}
+		}
+
 	}
 
 	@Override
 	public synchronized void updateCustomerField(List<Customer> custList) {
-		Log.getLog(this).debug("updateCustomerField called");
 		customer_list_model.setSize(custList.size());
 		for(int i=0; i < custList.size(); i++) {
 			customer_list_model.set(i,custList.get(i));
-			if(custList.get(i).getLocations().isEmpty())
-				Log.getLog(this).debug("custList is emty by customer");
-			//Log.getLog(this).info(custList.get(i).getLocations().get(0).toString() );
 		}
+		cancleAddCustomerDialog();
 	}
 
 	@Override
 	public synchronized void updateCustomerLocationField(List<Location> locationList) {
-		// TODO Auto-generated method stub
-		
+		customerLocationTable.setModel(new LocationTableModel(locationList));
+		customerLocationTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 
 	@Override
 	public synchronized void updateQuotationList(List<Quotation> quotList) {
-		// TODO Auto-generated method stub		
+		q_table_model = new QuotationTableModel(quotList);
+		quotationTable.setModel(q_table_model);
+		quotationTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 
 	@Override
-	public synchronized void updateQuotProductList(List<QuotationProduct> quotProdList) {
+	public synchronized void updateQuotProductList(List<QuotationProduct> quotProdList,
+			List<Product> productList) {
+		quotProductTable.setModel( new QuotProductTableModel(quotProdList, productList) );
+		Product[] products = new Product[productList.size()];
+		JComboBox<Product> box = new JComboBox<Product>(productList.toArray(products));
+		quotProductTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(box));
+		quotProductTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+		
+		quotProductTable.setDefaultRenderer(String.class, centerRenderer);
+		quotProductTable.setDefaultRenderer(Product.class, centerRenderer);
+		quotProductTable.setDefaultRenderer(Integer.class, centerRenderer);
+		initColumnSizes(quotProductTable);
 	}
 
 	@Override
 	public synchronized void updateProductList(List<Product> productList) {
-		// TODO Auto-generated method stub
+		p_table_model = new ProductTableModel(productList);
+		productTable.setModel(p_table_model);
+		productTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
+	}
+
+	private void startAddCustomerDialog() {
+		addCustomerDialog = new AddCustomerDialog(controller);
+		disableAllButtons();
+	}
+	
+	@Override
+	public void cancleAddCustomerDialog() {
+		if(addCustomerDialog != null) {
+			addCustomerDialog.dispose();
+		}
+		enableAllButtons();
+	}
+
+	@Override
+	public synchronized Customer getSelectedCustomer() {
+		return (Customer)customerList.getSelectedValue();
 	}
 }

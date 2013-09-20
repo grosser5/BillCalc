@@ -32,6 +32,11 @@ public class Customer {
 		this.quotations = quotations;
 	}
 
+	public Customer(String name, String compType) {
+		this.name = name;
+		this.compType = compType;
+	}
+
 	public Integer getCustId() {
 		return custId;
 	}
@@ -76,5 +81,11 @@ public class Customer {
 		return name + " " + compType;
 	}
 
+	public void addLocation(CustomerLocation loc){
+		this.locations.add(loc);
+	}
 	
+	public void addQuotation(Quotation q) {
+		this.quotations.add(q);
+	}
 }

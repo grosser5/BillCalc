@@ -2,170 +2,72 @@ package main.java.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
 
+import main.java.model.Location;
 import main.java.model.Product;
-import main.java.model.QuotationProduct;
-
 
 public class ProductTableModel extends AbstractTableModel {
-
 	
+	private static final long serialVersionUID = -2743140788233843965L;
+	List<Product> products;
+	String[] columnNames = {"Name","Default Kosten/Einheit", "Einheit"};
 	
-	private static final long serialVersionUID = 544322;
-	private String[] columnNames = new String[] { "Produkt", "Ort", "Menge",
-    		"Einheit", "Euro/Eh", "Betrag", "MWSt" };
-	private List<RowData> data = new ArrayList();
-	private Product[] products = null;
-    
-    public ProductTableModel(){ }
-    
-    public ProductTableModel(List<QuotationProduct> qot_products, List<Product> products) {
-    	
-    	
-    	this.products = new Product[products.size()];
-    	for(int i = 0; i < products.size(); i++) {
-    		this.products[i] = products.get(i);
-    	}
-    	
-    	for(QuotationProduct p : qot_products) {
-    		JComboBox<Product> box = new JComboBox<Product>( this.products );
-    		box.setEditable(true);
-    		this.data.add( new RowData( p, box ) );
-    	}
-    }
-    
-    
-    
-    public int getColumnCount() {
-        return columnNames.length;
-    }
+	ProductTableModel(List<Product> productList) {
+		this.products = productList;
+	}
+	
+	ProductTableModel() {
+		this.products = new ArrayList<Product>();
+	}
 
-    public int getRowCount() {
-    		return data.size();
-    }
+	@Override
+	public int getColumnCount() {
+		return columnNames.length;
+	}
 
-    public String getColumnName(int col) {
-        return columnNames[col];
-    }
+	@Override
+	public String getColumnName(int pos) {
+		if(pos < columnNames.length)
+			return columnNames[pos];
+		return null;
+	}
 
-    public Object getValueAt(int row, int col) {
-    	
-    	
-    	RowData cd = data.get(row);
-    	
-    	switch(col) {
-    	case 0: return cd.products;
-    	case 1: return cd.quotation_product.getPlace();
-    	case 2: return cd.quotation_product.getQuantity();
-    	case 3: {
-    		int sel_item = cd.products.getSelectedIndex();
-    		if( sel_item == -1)
-    			return "";
-    		else
-    			return cd.products.getItemAt(sel_item).getQuantityUnit();
-    	}
-    	case 4: return cd.quotation_product.getCostPerQuantity();
-    	case 5: return cd.quotation_product.getPrice();
-    	case 6: return cd.quotation_product.getMwst();
-    	default: return "";
-    	}
-    	
-    }
+	@Override
+	public int getRowCount() {
+		return products.size();
+	}
 
-    public Class getColumnClass(int c) {
-        return getValueAt(0, c).getClass();
-    }
-
-    /*
-     * Don't need to implement this method unless your table's
-     * editable.
-     */
-    public boolean isCellEditable(int row, int col) {
-        //Note that the data/cell address is constant,
-        //no matter where the cell appears onscreen.
-        if (col == 1 || col == 4) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /*
-     * Don't need to implement this method unless your table's
-     * data can change.
-     */
-    public void setValueAt(Object value, int row, int col) {
-    	
-        //data[row][col] = value;
-    	
-    	RowData cd = data.get(row);
-    	
-    	switch(col) {
-    	case 1:  cd.quotation_product.getPlace(); break;
-    	case 2:  cd.quotation_product.getQuantity();break;
-    	case 3: {
-    		int sel_item = cd.products.getSelectedIndex();
-    		if( sel_item == -1)
-    			return;
-    		else
-    			cd.products.getItemAt(sel_item).getQuantityUnit();
-    		
-    		break;
-    	}
-    	case 4: cd.quotation_product.getCostPerQuantity();break;
-    	case 5: cd.quotation_product.getPrice();break;
-    	case 6: cd.quotation_product.getMwst();break;
-    	default: return;
-    	}
-    	
-        fireTableCellUpdated(row, col);
-    }
-    
-    public void setRows(List<QuotationProduct> qot_products, List<Product> products) {
-    	this.products = new Product[products.size()];
-    	for(int i = 0; i < products.size(); i++) {
-    		this.products[i] = products.get(i);
-    	}
-    	
-    	for(QuotationProduct p : qot_products) {
-    		JComboBox<Product> box = new JComboBox<Product>( this.products );
-    		box.setEditable(true);
-    		this.data.add( new RowData( p, box ) );
-    	}
-    }
-    
-    public List<RowData> getRowData() {
-    	return data;
-    }
-    
-    public void addQuotProduct(QuotationProduct qot_products) {
-    	JComboBox<Product> box = new JComboBox<Product>( this.products );
-    	box.setEditable(true);
-    	data.add(new RowData(qot_products,box ) );
-    }
-    
-    public void setProducts(List<Product> products) {
-    	this.products = new Product[products.size()];
-    	for(int i = 0; i < products.size(); i++) {
-    		this.products[i] = products.get(i);
-    	}
-    }
-    
-    public class RowData {
-    	public QuotationProduct quotation_product;
-    	public JComboBox<Product> products;
-		public RowData(QuotationProduct quotation_product, JComboBox<Product> products) {
-			super();
-			this.quotation_product = quotation_product;
-			this.products = products;
+	@Override
+	public Object getValueAt(int row, int col) {
+		
+		if(row < products.size()) {
+			Product product = products.get(row);
+			switch(col) {
+			case 0: return product.getName();
+			case 1: return product.getDefaultCostPerQuantity();
+			case 2: return product.getQuantityUnit();
+			}
 		}
-    	
-    }
+		return null;
+	}
+
+	@Override
+	public boolean isCellEditable(int row, int col) {
+		return false;
+	}
+
+	
+	public void setProducts(List<Product> products) {
+		this.products = products;
+		this.fireTableDataChanged();
+	}
+	
+	public List<Product> getProducts()  {
+		return products;
+	}
+
 }

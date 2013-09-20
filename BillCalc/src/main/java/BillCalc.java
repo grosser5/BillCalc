@@ -9,6 +9,7 @@ import main.java.controller.ControllerInterface;
 import main.java.model.Customer;
 import main.java.model.CustomerLocation;
 import main.java.model.ManageDatabase;
+import main.java.model.ModelFactory;
 import main.java.model.Quotation;
 import main.java.model.QuotationProduct;
 import main.java.view.MainWindow;
@@ -37,34 +38,29 @@ public class BillCalc {
 			});
 		 
 		 
-		 
-//		 ManageDatabase manage_cust = new ManageDatabase();
+//		 ModelFactory mf = new ModelFactory();
+//		 ManageDatabase manage_db = mf.createManageDatabase();
 //		 
 //		 
-//		 List<CustomerLocation> cl = new ArrayList<CustomerLocation>(); 
-//		 cl.add( new CustomerLocation( "tirol","Griesplatz 12",8010 ) );
 //		 
-//		 List<Quotation> quotations = new ArrayList<Quotation>();
+//		// List<CustomerLocation> cl = new ArrayList<CustomerLocation>(); 
+//		 //cl.add( new CustomerLocation( "graz","Conrad von Hoetz. Strasse 12",8010 ) );
+//		 
+//		 //List<Quotation> quotations = new ArrayList<Quotation>();
 //		 List<QuotationProduct> qproduct = new ArrayList<QuotationProduct>();
-//		 qproduct.add(new QuotationProduct(1, 12,
-//					300, 20, "trainingsplatz"));
-//		 quotations.add( new Quotation(new java.util.Date(2013,9,20), qproduct) );
+//		 qproduct.add(new QuotationProduct(2, 12,
+//					100, 20, "trainingsplatz"));
+//		 //quotations.add( new Quotation(new java.sql.Date(2013, 11, 19), qproduct) );
+//
+//		 Log.getLog(new BillCalc()).debug("get customer in next line");
+//		 Customer cust = manage_db.getCustomer(1);
+//		 cust.addLocation(new CustomerLocation( "graz","Conrad von Hoetz. Strasse 12",8010 ));
+//		 cust.addQuotation( new Quotation(new java.sql.Date(2013, 11, 19), qproduct));
+//		 Log.getLog(new BillCalc()).debug("cust: " + cust);
+//		 manage_db.updateObj(cust);
 //		 
-//		 List<Customer> cust_list = manage_cust.listCustomers();
 //		 
-//		 Log.getBillCalcLogger().info("size of cust_list: " + cust_list.size() + "\n");
-//		 for(Customer cust : cust_list) {
-//			 Log.getBillCalcLogger().info("custId="+cust.getCustId()+", custName=" + 
-//					 	cust.getName()+"\n");
-//			 cust.setName("Hannes");
-//			 manage_cust.updateCustomer(cust);
-//		 }
-		 
-		 
-		 
-//		 cust.setName("Gustav");
-//		 manage_cust.updateCustomer(cust);
-		 //manage_cust.saveCustomer("Franz mustermann", "GERa", cl, quotations);
+//		manage_cust.saveCustomer("Franz mustermann", "GERa", cl, quotations);
 		 
 //	      try{
 //	         ManageEmployee.setFactory( new Configuration().configure().buildSessionFactory() );

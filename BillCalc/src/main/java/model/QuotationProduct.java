@@ -9,7 +9,7 @@ public class QuotationProduct {
 	private int quotId = 0;
 	private int costPerQuantity = 0;
 	private int quantity = 0;
-	private int mwst = 20;
+	private int mwst = 0;
 	private String place = "";
 	// not in the database 
 	private int price = 0;

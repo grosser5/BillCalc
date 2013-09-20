@@ -94,7 +94,7 @@ public class TableRenderDemo extends JPanel {
 
         for (int i = 0; i < 5; i++) {
             column = table.getColumnModel().getColumn(i);
-            
+
             comp = headerRenderer.getTableCellRendererComponent(
                                  null, column.getHeaderValue(),
                                  false, false, 0, 0);
@@ -120,7 +120,7 @@ public class TableRenderDemo extends JPanel {
     public void setUpSportColumn(JTable table,
                                  TableColumn sportColumn) {
         //Set up the editor for the sport cells.
-        JComboBox comboBox = new JComboBox();
+        JComboBox<String> comboBox = new JComboBox<String>();
         comboBox.addItem("Snowboarding");
         comboBox.addItem("Rowing");
         comboBox.addItem("Knitting");
@@ -130,10 +130,10 @@ public class TableRenderDemo extends JPanel {
         sportColumn.setCellEditor(new DefaultCellEditor(comboBox));
 
         //Set up tool tips for the sport cells.
-        DefaultTableCellRenderer renderer =
-                new DefaultTableCellRenderer();
-        renderer.setToolTipText("Click for combo box");
-        sportColumn.setCellRenderer(renderer);
+//        DefaultTableCellRenderer renderer =
+//                new DefaultTableCellRenderer();
+//        renderer.setToolTipText("Click for combo box");
+//        sportColumn.setCellRenderer(renderer);
     }
 
     class MyTableModel extends AbstractTableModel {
