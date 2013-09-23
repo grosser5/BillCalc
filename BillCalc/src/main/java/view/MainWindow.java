@@ -332,6 +332,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		quotProdBelwPanel.add(addQuotProduktButton);
 		
 		deleteQuotProductButton = new JButton("Produkt löschen");
+		deleteQuotProductButton.addActionListener(new DeleteQuotProductButtonActionListener());
 		quotProdBelwPanel.add(deleteQuotProductButton);
 		
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -410,6 +411,8 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
         TableCellRenderer headerRenderer =
             table.getTableHeader().getDefaultRenderer();
 
+        int data_width = 0;
+        
         for (int column_count = 0; column_count < model.getColumnCount(); column_count++) {
             column = table.getColumnModel().getColumn(column_count);
 
@@ -427,14 +430,19 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
             	maxCellWidth = Math.max(comp.getPreferredSize().width+5, maxCellWidth);
             }
             
-            
-            column.setPreferredWidth(Math.max(headerWidth, maxCellWidth));            
+            int pref_width = Math.max(headerWidth, maxCellWidth);
+            data_width += pref_width;
+            column.setPreferredWidth(pref_width);            
         }
         
-//        try {
-//        	JPanel grand_parent = (JPanel) table.getParent().getParent().getParent();
-//        	table.setPreferredSize(grand_parent.getSize());;
-//        } catch( ClassCastException e ) { Log.getLog(this).error(e); }
+        
+        
+        
+        try {
+        	JPanel grand_parent = (JPanel) table.getParent().getParent().getParent();
+        	if( data_width <= grand_parent.getWidth() )
+        		table.setPreferredSize(grand_parent.getSize());
+        } catch( ClassCastException e ) { Log.getLog(this).error(e); }
         //table.setFillsViewportHeight(true);
        
     }
@@ -580,7 +588,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	public class DeleteQuotProductButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			int selected_quot_row = quotationTable.getSelectedRow();
+			int selected_quot_row = quotProductTable.getSelectedRow();
 			if(selected_quot_row == -1)
 				return;
 			int n = viewFactory.createDeleteDialog(frmBillcalc);
@@ -604,7 +612,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	@Override
 	public synchronized void updateCustomerLocationField(List<CustomerLocation> locationList) {
 		location_table_model.setLocations(locationList);
-		initColumnSizes(customerLocationTable);
+		//initColumnSizes(customerLocationTable);
 		cancelAddDialog();
 	}
 
@@ -688,5 +696,13 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		if(addNewQuotationDialog != null) 
 			addNewQuotationDialog.dispose();
 		setAllButtons(true);
+	}
+
+	@Override
+	public QuotationProduct getSelectedQuotProduct() {
+		int selected = quotProductTable.getSelectedRow();
+		if(selected == -1)
+			return null;
+		return q_p_table_model.getQuotProd(selected);
 	}
 }

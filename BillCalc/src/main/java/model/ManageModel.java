@@ -329,6 +329,34 @@ public class ManageModel  implements ModelInterface{
 		}
 
 	}
+	
+	@Override
+	public void addQuotationProduct(final QuotationProduct quot_p) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				int id = quot_p.getQuotId();
+				manage_db.saveObj(quot_p);
+				listAllQuotationProducts(id);
+			}
+		});
+		t.start();
+	}
+	
+	@Override
+	public void removeQuotationProduct(final QuotationProduct quot_p) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				int id = quot_p.getQuotId();
+				manage_db.deleteObj(quot_p);
+				listAllQuotationProducts(id);
+			}
+		});
+		t.start();
+	}
 
 	// Product Methods
 	@Override
@@ -365,6 +393,8 @@ public class ManageModel  implements ModelInterface{
 		});
 		t.start();
 	}
+
+
 
 
 }

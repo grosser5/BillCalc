@@ -133,4 +133,8 @@ public class QuotProductTableModel extends AbstractTableModel {
     	this.products = products;
     	this.fireTableDataChanged();
     }
+
+	public QuotationProduct getQuotProd(int selected) {
+		return quot_products.get(selected);
+	}
 }

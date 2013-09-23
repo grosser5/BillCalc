@@ -1,7 +1,8 @@
 package main.java.controller;
 
-import main.java.model.Customer;
 import main.java.model.ModelInterface;
+import main.java.model.Quotation;
+import main.java.model.QuotationProduct;
 
 public class AddQuotationProduct {
 	private ModelInterface model;
@@ -11,8 +12,8 @@ public class AddQuotationProduct {
 		this.model = model;
 	}
 	
-	public void add(Customer cust) {
-		model.addCustomer(cust);
+	public void add(QuotationProduct p) {
+		model.addQuotationProduct(p);
 	}
 
 }

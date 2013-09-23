@@ -29,16 +29,18 @@ public class BillController implements ControllerInterface{
 		this.model = model;
 		this.remote = factory.createRemote(view);
 		
-		remote.setSlot(SearchCustomerCommand.class, 
+		remote.setSlot( SearchCustomerCommand.class, 
 				factory.createSearchCustomerCommand(model, view) );
-		remote.setSlot(UpdateCustomerListCommand.class, 
+		remote.setSlot( UpdateCustomerListCommand.class, 
 				factory.createUpdateCustomerListCommand(view, model) );
-		remote.setSlot(DeleteCustomerCommand.class,
-				factory.createDeleteCustomerCommand(view, model));
-		remote.setSlot(DeleteLocationCommand.class, 
-				factory.createDeleteLocationCommand(view, model));
-		remote.setSlot(DeleteQuotationCommand.class,
-				factory.createDeleteQuotationCommand(view, model));
+		remote.setSlot( DeleteCustomerCommand.class,
+				factory.createDeleteCustomerCommand(view, model) );
+		remote.setSlot( DeleteLocationCommand.class, 
+				factory.createDeleteLocationCommand(view, model) );
+		remote.setSlot( DeleteQuotationCommand.class,
+				factory.createDeleteQuotationCommand(view, model) );
+		remote.setSlot( DeleteQuotationProductCommand.class, 
+				factory.createDeleteQuotationProductCommand(view, model) );
 	}
 	
 	private void resetQuotationProductList() {
@@ -191,7 +193,7 @@ public class BillController implements ControllerInterface{
 
 	@Override
 	public void deleteSelectedQuotProduct() {
-				
+		remote.execute(DeleteQuotationProductCommand.class);
 	}
 
 

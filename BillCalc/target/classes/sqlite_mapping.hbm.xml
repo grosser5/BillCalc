@@ -26,6 +26,7 @@
      <id name="id" type="int" column="id">
        <generator class="native"/>
      </id>
+     <property name="custId" type="int" column="cust_id"/>
      <many-to-one name="location" class="main.java.model.Location" column="loc_id" cascade="all" lazy="false"/>
    </class>
    <class name="main.java.model.Location" table="location">

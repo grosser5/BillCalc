@@ -36,10 +36,14 @@ public interface ModelInterface {
 	void addQuotation(Quotation quotation);
 	void removeQuotation(Quotation quotation);
 	void listAllQuotations(int custId);
+	void listAllQuotations(ArrayList<Quotation> arrayList);
+	
+	//QuotationProduct methods
 	void listAllQuotationProducts(int quot_id);
 	void updateQuotationProducts(Quotation quotation);
 	void listAllQuotationProducts(Quotation selectedQuotation, List<Product> products);
-	void listAllQuotations(ArrayList<Quotation> arrayList);
+	void addQuotationProduct(QuotationProduct quot_p);
+	void removeQuotationProduct(QuotationProduct quot_p);
 	
 	//Product methods
 	void addProduct(Product product);
@@ -47,6 +51,8 @@ public interface ModelInterface {
 	void updateProduct(Product product);
 	void listAllProducts();
 	//view updates
+
+	
 	
 	
 	
