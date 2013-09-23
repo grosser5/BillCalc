@@ -62,6 +62,8 @@ public class Customer {
 	}
 
 	public List<CustomerLocation> getLocations() {
+		if(locations == null)
+			return new ArrayList();
 		return locations;
 	}
 
@@ -77,15 +79,15 @@ public class Customer {
 		this.quotations = quotations;
 	}
 
-	public String toString() {
-		return name + " " + compType;
-	}
-
 	public void addLocation(CustomerLocation loc){
 		this.locations.add(loc);
 	}
 	
 	public void addQuotation(Quotation q) {
 		this.quotations.add(q);
+	}
+	
+	public String toString() {
+		return custId + " " + name + " " + compType;
 	}
 }

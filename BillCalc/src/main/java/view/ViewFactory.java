@@ -5,7 +5,9 @@ import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -39,4 +41,30 @@ public class ViewFactory {
 //		JDialog dialog = new AddCustomerDialog(controller);
 //		MainWindow.
 //	}
+	
+	public AddCustomerDialog createAddCustomerDialog(MainWindow windowInstance,
+			ControllerInterface controller) {
+		windowInstance.setAllButtons(false);
+		return new AddCustomerDialog(controller);
+	}
+	
+	public AddLocationDialog createAddLocationDialog(MainWindow windowInstance,
+			ControllerInterface controller) {
+		windowInstance.setAllButtons(false);
+		return new AddLocationDialog(controller, windowInstance);
+	}
+	
+	public AddNewQuotationDialog createAddNewQuotationDialog(MainWindow windowInstance,
+			ControllerInterface controller) {
+		windowInstance.setAllButtons(false);
+		return new AddNewQuotationDialog(controller, windowInstance);
+	}
+	
+	public int createDeleteDialog(JFrame frame) {
+		Object[] options = { "Ja", "Nein" };
+		return  JOptionPane.showOptionDialog(frame,
+				"Wirklich löschen?",
+				"A Silly Question", JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+	}
 }

@@ -25,7 +25,7 @@ public class ManageModel  implements ModelInterface{
 		
 	}
 	
-	
+	//registe Observers
 	@Override
 	public void registerCustomerObserver(CustomerObserver observer) {
 		customer_observer.add(observer);
@@ -57,6 +57,7 @@ public class ManageModel  implements ModelInterface{
 		
 	}
 
+	//Customer methods
 	@Override
 	public void addCustomer(final Customer customer) {
 		Thread t = new Thread(new Runnable(){
@@ -86,9 +87,16 @@ public class ManageModel  implements ModelInterface{
 	}
 
 	@Override
-	public void updateCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		
+	public void updateCustomer(final Customer customer) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				manage_db.updateObj(customer);
+				listAllCustomers();
+			}
+		});
+		t.start();
 	}
 
 	@Override
@@ -127,17 +135,77 @@ public class ManageModel  implements ModelInterface{
 		
 		
 	}
-
+	
+	//Customer Locations methods
+	
 	@Override
-	public void addCustomerLocation(CustomerLocation custLocation) {
-		// TODO Auto-generated method stub
+	public void addCustomerLocation(final CustomerLocation location) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				manage_db.saveObj(location);
+				listAllLocations(location.getCustId());
+			}
+		});
+		t.start();
+	}
+	
+	@Override
+	public void addCustomerLocation(Customer customer, String city,
+			String street, int postal) {
 		
+		ModelFactory factory = ModelSingleton.getModelFactory();				
+		CustomerLocation location = factory.createCustomerLocation(customer.getCustId(),
+				city, street, postal);
+		addCustomerLocation(location);
 	}
 
 	@Override
-	public void removeCustomerLocation(int custLocId) {
-		// TODO Auto-generated method stub
+	public void removeCustomerLocation(final CustomerLocation custLocation) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				Log.getLog(this).debug("removeCustomerLocation called");
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				
+				manage_db.deleteObj(custLocation);
+				listAllLocations(custLocation.getCustId());
+			}
+		});
+		t.start();
+				
+	}
+	
+	@Override
+	public void updateCustomerLocationList(List<CustomerLocation> loc) {
+		for(CustomerLocationObserver observer : cust_loc_observer) {
+			observer.updateCustomerLocationField(loc);
+		}
 		
+	}
+	
+	@Override
+	public void listAllLocations(final int custId) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				Log.getLog(this).debug("listAllLocations called");
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				Customer cust = manage_db.getCustomer(custId);
+				if(cust == null) {
+					Log.getLog(this).debug("customer is null, custId: " + custId);
+				}
+				Log.getLog(this).debug("get customerLocations");
+				List<CustomerLocation> locations = cust.getLocations();
+				Log.getLog(this).debug("listed Locations: ");
+				for(CustomerLocationObserver observer : cust_loc_observer) {
+					Log.getLog(this).debug("iterate through LocationObservers");
+					observer.updateCustomerLocationField(locations);;			
+				}
+			}
+		});
+		t.start();
 	}
 
 	@Override
@@ -145,29 +213,128 @@ public class ManageModel  implements ModelInterface{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	//Quotation methods
+	
 	@Override
-	public void addQuotation(Quotation quotation) {
-		// TODO Auto-generated method stub
-		
+	public void listAllQuotations(ArrayList<Quotation> quotList) {
+		for(QuotationObserver observer : quotation_observer) {
+			observer.updateQuotationList(quotList);			
+		}
+	}
+	
+	@Override
+	public void addQuotation(final Quotation quotation) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				int id = quotation.getCustId();
+				manage_db.saveObj(quotation);
+				listAllQuotations(id);
+			}
+		});
+		t.start();
+	}
+	
+	@Override
+	public void listAllQuotations(final int custId) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				Log.getLog(this).debug("listAllQuotations called");
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				Customer cust = manage_db.getCustomer(custId);
+				if(cust == null) {
+					Log.getLog(this).debug("customer is null, custId: " + custId);
+				}
+				List<Quotation> quotList = cust.getQuotations();
+				Log.getLog(this).debug("listed Locations: ");
+				for(QuotationObserver observer : quotation_observer) {
+					observer.updateQuotationList(quotList);			
+				}
+			}
+		});
+		t.start();
 	}
 
 	@Override
-	public void removeQuotation(int quotId) {
-		// TODO Auto-generated method stub
-		
+	public void removeQuotation(final Quotation quotation) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				Log.getLog(this).debug("removeCustomerLocation called");
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				
+				manage_db.deleteObj(quotation);
+				listAllQuotations(quotation.getCustId());
+			}
+		});
+		t.start();
 	}
 
 	@Override
-	public void updateQuotation(Quotation quotation) {
-		// TODO Auto-generated method stub
-		
+	public void updateQuotationProducts(final Quotation quotation) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				Log.getLog(this).debug("updateQuotationProducts called, quotId: " + quotation.getQuotId());
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				
+				manage_db.updateObj(quotation);
+				listAllQuotationProducts( quotation.getQuotId() );
+			}
+		});
+		t.start();
+	}
+	
+	@Override
+	public void updateQuotationList(List<Quotation> quotations) {
+		for(QuotationObserver observer : quotation_observer) {
+			observer.updateQuotationList(quotations);
+		}
+	}
+	
+	// QuotationProduct methods
+	@Override
+	public void listAllQuotationProducts(final int quot_id) {
+
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				Log.getLog(this).debug("listAllQuotationProducts called with"
+						+ "quotId: " + quot_id);
+
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+
+				List<Product> products = manage_db.getClasses(Product.class);
+
+				List<QuotationProduct> quot_products = manage_db
+						.getQuotationProducts(quot_id);
+				Log.getLog(this).debug("QuotationProducts: " + quot_products.toString());
+				for (QuotProductObserver observer : quot_prod_observer){
+					observer.updateQuotProductList(quot_products, products);
+				}
+			}
+		});
+		t.start();
 	}
 
+	@Override
+	public void listAllQuotationProducts(Quotation selectedQuotation,
+			List<Product> products) {
+		for (QuotProductObserver observer : quot_prod_observer) {
+			observer.updateQuotProductList(selectedQuotation.getQuotProducts(),
+					products);
+		}
+
+	}
+
+	// Product Methods
 	@Override
 	public void addProduct(Product product) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -181,24 +348,6 @@ public class ManageModel  implements ModelInterface{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	@Override
-	public void updateCustomerLocationList(List<Location> loc) {
-		for(CustomerLocationObserver observer : cust_loc_observer) {
-			observer.updateCustomerLocationField(loc);
-		}
-		
-	}
-
-
-	@Override
-	public void updateQuotationList(List<Quotation> quotations) {
-		for(QuotationObserver observer : quotation_observer) {
-			observer.updateQuotationList(quotations);
-		}
-	}
-
 
 	@Override
 	public void listAllProducts() {
@@ -217,36 +366,5 @@ public class ManageModel  implements ModelInterface{
 		t.start();
 	}
 
-
-	@Override
-	public void listAllQuotatoinProducts(final int quot_id) {
-
-		Thread t = new Thread(new Runnable() {
-			public void run() {
-
-				ModelFactory factory = ModelSingleton.getModelFactory();
-				ManageDatabase manage_db = factory.createManageDatabase();
-
-				List<Product> products = manage_db.getClasses(Product.class);
-
-				List<QuotationProduct> quot_products = manage_db
-						.getQuotationProducts(quot_id);
-				for (QuotProductObserver observer : quot_prod_observer) {
-					observer.updateQuotProductList(quot_products, products);
-				}
-			}
-		});
-		t.start();
-	}
-
-	@Override
-	public void listAllQuotatoinProducts(Quotation selectedQuotation,
-			List<Product> products) {
-		for(QuotProductObserver observer : quot_prod_observer){
-			observer.updateQuotProductList(selectedQuotation.getQuotProducts(),
-					products);
-		}
-		
-	}
 
 }

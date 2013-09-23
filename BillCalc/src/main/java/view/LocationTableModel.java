@@ -7,24 +7,22 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
+import main.java.model.CustomerLocation;
 import main.java.model.Location;
+import main.view.util.Log;
 
 public class LocationTableModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = -2743140788233843965L;
-	List<Location> locations;
+	List<CustomerLocation> locations;
 	String[] columnNames = {"Ort","Straße", "Postleitzahl"};
 	
-	LocationTableModel(List<Location> locationList) {
+	LocationTableModel(List<CustomerLocation> locationList) {
 		this.locations = locationList;
 	}
 	
 	LocationTableModel() {
-		this.locations = new ArrayList<Location>();
-	}
-	
-	public void setLocations(ArrayList<Location> locations) {
-		this.locations = locations;
+		this.locations = new ArrayList<CustomerLocation>();
 	}
 
 	@Override
@@ -48,7 +46,7 @@ public class LocationTableModel extends AbstractTableModel {
 	public Object getValueAt(int row, int col) {
 		
 		if(row < locations.size()) {
-			Location location = locations.get(row);
+			CustomerLocation location = locations.get(row);
 			switch(col) {
 			case 0: return location.getCity();
 			case 1: return location.getStreet();
@@ -66,7 +64,7 @@ public class LocationTableModel extends AbstractTableModel {
 	@Override
 	public void setValueAt(Object obj, int row, int col) {
 		if(row < locations.size() && String.class.equals(obj)) {
-			Location location = locations.get(row);
+			CustomerLocation location = locations.get(row);
 			switch(col) {
 			case 0: location.setCity((String)obj);;
 			case 1: location.setStreet((String)obj);
@@ -80,9 +78,14 @@ public class LocationTableModel extends AbstractTableModel {
 		fireTableCellUpdated(row, col);
 	}
 	
-	public void setLocations(List<Location> locations) {
+	public void setLocations(List<CustomerLocation> locations) {
 		this.locations = locations;
 		this.fireTableDataChanged();
+	}
+	
+	public CustomerLocation getLocation(int index) {
+		Log.getLog(this).debug("location Array size: " + locations.size());
+		return locations.get(index);
 	}
 
 }

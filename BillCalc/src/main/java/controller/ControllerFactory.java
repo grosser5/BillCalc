@@ -29,4 +29,18 @@ public class ControllerFactory {
 		AddCustomer  add_cust = new AddCustomer(model);
 		return new DeleteCustomerCommand(view,del_cust,add_cust);
 	}
+	
+	public DeleteLocationCommand createDeleteLocationCommand(ViewInterface view,
+			ModelInterface model) {
+		DeleteLocation del_loc = new DeleteLocation(model);
+		AddLocation add_loc = new AddLocation(model);
+		return new DeleteLocationCommand(view,del_loc,add_loc);
+	}
+	
+	public DeleteQuotationCommand createDeleteQuotationCommand(ViewInterface view,
+			ModelInterface model) {
+		DeleteQuotation del_quot = new DeleteQuotation(model);
+		AddNewQuotation add_quot = new AddNewQuotation(model);
+		return new DeleteQuotationCommand(view,del_quot,add_quot);
+	}
 }

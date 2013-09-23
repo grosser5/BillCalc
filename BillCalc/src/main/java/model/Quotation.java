@@ -1,18 +1,40 @@
 package main.java.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Quotation {
+	private int custId = 0;
 	private int quotId = 0;
 	private Date date = null;
-	private List<QuotationProduct> quotProducts = null;
+	private List<QuotationProduct> quotProducts;
 	
-	public Quotation(){}
+	public Quotation(){
+		quotProducts = new ArrayList<QuotationProduct>();
+	}
 	
 	public Quotation(Date date, List<QuotationProduct> quotProducts) {
 		this.date = date;
 		this.quotProducts = quotProducts;
+	}
+
+	public Quotation(Date date, int custId) {
+		this.date = date;
+		quotProducts = new ArrayList<QuotationProduct>();
+		this.custId = custId;
+	}
+	
+	public Quotation(Quotation q) {
+		custId = q.getCustId();
+		quotId = q.getQuotId();
+		date = (Date) q.getDate().clone();
+		quotProducts = new ArrayList<QuotationProduct>();
+		
+		for( QuotationProduct p : q.getQuotProducts() ) {
+			quotProducts.add( new QuotationProduct(p) );
+		}
+		
 	}
 
 	public int getQuotId() {
@@ -39,6 +61,14 @@ public class Quotation {
 		this.date = date;
 	}
 	
+	public int getCustId() {
+		return custId;
+	}
+
+	public void setCustId(int cutId) {
+		this.custId = cutId;
+	}
+
 	public String toString() {
 		
 		return "Nr. " + quotId;

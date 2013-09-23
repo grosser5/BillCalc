@@ -44,6 +44,30 @@ public class CustomerLocation {
 		this.custId = custId;
 	}
 	
+	public String getCity() {
+		return location.getCity();
+	}
+
+	public void setCity(String city) {
+		location.setCity(city);
+	}
+	
+	public String getStreet() {
+		return location.getStreet();
+	}
+
+	public void setStreet(String street) {
+		location.setStreet(street);
+	}
+	
+	public int getPostal() {
+		return location.getPostal();
+	}
+	
+	public void setPostal(int postal) {
+		location.setPostal(postal);
+	}
+
 	public String toString() {
 		String l = "null";
 		if(location != null) {

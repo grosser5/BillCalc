@@ -100,7 +100,7 @@ public class AddCustomerDialog extends JDialog {
 	public class closeWindow extends WindowAdapter {
 		@Override
         public void windowClosing(WindowEvent e) {
-			controller.cancelAddCustomerDialog();
+			controller.cancelAddDialog();
         }
 	}
 	
@@ -117,7 +117,7 @@ public class AddCustomerDialog extends JDialog {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			controller.cancelAddCustomerDialog();
+			controller.cancelAddDialog();
 		}
 		
 	}

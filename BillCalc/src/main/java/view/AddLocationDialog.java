@@ -17,43 +17,90 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import main.java.controller.ControllerInterface;
+import main.java.model.Customer;
 import main.view.util.Log;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JFormattedTextField;
 
 public class AddLocationDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField customerNameField;
-	private JTextField customerCompTypeField;
+	private JTextField cityField;
+	private JTextField streetField;
+	private JTextField postalField;
 	private ControllerInterface controller;
-
-	public AddLocationDialog(ControllerInterface controller) {
-		
+	private ViewInterface mainFrame;
+	
+	public AddLocationDialog(ControllerInterface controller, ViewInterface mainFrame) {
+		this.mainFrame = mainFrame;
 		this.controller = controller;
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 584, 249);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
 		
-		JLabel lblEnterCustomerName = new JLabel("Kunden Name:");
-		lblEnterCustomerName.setBounds(12, 26, 179, 15);
-		contentPanel.add(lblEnterCustomerName);
+		JLabel lblCity = new JLabel("Ort:");
 		
-		customerNameField = new JTextField();
-		customerNameField.setHorizontalAlignment(SwingConstants.LEFT);
-		customerNameField.setBounds(197, 24, 235, 19);
-		contentPanel.add(customerNameField);
-		customerNameField.setColumns(10);
+		cityField = new JTextField();
+		cityField.setHorizontalAlignment(SwingConstants.LEFT);
+		cityField.setColumns(10);
 		
-		JLabel lblFirmaType = new JLabel("Firma Type: ");
-		lblFirmaType.setBounds(12, 73, 100, 15);
-		contentPanel.add(lblFirmaType);
+		JLabel lblStreet = new JLabel("Straße mit Hausnummer: ");
 		
-		customerCompTypeField = new JTextField();
-		customerCompTypeField.setBounds(197, 71, 235, 19);
-		contentPanel.add(customerCompTypeField);
-		customerCompTypeField.setColumns(10);
+		streetField = new JTextField();
+		streetField.setColumns(10);
+		
+		JLabel lblPostalNumber = new JLabel("Postleitzahl:");
+		
+		postalField = new JFormattedTextField();
+		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
+		gl_contentPanel.setHorizontalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGap(7)
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblStreet, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblPostalNumber)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(cityField, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(streetField, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(postalField, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+							.addContainerGap())))
+		);
+		gl_contentPanel.setVerticalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGap(19)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCity)
+						.addComponent(cityField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStreet)
+						.addComponent(streetField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPostalNumber)
+						.addComponent(postalField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(66))
+		);
+		contentPanel.setLayout(gl_contentPanel);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -69,6 +116,7 @@ public class AddLocationDialog extends JDialog {
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.addActionListener(new CancelButtonActionListener());
 				buttonPane.add(cancelButton);
 			}
 		}
@@ -80,7 +128,7 @@ public class AddLocationDialog extends JDialog {
 	public class closeWindow extends WindowAdapter {
 		@Override
         public void windowClosing(WindowEvent e) {
-			controller.cancelAddCustomerDialog();
+			controller.cancelAddDialog();
         }
 	}
 	
@@ -89,7 +137,8 @@ public class AddLocationDialog extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Log.getLog(this).debug("OkButtonActionListener called");
-			controller.addCustomer(customerNameField.getText(),customerCompTypeField.getText());
+			controller.addLocation(	cityField.getText(), streetField.getText(),
+					postalField.getText());
 		}
 	}
 	
@@ -97,7 +146,8 @@ public class AddLocationDialog extends JDialog {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			controller.cancelAddCustomerDialog();
+			Log.getLog(this).debug("cancel button pressed");
+			controller.cancelAddDialog();
 		}
 		
 	}

@@ -29,11 +29,21 @@ public class QuotationProduct {
 			int quantity, int mwst, String place) {
 		super();
 		this.prodId = prodId;
-		this.quotId = quotId;
 		this.costPerQuantity = costPerQuantity;
 		this.quantity = quantity;
 		this.mwst = mwst;
 		this.place = place;
+	}
+
+	public QuotationProduct(QuotationProduct p) {
+		quotProdId = p.getQuotProdId();
+		prodId = p.getProdId();
+		quotId = p.getQuotId();
+		costPerQuantity = p.getCostPerQuantity();
+		quantity = p.getQuantity();
+		mwst = p.getMwst();
+		place = p.getPlace();
+		price = p.getPrice();
 	}
 
 	public int getQuotProdId() {
@@ -101,7 +111,7 @@ public class QuotationProduct {
 	}
 	
 	public String toString() {
-		return "Euro/Menge: " + costPerQuantity + " Menge: " + quantity 
+		return "Id: " + getQuotProdId() + " Euro/Menge: " + costPerQuantity + " Menge: " + quantity 
 				+ " MWST: " + mwst + " Wo?: " + place;
 	}
 }

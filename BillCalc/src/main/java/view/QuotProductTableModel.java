@@ -119,11 +119,18 @@ public class QuotProductTableModel extends AbstractTableModel {
         fireTableCellUpdated(row, col);
     }
     
+    public void setQuotProducts(List<QuotationProduct> quot_products) {
+    	this.quot_products = quot_products;
+    	this.fireTableDataChanged();
+    }
+    
     public void addQuotProduct(QuotationProduct quot_product) {
     	quot_products.add(quot_product);
+    	this.fireTableDataChanged();
     }
     
     public void setProducts(List<Product> products) {
     	this.products = products;
+    	this.fireTableDataChanged();
     }
 }

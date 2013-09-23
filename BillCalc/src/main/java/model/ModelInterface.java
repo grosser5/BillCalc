@@ -1,6 +1,7 @@
 package main.java.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import main.java.model.observer.*;
@@ -15,31 +16,45 @@ public interface ModelInterface {
 	void registerQuotProductObserver(QuotProductObserver observer);
 	
 	//customer methods
+	void listAllCustomers();
 	void addCustomer(Customer customer);
 	void removeCustomer(Customer customer);
 	void updateCustomer(Customer customer);
 	void listCustomers(String searchName);
 	
 	//customerlocation methods
-	void addCustomerLocation(CustomerLocation custLocation);
-	void removeCustomerLocation(int custLocId);
+	void updateCustomerLocationList(List<CustomerLocation> loc);
+	void addCustomerLocation(CustomerLocation location);
+	void addCustomerLocation(Customer selected_customer, String city,
+			String street, int postal);
+	void removeCustomerLocation(CustomerLocation custLocation);
 	void updateCustomerLocation(CustomerLocation custLocation);
+	void listAllLocations(int custId);
 	
 	//Quotation methods
+	void updateQuotationList(List<Quotation> quotations);
 	void addQuotation(Quotation quotation);
-	void removeQuotation(int quotId);
-	void updateQuotation(Quotation quotation);
+	void removeQuotation(Quotation quotation);
+	void listAllQuotations(int custId);
+	void listAllQuotationProducts(int quot_id);
+	void updateQuotationProducts(Quotation quotation);
+	void listAllQuotationProducts(Quotation selectedQuotation, List<Product> products);
+	void listAllQuotations(ArrayList<Quotation> arrayList);
 	
 	//Product methods
 	void addProduct(Product product);
 	void removeProduct(int prodId);
 	void updateProduct(Product product);
-	
-	//view updates
-	void updateCustomerLocationList(List<Location> loc);
-	void listAllCustomers();
-	void updateQuotationList(List<Quotation> quotations);
 	void listAllProducts();
-	void listAllQuotatoinProducts(int quot_id);
-	void listAllQuotatoinProducts(Quotation selectedQuotation, List<Product> products);
+	//view updates
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 }

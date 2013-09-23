@@ -226,6 +226,29 @@ public class ManageDatabase  {
 
 		return results;
 	}
+	
+	public CustomerLocation getCustomerLocation( int custLocId ) {
+		Session session = ModelSingleton.getSessionFactory().openSession();
+		Transaction tx = null;
+		List<CustomerLocation> results = null;
+		try {
+			tx = session.beginTransaction();
+			prepareDb(session);
+			String hql = "FROM CustomerLocation C WHERE C.id =" + custLocId ;
+			Query query = session.createQuery(hql);
+			results = query.list();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		if(results.iterator().hasNext())
+			return results.iterator().next();
+		return null;
+	}
 
 	public List<QuotationProduct> getQuotationProducts(int quot_id) {
 		Session session = ModelSingleton.getSessionFactory().openSession();
