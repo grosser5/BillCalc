@@ -47,7 +47,7 @@ public interface ModelInterface {
 	
 	//Product methods
 	void addProduct(Product product);
-	void removeProduct(int prodId);
+	void removeProduct(Product p);
 	void updateProduct(Product product);
 	void listAllProducts();
 	int getFirstProductId();

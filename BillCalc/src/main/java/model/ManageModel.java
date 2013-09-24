@@ -361,15 +361,29 @@ public class ManageModel  implements ModelInterface{
 
 	// Product Methods
 	@Override
-	public void addProduct(Product product) {
-		// TODO Auto-generated method stub
-
+	public void addProduct(final Product product) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				manage_db.saveObj(product);
+				listAllProducts();
+			}
+		});
+		t.start();
 	}
 
 	@Override
-	public void removeProduct(int prodId) {
-		// TODO Auto-generated method stub
-		
+	public void removeProduct(final Product p) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				manage_db.deleteObj(p);
+				listAllProducts();
+			}
+		});
+		t.start();
 	}
 
 	@Override

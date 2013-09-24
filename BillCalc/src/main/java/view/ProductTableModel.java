@@ -70,4 +70,11 @@ public class ProductTableModel extends AbstractTableModel {
 		return products;
 	}
 
+	public Product getProduct(int selected) {
+		if(selected < products.size()) {
+			return products.get(selected);
+		}
+		return null;
+	}
+
 }

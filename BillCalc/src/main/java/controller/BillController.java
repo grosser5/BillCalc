@@ -41,6 +41,8 @@ public class BillController implements ControllerInterface{
 				factory.createDeleteQuotationCommand(view, model) );
 		remote.setSlot( DeleteQuotationProductCommand.class, 
 				factory.createDeleteQuotationProductCommand(view, model) );
+		remote.setSlot( DeleteProductCommand.class, 
+				factory.createDeleteProductCommand(view, model));
 	}
 	
 	private void resetQuotationProductList() {
@@ -148,9 +150,12 @@ public class BillController implements ControllerInterface{
 	public void addNewQuotation(String year, String month, String day) {
 		try {
 			int y = Integer.parseInt(year);
-			int m = Integer.parseInt(month);
+			int m = Integer.parseInt(month)-1;
 			int d = Integer.parseInt(day);
-			Date date = new java.sql.Date(y, m, d);
+			Date date = new java.sql.Date(2013, m, d);
+			java.util.Date j_date = new java.util.Date(2013, m, d);
+			Log.getLog(this).info("j-date: " + j_date.toString());
+			Log.getLog(this).info("date: " + date.toString());
 			model.addQuotation(new Quotation(date, view.getSelectedCustomer().getCustId()));
 		} catch(NumberFormatException e) {
 			return;
@@ -200,6 +205,30 @@ public class BillController implements ControllerInterface{
 	@Override
 	public void quotProdTableValueChanged(QuotationProduct quotProd) {
 		model.updateQuotationProduct(quotProd);		
+	}
+
+	@Override
+	public void addProduct(String name, String costPerQuant, String unit) {
+		
+		try{
+			Product p = new Product(name, Integer.parseInt(costPerQuant), unit);
+			model.addProduct(p);
+		} catch(NumberFormatException e) {
+			
+		}
+		
+	}
+
+	@Override
+	public void updateQuotProductList() {
+		Quotation q = view.getSelectedQuotation();
+		if(q != null) 
+			model.listAllQuotationProducts(q.getQuotId());
+	}
+
+	@Override
+	public void deleteSelectedProduct() {
+		remote.execute(DeleteProductCommand.class);
 	}
 
 

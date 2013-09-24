@@ -50,4 +50,11 @@ public class ControllerFactory {
 		AddQuotationProduct add_quot_prod = new AddQuotationProduct(model);
 		return new DeleteQuotationProductCommand(view,del_quot_prod,add_quot_prod);
 	}
+	
+	public DeleteProductCommand createDeleteProductCommand(ViewInterface view,
+			ModelInterface model) {
+		DeleteProduct del_prod = new DeleteProduct(model);
+		AddProduct add_prod = new AddProduct(model);
+		return new DeleteProductCommand(view,del_prod,add_prod);
+	}
 }

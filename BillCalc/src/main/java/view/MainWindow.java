@@ -78,6 +78,9 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class MainWindow implements ViewInterface, CustomerObserver, CustomerLocationObserver,
 	ProductObserver, QuotationObserver, QuotProductObserver{
@@ -117,9 +120,6 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JButton newProductButton;
 	private JButton deleteProductButton;
 	private ViewFactory viewFactory;
-	private JDialog addCustomerDialog;
-	private JDialog addLocationDialog;
-	private JDialog addNewQuotationDialog;
 	private JPanel customerBelowPanel;
 	private JPanel locationPanel;
 	private JPanel locationBelowPanel;
@@ -127,8 +127,16 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JPanel quotationBelowPanel;
 	private JButton copyQuotationButton;
 	
+	private JDialog addCustomerDialog;
+	private JDialog addLocationDialog;
+	private JDialog addNewQuotationDialog;
+	private JDialog addProductDialog;
+	
 	List<JButton> buttonGroupAllButtons;
 	List<JButton> buttonGroupSelectedCustomer;
+	private JMenuBar menuBar;
+	private JMenu mnDatei;
+	private JMenuItem mntmSpeichern;
 	
 	/**
 	 * Launch the application.
@@ -375,9 +383,11 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		productPanel.add(productBelowPanel, BorderLayout.SOUTH);
 		
 		newProductButton = new JButton("neues Produkt");
+		newProductButton.addActionListener( new AddProductButtonActionListener() );
 		productBelowPanel.add(newProductButton);
 		
 		deleteProductButton = new JButton("entferne Produkt");
+		deleteProductButton.addActionListener(new DeleteProductButtonActionListener());
 		productBelowPanel.add(deleteProductButton);
 		
 		JLabel lblProduktTabelle = new JLabel("Zu verfuegung stehende Produkte");
@@ -392,9 +402,16 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		
 		productTable.setFillsViewportHeight(true);
 		
+		menuBar = new JMenuBar();
+		frmBillcalc.setJMenuBar(menuBar);
+		
+		mnDatei = new JMenu("Datei");
+		menuBar.add(mnDatei);
+		
+		mntmSpeichern = new JMenuItem("speichern");
+		mnDatei.add(mntmSpeichern);
+		
 		initButtons();
-		//productTable.getColumnModel().getColumn(1).setPreferredWidth(150);;
-		//quotProductTable.getColumnModel().getColumn(0).setPreferredWidth(200);
 	}
 	
 	public void initButtons() {
@@ -430,51 +447,51 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		}
 	}
 	
-//	private void initColumnSizes(JTable table) {
-//		
-//        TableModel model = table.getModel();
-//        TableColumn column = null;
-//        Component comp = null;
-//        int headerWidth = 0;
-//        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-//        TableCellRenderer headerRenderer =
-//            table.getTableHeader().getDefaultRenderer();
-//
-//        int data_width = 0;
-//        
-//        for (int column_count = 0; column_count < model.getColumnCount(); column_count++) {
-//            column = table.getColumnModel().getColumn(column_count);
-//
-//            comp = headerRenderer.getTableCellRendererComponent(
-//                                 null, column.getHeaderValue(),
-//                                 false, false, 0, 0);
-//            headerWidth = comp.getPreferredSize().width;
-//
-//            int maxCellWidth = 0;
-//            for(int row_count=0; row_count < model.getRowCount(); row_count++) {
-//            	comp = table.getDefaultRenderer(model.getColumnClass(column_count)).
-//                        getTableCellRendererComponent(
-//                            table, model.getValueAt(row_count, column_count),
-//                            false, false, row_count, column_count);
-//            	maxCellWidth = Math.max(comp.getPreferredSize().width+5, maxCellWidth);
-//            }
-//            
-//            int pref_width = Math.max(headerWidth, maxCellWidth);
-//            data_width += pref_width;
-//            column.setPreferredWidth(pref_width);            
-//        }
-//        
-//        
-//        
-//        
-//        try {
-//        	JPanel grand_parent = (JPanel) table.getParent().getParent().getParent();
-//        	if( data_width <= grand_parent.getWidth() )
-//        		table.setPreferredSize(grand_parent.getSize());
-//        } catch( ClassCastException e ) { Log.getLog(this).error(e); }
-//        //table.setFillsViewportHeight(true);
-//       
-//    }
+	private void initColumnSizes(JTable table) {
+		
+        TableModel model = table.getModel();
+        TableColumn column = null;
+        Component comp = null;
+        int headerWidth = 0;
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableCellRenderer headerRenderer =
+            table.getTableHeader().getDefaultRenderer();
+
+        int data_width = 0;
+        
+        for (int column_count = 0; column_count < model.getColumnCount(); column_count++) {
+            column = table.getColumnModel().getColumn(column_count);
+
+            comp = headerRenderer.getTableCellRendererComponent(
+                                 null, column.getHeaderValue(),
+                                 false, false, 0, 0);
+            headerWidth = comp.getPreferredSize().width;
+
+            int maxCellWidth = 0;
+            for(int row_count=0; row_count < model.getRowCount(); row_count++) {
+            	comp = table.getDefaultRenderer(model.getColumnClass(column_count)).
+                        getTableCellRendererComponent(
+                            table, model.getValueAt(row_count, column_count),
+                            false, false, row_count, column_count);
+            	maxCellWidth = Math.max(comp.getPreferredSize().width+5, maxCellWidth);
+            }
+            
+            int pref_width = Math.max(headerWidth, maxCellWidth);
+            data_width += pref_width;
+            column.setPreferredWidth(pref_width);            
+        }
+        
+        
+        
+        
+        try {
+        	JPanel grand_parent = (JPanel) table.getParent().getParent().getParent();
+        	if( data_width <= grand_parent.getWidth() )
+        		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        } catch( ClassCastException e ) { Log.getLog(this).error(e); }
+        //table.setFillsViewportHeight(true);
+       
+    }
 	
 	public String getCustomerSearchText() {
 		return customerSearch.getText();
@@ -626,6 +643,27 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			}
 		}
 	}
+	//Product ActionListeners
+	public class AddProductButtonActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			addProductDialog = viewFactory.createAddProductDialog(windowInstance, controller);
+		}
+	}
+	
+	public class DeleteProductButtonActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int selected = productTable.getSelectedRow();
+			if(selected == -1)
+				return;
+			int n = viewFactory.createDeleteDialog(frmBillcalc);
+			if (n == 0) {
+				controller.deleteSelectedProduct();;
+			}
+		}
+	}
 	
 	//update Lists and Tables
 	@Override
@@ -650,8 +688,6 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	public synchronized void updateQuotationList(List<Quotation> quotList) {
 		
 		q_table_model.setQuotations(quotList);
-//		q_table_model = new QuotationTableModel(quotList);
-//		quotationTable.setModel(q_table_model);
 		cancelAddDialog();
 	}
 
@@ -696,7 +732,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		quotProductTable.setDefaultRenderer(String.class, centerRenderer);
 		quotProductTable.setDefaultRenderer(Product.class, centerRenderer);
 		quotProductTable.setDefaultRenderer(Integer.class, centerRenderer);
-		// initColumnSizes(quotProductTable);
+		 initColumnSizes(quotProductTable);
 	}
 
 	@Override
@@ -704,6 +740,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		p_table_model = new ProductTableModel(productList);
 		productTable.setModel(p_table_model);
 		productTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		controller.updateQuotProductList();
 
 	}
 
@@ -740,6 +777,8 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			addLocationDialog.dispose();
 		if(addNewQuotationDialog != null) 
 			addNewQuotationDialog.dispose();
+		if(addProductDialog != null)
+			addProductDialog.dispose();
 		setAllButtons(true);
 	}
 
@@ -749,5 +788,13 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		if(selected == -1)
 			return null;
 		return q_p_table_model.getQuotProd(selected);
+	}
+
+	@Override
+	public Product getSelectedProduct() {
+		int selected = productTable.getSelectedRow();
+		if(selected == -1)
+			return null;
+		return p_table_model.getProduct(selected);
 	}
 }

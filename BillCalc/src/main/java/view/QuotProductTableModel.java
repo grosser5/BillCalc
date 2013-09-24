@@ -64,7 +64,8 @@ public class QuotProductTableModel extends AbstractTableModel {
     	case 2: return cd.getQuantity();
     	case 3: return selected_product.getQuantityUnit();
     	case 4: return cd.getCostPerQuantity();
-    	case 5: return cd.getPrice();
+    	case 5: return controller.calcPrice(cd.getCostPerQuantity(),
+    			cd.getQuantity(), cd.getMwst());
     	case 6: return cd.getMwst();
     	default: return "";
     	}
@@ -82,7 +83,7 @@ public class QuotProductTableModel extends AbstractTableModel {
     public boolean isCellEditable(int row, int col) {
         //Note that the data/cell address is constant,
         //no matter where the cell appears onscreen.
-        if (col == 3) {
+        if (col == 3 || col == 5) {
             return false;
         } else {
             return true;
@@ -94,6 +95,7 @@ public class QuotProductTableModel extends AbstractTableModel {
      * data can change.
      */
     public void setValueAt(Object value, int row, int col) {
+    	
     	QuotationProduct cd = quot_products.get(row);
     	Log.getLog(this).debug("set value at " + row + " " + col);
     	try {
@@ -101,6 +103,7 @@ public class QuotProductTableModel extends AbstractTableModel {
     		case 0: {
     			Product sel_prod = (Product)value;
     			cd.setProdId(sel_prod.getProdId());
+    			cd.setCostPerQuantity(sel_prod.getDefaultCostPerQuantity());
     			break;
     		}
     		case 1: cd.setPlace((String) value); break;
@@ -110,13 +113,12 @@ public class QuotProductTableModel extends AbstractTableModel {
     		case 6: cd.setMwst((Integer)value);break;
     		default: return;
     		}
-    	} catch(ClassCastException e) {
+    	} catch(ClassCastException | IndexOutOfBoundsException e) {
     		Log.getLog(this).error(e);
     		return;
     	}
     	controller.quotProdTableValueChanged(cd);
-    	Log.getLog(this).debug("update TableCell: \n " + cd);
-        this.fireTableCellUpdated(row, col);
+        this.fireTableRowsUpdated(row, row);;
     }
     
     public void setQuotProducts(List<QuotationProduct> quot_products) {

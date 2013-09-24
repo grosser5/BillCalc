@@ -67,4 +67,9 @@ public class ViewFactory {
 				"A Silly Question", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 	}
+	
+	public AddProductDialog createAddProductDialog(MainWindow windowInstance,
+			ControllerInterface controller) {
+		return new AddProductDialog( controller,windowInstance );
+	}
 }

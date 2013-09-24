@@ -13,7 +13,7 @@ public class QuotationTableModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = -6860977587028156604L;
 	List<Quotation> quotations;
-	String[] columnNames = {"At. Nr.", "Datum"};
+	String[] columnNames = {"Angebotnummer.", "Datum"};
 	
 	QuotationTableModel(List<Quotation> quotations) {
 		this.quotations = quotations;
@@ -51,7 +51,10 @@ public class QuotationTableModel extends AbstractTableModel {
 			Quotation quotation = quotations.get(row);
 			switch(col) {
 			case 0: return quotation.getQuotId();
-			case 1: return quotation.getDate();
+			case 1: return ""
+					+ quotation.getDate().getDay() + "-"
+					+ quotation.getDate().getMonth() + "-"
+					+ quotation.getDate().getYear();
 			}
 		}
 		return null;

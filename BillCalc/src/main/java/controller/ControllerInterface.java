@@ -32,5 +32,8 @@ public interface ControllerInterface {
 	public void addDefaultQuotationProduct();
 	public void deleteSelectedQuotProduct();
 	public void quotProdTableValueChanged(QuotationProduct quotProd);
+	public void addProduct(String name, String costPerQuant, String unit);
+	public void updateQuotProductList();
+	public void deleteSelectedProduct();
 	
 }
