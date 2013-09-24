@@ -7,6 +7,7 @@ import main.java.model.Customer;
 import main.java.model.CustomerLocation;
 import main.java.model.Product;
 import main.java.model.Quotation;
+import main.java.model.QuotationProduct;
 
 public interface ControllerInterface {
 	public void updateCustomerList();
@@ -30,5 +31,6 @@ public interface ControllerInterface {
 	public void addNewQuotation(Quotation quotation);
 	public void addDefaultQuotationProduct();
 	public void deleteSelectedQuotProduct();
+	public void quotProdTableValueChanged(QuotationProduct quotProd);
 	
 }

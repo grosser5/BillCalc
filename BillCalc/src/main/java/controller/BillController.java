@@ -187,13 +187,19 @@ public class BillController implements ControllerInterface{
 		Log.getLog(this).debug("Quotation Id: " + quotation.getQuotId() );
 		QuotationProduct qp = new QuotationProduct();
 		qp.setQuotId(quotation.getQuotId());
-		quotation.getQuotProducts().add(qp);
-		model.updateQuotationProducts(quotation);
+		int default_product_id = model.getFirstProductId();
+		qp.setProdId(default_product_id);
+		model.addQuotationProduct(qp);
 	}
 
 	@Override
 	public void deleteSelectedQuotProduct() {
 		remote.execute(DeleteQuotationProductCommand.class);
+	}
+
+	@Override
+	public void quotProdTableValueChanged(QuotationProduct quotProd) {
+		model.updateQuotationProduct(quotProd);		
 	}
 
 

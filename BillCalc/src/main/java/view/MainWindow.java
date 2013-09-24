@@ -27,6 +27,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
@@ -96,7 +97,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private LocationTableModel location_table_model = new LocationTableModel();
 	private QuotationTableModel q_table_model = 
 			new QuotationTableModel();
-	private QuotProductTableModel q_p_table_model = new QuotProductTableModel();
+	private QuotProductTableModel q_p_table_model;
 	private ProductTableModel p_table_model = new ProductTableModel();
 	private JTable productTable;
 	private JTable quotationTable;
@@ -154,6 +155,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		this.windowInstance = this;
 		this.model = new ManageModel();
 		this.controller = new BillController(this, model);
+		q_p_table_model = new QuotProductTableModel(controller);
 		buttonGroupAllButtons = new ArrayList<JButton>();
 		buttonGroupSelectedCustomer = new ArrayList<JButton>();
 		initialize();
@@ -183,149 +185,176 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		frmBillcalc.setBounds(100, 100, 1268, 1015);
 		frmBillcalc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmBillcalc.setVisible(true);
-		frmBillcalc.getContentPane().setLayout(new MigLayout("", "[356px][43px][22px][10px][559px]", "[338px][255px][28px][330px]"));
-		
+		frmBillcalc.getContentPane().setLayout(
+				new MigLayout("", "[356px][43px][22px][10px][559px]",
+						"[338px][255px][28px][330px]"));
+
 		JPanel customerPanel = new JPanel();
 		frmBillcalc.getContentPane().add(customerPanel, "cell 0 0 2 1,grow");
-			customerPanel.setLayout(new BorderLayout(0, 0));
-			
-			JPanel customerAbovePanel = new JPanel();
-			customerPanel.add(customerAbovePanel, BorderLayout.NORTH);
-			
-				
-				JLabel customerLabel = new JLabel("Kunden: ");
-				
-				customerSearch = new JTextField();
-				//customerSearch.setMinimumSize(new Dimension(20, 19));
-				customerSearch.setText("search...");
-				customerSearch.addActionListener(new CustomerSearchActionListener());
-				GroupLayout gl_customerAbovePanel = new GroupLayout(customerAbovePanel);
-				gl_customerAbovePanel.setHorizontalGroup(
-					gl_customerAbovePanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_customerAbovePanel.createSequentialGroup()
-							.addComponent(customerLabel)
-							.addGap(24)
-							.addComponent(customerSearch, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
-							.addGap(252))
-				);
-				gl_customerAbovePanel.setVerticalGroup(
-					gl_customerAbovePanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_customerAbovePanel.createSequentialGroup()
-							.addGroup(gl_customerAbovePanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(customerSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(customerLabel))
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
-				customerAbovePanel.setLayout(gl_customerAbovePanel);
-				customerLabel.setVisible(true);
-			
-			customerScrollPane = new JScrollPane();
-			customerPanel.add(customerScrollPane, BorderLayout.CENTER);
-			
-			customerList = new JList(customer_list_model);
-			customerList.setVisible(true);
-			
-			customerScrollPane.setViewportView(customerList);
-			customerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			customerList.setLayoutOrientation(JList.VERTICAL);
-			customerList.setSelectedIndex(1);
-			
-			customerBelowPanel = new JPanel();
-			customerPanel.add(customerBelowPanel, BorderLayout.SOUTH);
-			
-			addCustomerButton = new JButton("neuer Kunde");
-			customerBelowPanel.add(addCustomerButton);
-			
-			deleteCustomerButton = new JButton("lösche Kunde");
-			customerBelowPanel.add(deleteCustomerButton);
-			deleteCustomerButton.addActionListener(new DeleteCustomerButtonActionListener());
-			addCustomerButton.addActionListener( new AddCustomerButtonActionListener() );
-			customerList.getSelectionModel().addListSelectionListener(new CustomerListSelectionListener());
-		
+		customerPanel.setLayout(new BorderLayout(0, 0));
+
+		JPanel customerAbovePanel = new JPanel();
+		customerPanel.add(customerAbovePanel, BorderLayout.NORTH);
+
+		JLabel customerLabel = new JLabel("Kunden: ");
+
+		customerSearch = new JTextField();
+		// customerSearch.setMinimumSize(new Dimension(20, 19));
+		customerSearch.setText("search...");
+		customerSearch.addActionListener(new CustomerSearchActionListener());
+		GroupLayout gl_customerAbovePanel = new GroupLayout(customerAbovePanel);
+		gl_customerAbovePanel
+				.setHorizontalGroup(gl_customerAbovePanel.createParallelGroup(
+						Alignment.LEADING)
+						.addGroup(
+								gl_customerAbovePanel
+										.createSequentialGroup()
+										.addComponent(customerLabel)
+										.addGap(24)
+										.addComponent(customerSearch,
+												GroupLayout.PREFERRED_SIZE, 97,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(252)));
+		gl_customerAbovePanel
+				.setVerticalGroup(gl_customerAbovePanel
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								gl_customerAbovePanel
+										.createSequentialGroup()
+										.addGroup(
+												gl_customerAbovePanel
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(
+																customerSearch,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																customerLabel))
+										.addContainerGap(
+												GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)));
+		customerAbovePanel.setLayout(gl_customerAbovePanel);
+		customerLabel.setVisible(true);
+
+		customerScrollPane = new JScrollPane();
+		customerPanel.add(customerScrollPane, BorderLayout.CENTER);
+
+		customerList = new JList(customer_list_model);
+		customerList.setVisible(true);
+
+		customerScrollPane.setViewportView(customerList);
+		customerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		customerList.setLayoutOrientation(JList.VERTICAL);
+		customerList.setSelectedIndex(1);
+
+		customerBelowPanel = new JPanel();
+		customerPanel.add(customerBelowPanel, BorderLayout.SOUTH);
+
+		addCustomerButton = new JButton("neuer Kunde");
+		customerBelowPanel.add(addCustomerButton);
+
+		deleteCustomerButton = new JButton("lösche Kunde");
+		customerBelowPanel.add(deleteCustomerButton);
+		deleteCustomerButton
+				.addActionListener(new DeleteCustomerButtonActionListener());
+		addCustomerButton
+				.addActionListener(new AddCustomerButtonActionListener());
+		customerList.getSelectionModel().addListSelectionListener(
+				new CustomerListSelectionListener());
+
 		locationPanel = new JPanel();
 		frmBillcalc.getContentPane().add(locationPanel, "cell 4 0,grow");
 		locationPanel.setLayout(new BorderLayout(0, 0));
-		
-		
+
 		lblRechnungsadresse = new JLabel("Rechnungsadresse:");
 		locationPanel.add(lblRechnungsadresse, BorderLayout.NORTH);
 		lblRechnungsadresse.setVisible(true);
-		
+
 		customerLocationTableScrollPane = new JScrollPane();
 		locationPanel.add(customerLocationTableScrollPane, BorderLayout.CENTER);
-		
+
 		customerLocationTable = new JTable(location_table_model);
 		customerLocationTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		customerLocationTable.setFillsViewportHeight(true);
-		customerLocationTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		customerLocationTable
+				.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		customerLocationTableScrollPane.setViewportView(customerLocationTable);
-		
+
 		locationBelowPanel = new JPanel();
 		locationPanel.add(locationBelowPanel, BorderLayout.SOUTH);
-		
+
 		addLocationButton = new JButton("neue Adresse");
-		addLocationButton.addActionListener(new AddLocationButtonActionListener());
+		addLocationButton
+				.addActionListener(new AddLocationButtonActionListener());
 		locationBelowPanel.add(addLocationButton);
-		
+
 		deleteLocationButton = new JButton("lösche Adresse");
-		deleteLocationButton.addActionListener( new DeleteLocationButtonActionListener() );
+		deleteLocationButton
+				.addActionListener(new DeleteLocationButtonActionListener());
 		locationBelowPanel.add(deleteLocationButton);
-		
+
 		quotationPanel = new JPanel();
 		frmBillcalc.getContentPane().add(quotationPanel, "cell 0 1 2 2,grow");
 		quotationPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		lblGespeicherteAngebote = new JLabel("gespeicherte Angebote:");
 		quotationPanel.add(lblGespeicherteAngebote, BorderLayout.NORTH);
-		
+
 		quotationTableScrollPane = new JScrollPane();
 		quotationPanel.add(quotationTableScrollPane);
-		
+
 		quotationTable = new JTable(q_table_model);
 		quotationTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		quotationTableScrollPane.setViewportView(quotationTable);
 		quotationTable.getSelectionModel().addListSelectionListener(
 				new QuotationTableSelectionListener());
-		
+
 		quotationBelowPanel = new JPanel();
 		quotationPanel.add(quotationBelowPanel, BorderLayout.SOUTH);
-		
+
 		copyQuotationButton = new JButton("kopiere Angebot");
 		copyQuotationButton.setEnabled(false);
-		copyQuotationButton.addActionListener(
-				new CopyQuotationButtonActionListener() );
+		copyQuotationButton
+				.addActionListener(new CopyQuotationButtonActionListener());
 		quotationBelowPanel.add(copyQuotationButton);
-		
+
 		addQuotationButton = new JButton("neues Angebot");
-		addQuotationButton.addActionListener(
-				new AddQuotationButtonActionListener() );
+		addQuotationButton
+				.addActionListener(new AddQuotationButtonActionListener());
 		quotationBelowPanel.add(addQuotationButton);
-		
+
 		deleteQuotationButton = new JButton("lösche Angebot");
-		deleteQuotationButton.addActionListener(
-				new DeleteQuotationButtonActionListener() );
+		deleteQuotationButton
+				.addActionListener(new DeleteQuotationButtonActionListener());
 		quotationBelowPanel.add(deleteQuotationButton);
-		
+
 		JPanel quotProdPanel = new JPanel();
-		frmBillcalc.getContentPane().add(quotProdPanel, "cell 4 1 1 2,growx,aligny top");
+		frmBillcalc.getContentPane().add(quotProdPanel,
+				"cell 4 1 1 2,growx,aligny top");
 		quotProdPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		quotProductscrollPane = new JScrollPane();
 		quotProdPanel.add(quotProductscrollPane, BorderLayout.CENTER);
-		quotProductscrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		quotProductscrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		quotProductscrollPane
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		quotProductscrollPane
+				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		quotProductscrollPane.setOpaque(false);
-		
+
 		quotProductTable = new JTable(q_p_table_model);
-		quotProductscrollPane.setViewportView(quotProductTable);		
-		quotProductTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
+		quotProductTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		quotProductTable.setFillsViewportHeight(true);
+		quotProductTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		quotProductscrollPane.setViewportView(quotProductTable);
+
 		quotProdLabel = new JLabel("Produkte des  Angebotes:");
 		quotProdPanel.add(quotProdLabel, BorderLayout.NORTH);
-		
+
 		JPanel quotProdBelwPanel = new JPanel();
 		quotProdPanel.add(quotProdBelwPanel, BorderLayout.SOUTH);
-		
+
 		addQuotProduktButton = new JButton("Produkt hinzugeben");
 		addQuotProduktButton.addActionListener(
 				new addQuotProduktButtonActionListener() );
@@ -401,51 +430,51 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		}
 	}
 	
-	private void initColumnSizes(JTable table) {
-		
-        TableModel model = table.getModel();
-        TableColumn column = null;
-        Component comp = null;
-        int headerWidth = 0;
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableCellRenderer headerRenderer =
-            table.getTableHeader().getDefaultRenderer();
-
-        int data_width = 0;
-        
-        for (int column_count = 0; column_count < model.getColumnCount(); column_count++) {
-            column = table.getColumnModel().getColumn(column_count);
-
-            comp = headerRenderer.getTableCellRendererComponent(
-                                 null, column.getHeaderValue(),
-                                 false, false, 0, 0);
-            headerWidth = comp.getPreferredSize().width;
-
-            int maxCellWidth = 0;
-            for(int row_count=0; row_count < model.getRowCount(); row_count++) {
-            	comp = table.getDefaultRenderer(model.getColumnClass(column_count)).
-                        getTableCellRendererComponent(
-                            table, model.getValueAt(row_count, column_count),
-                            false, false, row_count, column_count);
-            	maxCellWidth = Math.max(comp.getPreferredSize().width+5, maxCellWidth);
-            }
-            
-            int pref_width = Math.max(headerWidth, maxCellWidth);
-            data_width += pref_width;
-            column.setPreferredWidth(pref_width);            
-        }
-        
-        
-        
-        
-        try {
-        	JPanel grand_parent = (JPanel) table.getParent().getParent().getParent();
-        	if( data_width <= grand_parent.getWidth() )
-        		table.setPreferredSize(grand_parent.getSize());
-        } catch( ClassCastException e ) { Log.getLog(this).error(e); }
-        //table.setFillsViewportHeight(true);
-       
-    }
+//	private void initColumnSizes(JTable table) {
+//		
+//        TableModel model = table.getModel();
+//        TableColumn column = null;
+//        Component comp = null;
+//        int headerWidth = 0;
+//        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//        TableCellRenderer headerRenderer =
+//            table.getTableHeader().getDefaultRenderer();
+//
+//        int data_width = 0;
+//        
+//        for (int column_count = 0; column_count < model.getColumnCount(); column_count++) {
+//            column = table.getColumnModel().getColumn(column_count);
+//
+//            comp = headerRenderer.getTableCellRendererComponent(
+//                                 null, column.getHeaderValue(),
+//                                 false, false, 0, 0);
+//            headerWidth = comp.getPreferredSize().width;
+//
+//            int maxCellWidth = 0;
+//            for(int row_count=0; row_count < model.getRowCount(); row_count++) {
+//            	comp = table.getDefaultRenderer(model.getColumnClass(column_count)).
+//                        getTableCellRendererComponent(
+//                            table, model.getValueAt(row_count, column_count),
+//                            false, false, row_count, column_count);
+//            	maxCellWidth = Math.max(comp.getPreferredSize().width+5, maxCellWidth);
+//            }
+//            
+//            int pref_width = Math.max(headerWidth, maxCellWidth);
+//            data_width += pref_width;
+//            column.setPreferredWidth(pref_width);            
+//        }
+//        
+//        
+//        
+//        
+//        try {
+//        	JPanel grand_parent = (JPanel) table.getParent().getParent().getParent();
+//        	if( data_width <= grand_parent.getWidth() )
+//        		table.setPreferredSize(grand_parent.getSize());
+//        } catch( ClassCastException e ) { Log.getLog(this).error(e); }
+//        //table.setFillsViewportHeight(true);
+//       
+//    }
 	
 	public String getCustomerSearchText() {
 		return customerSearch.getText();
@@ -611,6 +640,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	
 	@Override
 	public synchronized void updateCustomerLocationField(List<CustomerLocation> locationList) {
+		Log.getLog(this).debug("updateCustomerLocationField() called");
 		location_table_model.setLocations(locationList);
 		//initColumnSizes(customerLocationTable);
 		cancelAddDialog();
@@ -626,32 +656,47 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	}
 
 	@Override
-	public synchronized void updateQuotProductList(List<QuotationProduct> quotProdList,
-			List<Product> productList) {
-		Log.getLog(this).debug("updateQuotProductList called with " + quotProdList.size() + " prods");
-		
+	public synchronized void updateQuotProductList(
+			final List<QuotationProduct> quotProdList,
+			final List<Product> productList) {
+
+		Log.getLog(this).debug(
+				"updateQuotProductList called with " + quotProdList.size()
+						+ " prods");
+
 		q_p_table_model.setQuotProducts(quotProdList);
+		q_p_table_model.setProducts(productList);
 		Product[] products = new Product[productList.size()];
-		
-		Log.getLog(this).debug("set box");
-		
-		JComboBox<Product> box = new JComboBox<Product>( productList.toArray(
-				products) );
-		
+
+		for (int i = 0; i < q_p_table_model.getRowCount(); i++) {
+			Log.getLog(this).debug(
+					"Tabledata: " + q_p_table_model.getQuotProd(i));
+		}
+
+		for (int i = 0; i < q_p_table_model.getRowCount(); i++) {
+			for (int j = 0; j < q_p_table_model.getColumnCount(); j++) {
+				Log.getLog(this).debug(
+						"data: " + q_p_table_model.getValueAt(i, j));
+			}
+		}
+
+		JComboBox<Product> box = new JComboBox<Product>(
+				productList.toArray(products));
+
 		Log.getLog(this).debug("setCellEditor");
-		
-		quotProductTable.getColumnModel().getColumn(0).setCellEditor(
-				new DefaultCellEditor(box));
+
+		quotProductTable.getColumnModel().getColumn(0)
+				.setCellEditor(new DefaultCellEditor(box));
 		quotProductTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-		
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
 		Log.getLog(this).debug("set Renderers");
 		quotProductTable.setDefaultRenderer(String.class, centerRenderer);
 		quotProductTable.setDefaultRenderer(Product.class, centerRenderer);
 		quotProductTable.setDefaultRenderer(Integer.class, centerRenderer);
-		initColumnSizes(quotProductTable);
+		// initColumnSizes(quotProductTable);
 	}
 
 	@Override
@@ -659,10 +704,10 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		p_table_model = new ProductTableModel(productList);
 		productTable.setModel(p_table_model);
 		productTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 	}
 
-	//get selected methods
+	// get selected methods
 	@Override
 	public CustomerLocation getSelectedCustomerLocation() {
 		int selected = customerLocationTable.getSelectedRow();

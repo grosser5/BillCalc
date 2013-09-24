@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import main.java.controller.ControllerInterface;
 import main.java.model.Product;
 import main.java.model.QuotationProduct;
 import main.view.util.Log;
@@ -24,14 +25,10 @@ public class QuotProductTableModel extends AbstractTableModel {
     		"Einheit", "Euro/Eh", "Betrag", "MWSt" };
 	private List<QuotationProduct> quot_products = new ArrayList<QuotationProduct>();
 	private List<Product> products = new ArrayList();
-    
-    public QuotProductTableModel(){ }
-    
-    public QuotProductTableModel(List<QuotationProduct> quot_products, List<Product> products) {
-    	if(quot_products != null || products != null) {
-    		this.quot_products =  quot_products;
-    		this.products = products;
-    	}
+    private ControllerInterface controller;
+	
+    public QuotProductTableModel(ControllerInterface controller){
+    	this.controller = controller;
     }
     
     
@@ -98,6 +95,7 @@ public class QuotProductTableModel extends AbstractTableModel {
      */
     public void setValueAt(Object value, int row, int col) {
     	QuotationProduct cd = quot_products.get(row);
+    	Log.getLog(this).debug("set value at " + row + " " + col);
     	try {
     		switch(col) {
     		case 0: {
@@ -105,21 +103,24 @@ public class QuotProductTableModel extends AbstractTableModel {
     			cd.setProdId(sel_prod.getProdId());
     			break;
     		}
-    		case 1:  cd.setPlace((String) value); break;
-    		case 2:  cd.setQuantity((Integer) value);break;
+    		case 1: cd.setPlace((String) value); break;
+    		case 2: cd.setQuantity((Integer) value);break;
     		case 4: cd.setCostPerQuantity((Integer)value);break;
     		case 5: cd.setPrice((Integer)value);break;
     		case 6: cd.setMwst((Integer)value);break;
     		default: return;
     		}
     	} catch(ClassCastException e) {
+    		Log.getLog(this).error(e);
     		return;
     	}
-    	
-        fireTableCellUpdated(row, col);
+    	controller.quotProdTableValueChanged(cd);
+    	Log.getLog(this).debug("update TableCell: \n " + cd);
+        this.fireTableCellUpdated(row, col);
     }
     
     public void setQuotProducts(List<QuotationProduct> quot_products) {
+    	Log.getLog(this).debug("setQuotProducts: " + quot_products);
     	this.quot_products = quot_products;
     	this.fireTableDataChanged();
     }

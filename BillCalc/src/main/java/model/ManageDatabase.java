@@ -12,6 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.internal.CriteriaImpl.CriterionEntry;
 
@@ -268,6 +269,27 @@ public class ManageDatabase  {
 		    	session.close(); 
 		    }
 		return result;
+	}
+
+	public List<Object> getFirstObject(Class c) {
+		Session session = ModelSingleton.getSessionFactory().openSession();
+	      Transaction tx = null;
+	      List result = new ArrayList();
+	      try{
+	         tx = session.beginTransaction();
+	         prepareDb(session);
+	         Criteria cr = session.createCriteria(c);
+	         cr.setFirstResult(0);
+	         cr.setMaxResults(1);
+	         result = cr.list();
+	         tx.commit();
+	      }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	      return result;
 	}
 
 }

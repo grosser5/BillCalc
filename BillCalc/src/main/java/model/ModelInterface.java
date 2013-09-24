@@ -50,7 +50,10 @@ public interface ModelInterface {
 	void removeProduct(int prodId);
 	void updateProduct(Product product);
 	void listAllProducts();
+	int getFirstProductId();
 	//view updates
+	void updateQuotationProduct(QuotationProduct quotProd);
+	
 
 	
 	

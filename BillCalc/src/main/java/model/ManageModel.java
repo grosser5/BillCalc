@@ -272,7 +272,16 @@ public class ManageModel  implements ModelInterface{
 		});
 		t.start();
 	}
-
+	
+	@Override
+	public void updateQuotationList(List<Quotation> quotations) {
+		for(QuotationObserver observer : quotation_observer) {
+			observer.updateQuotationList(quotations);
+		}
+	}
+	
+	// QuotationProduct methods
+	
 	@Override
 	public void updateQuotationProducts(final Quotation quotation) {
 		Thread t = new Thread(new Runnable(){
@@ -288,14 +297,6 @@ public class ManageModel  implements ModelInterface{
 		t.start();
 	}
 	
-	@Override
-	public void updateQuotationList(List<Quotation> quotations) {
-		for(QuotationObserver observer : quotation_observer) {
-			observer.updateQuotationList(quotations);
-		}
-	}
-	
-	// QuotationProduct methods
 	@Override
 	public void listAllQuotationProducts(final int quot_id) {
 
@@ -392,6 +393,30 @@ public class ManageModel  implements ModelInterface{
 			}
 		});
 		t.start();
+	}
+
+	@Override
+	public void updateQuotationProduct(final QuotationProduct quotProd) {
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				ModelFactory factory = ModelSingleton.getModelFactory();
+				ManageDatabase manage_db = factory.createManageDatabase();
+				manage_db.updateObj(quotProd);
+			}
+		});
+		t.start();
+	}
+
+	@Override
+	public int getFirstProductId() {
+
+		ModelFactory factory = ModelSingleton.getModelFactory();
+		ManageDatabase manage_db = factory.createManageDatabase();
+		List<Object> prod_list = manage_db.getFirstObject(Product.class);
+		if(prod_list.size() == 0)
+			return 0;
+		Product p = (Product)prod_list.iterator().next();
+		return p.getProdId();
 	}
 
 
