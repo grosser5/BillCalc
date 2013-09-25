@@ -8,6 +8,7 @@ public class Quotation {
 	private int custId = 0;
 	private int quotId = 0;
 	private Date date = null;
+	private int quotNumber = 0;
 	private List<QuotationProduct> quotProducts;
 	
 	public Quotation(){
@@ -19,10 +20,11 @@ public class Quotation {
 		this.quotProducts = quotProducts;
 	}
 
-	public Quotation(Date date, int custId) {
+	public Quotation(Date date, int custId, int quotNumber) {
 		this.date = date;
 		quotProducts = new ArrayList<QuotationProduct>();
 		this.custId = custId;
+		this.quotNumber = quotNumber;
 	}
 	
 	public Quotation(Quotation q) {
@@ -67,6 +69,14 @@ public class Quotation {
 
 	public void setCustId(int cutId) {
 		this.custId = cutId;
+	}
+
+	public int getQuotNumber() {
+		return quotNumber;
+	}
+
+	public void setQuotNumber(int quotNumber) {
+		this.quotNumber = quotNumber;
 	}
 
 	public String toString() {

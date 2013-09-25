@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 
 import main.java.controller.ControllerInterface;
 import main.java.model.Customer;
+import main.java.model.Quotation;
 import main.view.util.Log;
 
 import javax.swing.GroupLayout;
@@ -27,7 +28,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextPane;
 
-public class AddNewQuotationDialog extends JDialog {
+public class CopyQuotationDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private ControllerInterface controller;
@@ -39,7 +40,7 @@ public class AddNewQuotationDialog extends JDialog {
 	private JTextPane errorTextPane;
 	private JPanel datePannel;
 	
-	public AddNewQuotationDialog(ControllerInterface controller, ViewInterface mainFrame) {
+	public CopyQuotationDialog(ControllerInterface controller, ViewInterface mainFrame) {
 		this.mainFrame = mainFrame;
 		this.controller = controller;
 		
@@ -161,8 +162,11 @@ public class AddNewQuotationDialog extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			Log.getLog(this).debug("OkButtonActionListener called");
 			try {
-			controller.addNewQuotation( yearField.getText(),monthField.getText(),
-					dayField.getText(), quotNumberField.getText() );
+				
+				Quotation selected_quot = mainFrame.getSelectedQuotation();
+				controller.copyQuotation(selected_quot, yearField.getText(),
+						monthField.getText(), dayField.getText(), quotNumberField.getText());
+				
 			} catch(IllegalArgumentException ex) {
 				errorTextPane.setText(ex.getMessage());
 				errorTextPane.setVisible(true);

@@ -47,6 +47,7 @@
      <id name="quotId" type="int" column="quot_id">
        <generator class="native"/>
      </id>
+     <property name="quotNumber" unique="true" column="quot_number"/>
      <property name="custId" column="cust_id" type="int"/>
      <property name="date" column="date" type="date"/>
      <bag name="quotProducts" cascade="all" lazy="false">

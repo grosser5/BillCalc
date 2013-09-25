@@ -147,32 +147,64 @@ public class BillController implements ControllerInterface{
 	}
 
 	@Override
-	public void addNewQuotation(String year, String month, String day) {
+	public void addNewQuotation(String year, String month, String day, String quot_number) throws
+	IllegalArgumentException {
+		
 		try {
 			int y = Integer.parseInt(year);
 			int m = Integer.parseInt(month)-1;
 			int d = Integer.parseInt(day);
-			Date date = new java.sql.Date(2013, m, d);
-			java.util.Date j_date = new java.util.Date(2013, m, d);
-			Log.getLog(this).info("j-date: " + j_date.toString());
-			Log.getLog(this).info("date: " + date.toString());
-			model.addQuotation(new Quotation(date, view.getSelectedCustomer().getCustId()));
+			int quot_num = Integer.parseInt(quot_number);
+			Date date = new java.sql.Date(y, m, d);
+			
+			if(!model.isUniqueQuotNumber(quot_num))
+				throw new IllegalArgumentException("Angebot Number ist nicht einzigartig!.");
+				
+			model.addQuotation(new Quotation(date, view.getSelectedCustomer().getCustId(),
+					quot_num ) );
+				
 		} catch(NumberFormatException e) {
-			return;
+			throw new IllegalArgumentException("Bitte Zahlen bei den Feldern eingeben.");
 		}
 	}
 	
 	@Override
-	public void copyQuotation() {
-		Quotation quotation = view.getSelectedQuotation();
-		Quotation q = new Quotation(quotation);
-		q.setQuotId(0);
-		for(QuotationProduct quot_prod : q.getQuotProducts()) {
-			quot_prod.setQuotProdId(0);
+	public void copyQuotation(Quotation quotation, String year,
+			String month, String day, String quot_number)  throws
+	IllegalArgumentException {
+		
+		
+		try {
+			int y = Integer.parseInt(year);
+			int m = Integer.parseInt(month)-1;
+			int d = Integer.parseInt(day);
+			int quot_num = Integer.parseInt(quot_number);
+			Date date = new java.sql.Date(y, m, d);
+			
+			if(!model.isUniqueQuotNumber(quot_num)) 
+				throw new IllegalArgumentException("Angebot Number ist nicht einzigartig!.");
+			
+			Quotation q = new Quotation(quotation);
+			q.setQuotId(0);
+			
+			for(QuotationProduct quot_prod : q.getQuotProducts()) {
+				quot_prod.setQuotProdId(0);
+			}
+			
+			q.setDate(new java.sql.Date(y, m, d));
+			q.setQuotNumber(quot_num);
+			
+			model.addQuotation(q);
+			resetQuotationProductList();
+				
+		} catch(NumberFormatException e) {
+			throw new IllegalArgumentException("Bitte Zahlen bei den Feldern eingeben.");
 		}
 		
-		model.addQuotation(q);
-		resetQuotationProductList();
+		
+		
+		
+		
 	}
 
 	@Override
@@ -229,6 +261,12 @@ public class BillController implements ControllerInterface{
 	@Override
 	public void deleteSelectedProduct() {
 		remote.execute(DeleteProductCommand.class);
+	}
+
+	@Override
+	public int getRecomendedQuotId() {
+		return model.getLastQuotNumber()+10;
+		
 	}
 
 

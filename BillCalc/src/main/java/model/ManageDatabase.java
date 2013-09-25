@@ -12,6 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.internal.CriteriaImpl.CriterionEntry;
@@ -281,6 +282,49 @@ public class ManageDatabase  {
 	         Criteria cr = session.createCriteria(c);
 	         cr.setFirstResult(0);
 	         cr.setMaxResults(1);
+	         result = cr.list();
+	         tx.commit();
+	      }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	      return result;
+	}
+
+	public Object getLastObj(Class c, String table_name) {
+		Session session = ModelSingleton.getSessionFactory().openSession();
+	      Transaction tx = null;
+	      List result = new ArrayList();
+	      try{
+	         tx = session.beginTransaction();
+	         prepareDb(session);
+	         Criteria cr = session.createCriteria(c);
+	         cr.addOrder(Order.desc(table_name));
+	         cr.setFirstResult(0);
+	         cr.setMaxResults(1);
+	         
+	         result = cr.list();
+	         tx.commit();
+	      }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	      return result;
+	}
+
+	public List<Quotation> getQuotations(int quot_number) {
+		Session session = ModelSingleton.getSessionFactory().openSession();
+	      Transaction tx = null;
+	      List result = new ArrayList();
+	      try{
+	         tx = session.beginTransaction();
+	         prepareDb(session);
+	         Criteria cr = session.createCriteria(Quotation.class);
+	         cr.add( Restrictions.eq("quotNumber", quot_number) );
 	         result = cr.list();
 	         tx.commit();
 	      }catch (HibernateException e) {

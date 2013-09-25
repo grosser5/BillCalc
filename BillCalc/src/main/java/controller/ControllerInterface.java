@@ -25,8 +25,10 @@ public interface ControllerInterface {
 	public String getYear();
 	public String getMonth();
 	public String getday();
-	public void addNewQuotation(String year, String month, String day);
-	public void copyQuotation();
+	public void addNewQuotation(String year, String month, String day, String quot_number) 
+			throws IllegalArgumentException ;
+	public void copyQuotation(Quotation quotation, String year,
+			String month, String day, String quot_number)  throws IllegalArgumentException ;
 	public void deleteSelectedQuotation();
 	public void addNewQuotation(Quotation quotation);
 	public void addDefaultQuotationProduct();
@@ -35,5 +37,6 @@ public interface ControllerInterface {
 	public void addProduct(String name, String costPerQuant, String unit);
 	public void updateQuotProductList();
 	public void deleteSelectedProduct();
+	public int getRecomendedQuotId();
 	
 }

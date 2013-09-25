@@ -131,6 +131,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JDialog addLocationDialog;
 	private JDialog addNewQuotationDialog;
 	private JDialog addProductDialog;
+	private JDialog copyQuotationDialog;
 	
 	List<JButton> buttonGroupAllButtons;
 	List<JButton> buttonGroupSelectedCustomer;
@@ -177,6 +178,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		model.registerQuotationObserver(this);
 		model.registerQuotProductObserver(this);
 		model.registerProductObserver(this);
+		
 		controller.updateCustomerList();
 		controller.updateProductList();
 		this.viewFactory = new ViewFactory();
@@ -187,8 +189,12 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	 */
 	//@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
+		
 		Log.getLog(this).debug("initialize called");
 		frmBillcalc = new JFrame();
+		
+		
+		
 		frmBillcalc.setTitle("BillCalc");
 		frmBillcalc.setBounds(100, 100, 1268, 1015);
 		frmBillcalc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -561,6 +567,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			if(selected_customer == null)
 				return;
 			addLocationDialog = viewFactory.createAddLocationDialog(windowInstance, controller);
+			
 		}
 	}
 	
@@ -611,7 +618,8 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			int selected_row = quotationTable.getSelectedRow();
 			if(selected_row == -1)
 				return;
-			controller.copyQuotation();
+			copyQuotationDialog = viewFactory.createCopyQuotationDialog(windowInstance, controller);
+			
 		}
 	}
 	
@@ -732,7 +740,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		quotProductTable.setDefaultRenderer(String.class, centerRenderer);
 		quotProductTable.setDefaultRenderer(Product.class, centerRenderer);
 		quotProductTable.setDefaultRenderer(Integer.class, centerRenderer);
-		 initColumnSizes(quotProductTable);
+		initColumnSizes(quotProductTable);
 	}
 
 	@Override
@@ -779,6 +787,8 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			addNewQuotationDialog.dispose();
 		if(addProductDialog != null)
 			addProductDialog.dispose();
+		if(copyQuotationDialog != null)
+			copyQuotationDialog.dispose();
 		setAllButtons(true);
 	}
 

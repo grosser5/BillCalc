@@ -37,6 +37,8 @@ public interface ModelInterface {
 	void removeQuotation(Quotation quotation);
 	void listAllQuotations(int custId);
 	void listAllQuotations(ArrayList<Quotation> arrayList);
+	int getLastQuotNumber();
+	boolean isUniqueQuotNumber(int quot_number);
 	
 	//QuotationProduct methods
 	void listAllQuotationProducts(int quot_id);
@@ -44,6 +46,7 @@ public interface ModelInterface {
 	void listAllQuotationProducts(Quotation selectedQuotation, List<Product> products);
 	void addQuotationProduct(QuotationProduct quot_p);
 	void removeQuotationProduct(QuotationProduct quot_p);
+	void updateQuotationProduct(QuotationProduct quotProd);
 	
 	//Product methods
 	void addProduct(Product product);
@@ -52,7 +55,9 @@ public interface ModelInterface {
 	void listAllProducts();
 	int getFirstProductId();
 	//view updates
-	void updateQuotationProduct(QuotationProduct quotProd);
+	
+	
+	
 	
 
 	

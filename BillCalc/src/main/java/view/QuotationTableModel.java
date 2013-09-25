@@ -50,10 +50,10 @@ public class QuotationTableModel extends AbstractTableModel {
 		if(row < quotations.size()) {
 			Quotation quotation = quotations.get(row);
 			switch(col) {
-			case 0: return quotation.getQuotId();
+			case 0: return quotation.getQuotNumber();
 			case 1: return ""
 					+ quotation.getDate().getDay() + "-"
-					+ quotation.getDate().getMonth() + "-"
+					+ (quotation.getDate().getMonth()+1) + "-"
 					+ quotation.getDate().getYear();
 			}
 		}

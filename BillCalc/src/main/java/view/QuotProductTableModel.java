@@ -22,7 +22,7 @@ public class QuotProductTableModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 544322;
 	public static final String[] columnNames = new String[] { "Produkt", "Ort", "Menge",
-    		"Einheit", "Euro/Eh", "Betrag", "MWSt" };
+    		"Einheit", "€/Einheit", "Betrag", "MWSt" };
 	private List<QuotationProduct> quot_products = new ArrayList<QuotationProduct>();
 	private List<Product> products = new ArrayList();
     private ControllerInterface controller;

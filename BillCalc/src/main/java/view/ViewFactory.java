@@ -72,4 +72,10 @@ public class ViewFactory {
 			ControllerInterface controller) {
 		return new AddProductDialog( controller,windowInstance );
 	}
+	
+	public CopyQuotationDialog createCopyQuotationDialog(MainWindow windowInstance,
+			ControllerInterface controller) {
+		windowInstance.setAllButtons(false);
+		return new CopyQuotationDialog(controller,windowInstance);
+	}
 }

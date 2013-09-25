@@ -280,6 +280,33 @@ public class ManageModel  implements ModelInterface{
 		}
 	}
 	
+	@Override
+	public int getLastQuotNumber() {
+		ModelFactory factory = ModelSingleton.getModelFactory();
+		ManageDatabase manage_db = factory.createManageDatabase();
+		
+		List<Quotation> quot_list = (List<Quotation>)manage_db.getLastObj(Quotation.class,
+				"quotNumber");
+		
+		if(quot_list.iterator().hasNext()) {
+			Quotation last = quot_list.iterator().next();
+			Log.getLog(this).debug("last QuotNumber: " + last.getQuotId());
+			return last.getQuotNumber();
+		}
+		return 0;
+	}
+	
+	@Override
+	public boolean isUniqueQuotNumber(int quot_number) {
+		ModelFactory factory = ModelSingleton.getModelFactory();
+		ManageDatabase manage_db = factory.createManageDatabase();
+		
+		List<Quotation> quots = manage_db.getQuotations(quot_number);
+		if(quots.isEmpty())
+			return true;
+		return false;
+	}
+	
 	// QuotationProduct methods
 	
 	@Override
@@ -432,6 +459,10 @@ public class ManageModel  implements ModelInterface{
 		Product p = (Product)prod_list.iterator().next();
 		return p.getProdId();
 	}
+
+
+
+
 
 
 
