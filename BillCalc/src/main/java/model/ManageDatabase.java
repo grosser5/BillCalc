@@ -21,10 +21,9 @@ import org.hibernate.internal.CriteriaImpl.CriterionEntry;
 
 public class ManageDatabase  {
 
-	private ModelFactory factory;
 	
-	public ManageDatabase(ModelFactory factory) { 
-		this.factory = factory; 
+	public ManageDatabase() { 
+		
 	}
 	
 	private void prepareDb(Session session) {
@@ -33,7 +32,7 @@ public class ManageDatabase  {
 	
 	public int saveCustomer(String name, String compType, List<CustomerLocation> locations,
 			List<Quotation> quotations) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Log.getLog(this).info("factory\n");
 		Transaction tx = null;
 		Integer custId = null;
@@ -67,7 +66,7 @@ public class ManageDatabase  {
 	}
 	
 	public List<Customer> getCustomer( String name, String compType ) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Transaction tx = null;
 		List<Customer> results = null;
 		try {
@@ -89,7 +88,7 @@ public class ManageDatabase  {
 	}
 	
 	public List<Customer> getCustomer( String name ) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Transaction tx = null;
 		List<Customer> results = null;
 		try {
@@ -110,7 +109,7 @@ public class ManageDatabase  {
 	}
 	
 	public Customer getCustomer( int custId ) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Transaction tx = null;
 		List<Customer> results = null;
 		try {
@@ -134,7 +133,7 @@ public class ManageDatabase  {
 	
 	
 	public List getClasses(Class c ){
-	      Session session = ModelSingleton.getSessionFactory().openSession();
+	      Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 	      Transaction tx = null;
 	      List result = new ArrayList();
 	      try{
@@ -153,7 +152,7 @@ public class ManageDatabase  {
 	   }
 	
 	public void updateObj( Object obj ){
-	      Session session = ModelSingleton.getSessionFactory().openSession();
+	      Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 	      Transaction tx = null;
 	      try{
 	         tx = session.beginTransaction();
@@ -169,7 +168,7 @@ public class ManageDatabase  {
 	   }
 	
 	public int saveObj(Object obj) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Transaction tx = null;
 		Integer Id = null;
 		try {
@@ -188,7 +187,7 @@ public class ManageDatabase  {
 	}
 	
 	public void deleteObj(Object obj) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -205,7 +204,7 @@ public class ManageDatabase  {
 	}
 	
 	public List<Location> getLocation(String city, String street, int postal) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Transaction tx = null;
 		List<Location> results = null;
 		try {
@@ -230,7 +229,7 @@ public class ManageDatabase  {
 	}
 	
 	public CustomerLocation getCustomerLocation( int custLocId ) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Transaction tx = null;
 		List<CustomerLocation> results = null;
 		try {
@@ -253,7 +252,7 @@ public class ManageDatabase  {
 	}
 
 	public List<QuotationProduct> getQuotationProducts(int quot_id) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 		Transaction tx = null;
 		List<QuotationProduct> result = new ArrayList();
 		try{
@@ -273,7 +272,7 @@ public class ManageDatabase  {
 	}
 
 	public List<Object> getFirstObject(Class c) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 	      Transaction tx = null;
 	      List result = new ArrayList();
 	      try{
@@ -294,7 +293,7 @@ public class ManageDatabase  {
 	}
 
 	public Object getLastObj(Class c, String table_name) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 	      Transaction tx = null;
 	      List result = new ArrayList();
 	      try{
@@ -317,7 +316,7 @@ public class ManageDatabase  {
 	}
 
 	public List<Quotation> getQuotations(int quot_number) {
-		Session session = ModelSingleton.getSessionFactory().openSession();
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 	      Transaction tx = null;
 	      List result = new ArrayList();
 	      try{
@@ -325,6 +324,26 @@ public class ManageDatabase  {
 	         prepareDb(session);
 	         Criteria cr = session.createCriteria(Quotation.class);
 	         cr.add( Restrictions.eq("quotNumber", quot_number) );
+	         result = cr.list();
+	         tx.commit();
+	      }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	      return result;
+	}
+
+	public List<Product> getProduct(int prodId) {
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
+	      Transaction tx = null;
+	      List result = new ArrayList();
+	      try{
+	         tx = session.beginTransaction();
+	         prepareDb(session);
+	         Criteria cr = session.createCriteria(Product.class);
+	         cr.add( Restrictions.eq("prodId", prodId) );
 	         result = cr.list();
 	         tx.commit();
 	      }catch (HibernateException e) {

@@ -1,5 +1,8 @@
 package main.java.controller;
 
+import main.java.model.Customer;
+import main.java.model.CustomerLocation;
+import main.java.model.ModelFactory;
 import main.java.model.ModelInterface;
 import main.java.view.ViewInterface;
 
@@ -56,5 +59,14 @@ public class ControllerFactory {
 		DeleteProduct del_prod = new DeleteProduct(model);
 		AddProduct add_prod = new AddProduct(model);
 		return new DeleteProductCommand(view,del_prod,add_prod);
+	}
+
+	public Customer createTestCustomer(ModelFactory factory) {
+		
+		
+		//CustomerLocation cust_loc = factory.
+		
+		
+		return null;
 	}
 }

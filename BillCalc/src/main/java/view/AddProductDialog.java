@@ -34,7 +34,7 @@ public class AddProductDialog extends JDialog {
 	private JTextField costPerQuantTextField;
 	private JTextField nameTextField;
 	private JTextField unitTextField;
-	
+	JFormattedTextField textField;
 	public AddProductDialog(ControllerInterface controller, ViewInterface mainFrame) {
 		this.mainFrame = mainFrame;
 		this.controller = controller;
@@ -58,6 +58,10 @@ public class AddProductDialog extends JDialog {
 		
 		unitTextField = new JTextField();
 		unitTextField.setColumns(10);
+		
+		JLabel lblText = new JLabel("Text:");
+		
+		textField = new JFormattedTextField();
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -66,12 +70,14 @@ public class AddProductDialog extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblPreismenge)
 						.addComponent(lblName)
-						.addComponent(lblEinheig))
+						.addComponent(lblEinheig)
+						.addComponent(lblText))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(unitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(costPerQuantTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(unitTextField)
+						.addComponent(costPerQuantTextField)
+						.addComponent(nameTextField)
+						.addComponent(textField))
 					.addContainerGap(59, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
@@ -89,7 +95,11 @@ public class AddProductDialog extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEinheig)
 						.addComponent(unitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(92, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblText)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(51, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -127,10 +137,13 @@ public class AddProductDialog extends JDialog {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			controller.addProduct(nameTextField.getText(),
+			
+			controller.addProduct( nameTextField.getText(),
 					costPerQuantTextField.getText(),
-					unitTextField.getText());
+					unitTextField.getText(), textField.getText() );
+			
 			controller.cancelAddDialog();
+			
 		}
 	}
 	

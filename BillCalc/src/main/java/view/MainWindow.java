@@ -11,6 +11,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultSingleSelectionModel;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -66,6 +67,8 @@ import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -82,6 +85,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+
 public class MainWindow implements ViewInterface, CustomerObserver, CustomerLocationObserver,
 	ProductObserver, QuotationObserver, QuotProductObserver{
 
@@ -94,6 +98,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JScrollPane customerScrollPane;
 	private JLabel quotProdLabel;
 	private JTable quotProductTable;
+	JComboBox<Product> productBox;
 	private JScrollPane quotProductscrollPane;
 	private DefaultListModel<Customer> customer_list_model = 
 			new DefaultListModel<Customer>();
@@ -133,11 +138,16 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JDialog addProductDialog;
 	private JDialog copyQuotationDialog;
 	
+	JFileChooser fc;
+			
 	List<JButton> buttonGroupAllButtons;
 	List<JButton> buttonGroupSelectedCustomer;
 	private JMenuBar menuBar;
-	private JMenu mnDatei;
-	private JMenuItem mntmSpeichern;
+	private JMenu mnFile;
+	private JMenuItem mntmOpen;
+	private JMenuItem mntmDrucken;
+	private JMenuItem mntmNew;
+	private JMenuItem mntmExportDocx;
 	
 	/**
 	 * Launch the application.
@@ -162,26 +172,40 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	 */
 	public MainWindow() {
 		this.windowInstance = this;
-		this.model = new ManageModel();
-		this.controller = new BillController(this, model);
+		controller = new BillController(windowInstance);
 		q_p_table_model = new QuotProductTableModel(controller);
 		buttonGroupAllButtons = new ArrayList<JButton>();
 		buttonGroupSelectedCustomer = new ArrayList<JButton>();
+		viewFactory = new ViewFactory();
+		
 		initialize();
-		loadInitData();
 		setAllButtons(false);
+		
+		String db_path = controller.getStoredDatabasePath();
+		if(!db_path.equals("")) {
+			model = controller.getDatabase(db_path);
+			String split[] = db_path.split("/");
+			frmBillcalc.setTitle("BillCalc " + split[split.length-1]);
+			
+			Log.getLog(this).debug("constructor, call loadInitData()");
+			loadInitData();
+		}
 	}
+	
+	
 
 	private void loadInitData() {
+		Log.getLog(this).debug("loadInitData: set the observers");
 		model.registerCustomerObserver(this);
 		model.registerCustomerLocationObserver(this);
 		model.registerQuotationObserver(this);
 		model.registerQuotProductObserver(this);
 		model.registerProductObserver(this);
+		Log.getLog(this).debug("call controller.initialize()");
+		controller.initialize();
 		
-		controller.updateCustomerList();
-		controller.updateProductList();
-		this.viewFactory = new ViewFactory();
+
+		
 	}
 
 	/**
@@ -192,13 +216,13 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		
 		Log.getLog(this).debug("initialize called");
 		frmBillcalc = new JFrame();
-		
-		
-		
 		frmBillcalc.setTitle("BillCalc");
 		frmBillcalc.setBounds(100, 100, 1268, 1015);
 		frmBillcalc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmBillcalc.setVisible(true);
+		
+		
+		
 		frmBillcalc.getContentPane().setLayout(
 				new MigLayout("", "[356px][43px][22px][10px][559px]",
 						"[338px][255px][28px][330px]"));
@@ -411,11 +435,22 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		menuBar = new JMenuBar();
 		frmBillcalc.setJMenuBar(menuBar);
 		
-		mnDatei = new JMenu("Datei");
-		menuBar.add(mnDatei);
+		mnFile = new JMenu("Datei");
+		menuBar.add(mnFile);
 		
-		mntmSpeichern = new JMenuItem("speichern");
-		mnDatei.add(mntmSpeichern);
+		mntmOpen = new JMenuItem("öffnen");
+		mntmOpen.addActionListener(new OpenMenuItemActionListener());
+		mnFile.add(mntmOpen);
+		
+		mntmNew = new JMenuItem("neu");
+		mntmNew.addActionListener(new NewMenuItemActionListener());
+		mnFile.add(mntmNew);
+		
+		mntmDrucken = new JMenuItem("drucken");
+		mnFile.add(mntmDrucken);
+		
+		mntmExportDocx = new JMenuItem("export docx");
+		mnFile.add(mntmExportDocx);
 		
 		initButtons();
 	}
@@ -501,6 +536,77 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	
 	public String getCustomerSearchText() {
 		return customerSearch.getText();
+	}
+	
+	//get the path of the Database from the user
+		public String getDatabasePath() {
+			if(fc == null) {
+				fc = new JFileChooser();
+			}
+			fc.addChoosableFileFilter(new DatabaseFileFilter());
+	        fc.setAcceptAllFileFilterUsed(false);
+			int returnVal = fc.showDialog(frmBillcalc,
+	                "Open Database");
+			
+			if(returnVal == JFileChooser.APPROVE_OPTION){
+				File file = fc.getSelectedFile();
+				return file.getAbsolutePath();
+			}
+			else return "";
+			
+		}
+	
+	//menue button actionlistener
+	public class OpenMenuItemActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+			String db_path = controller.getNewDatabasePath();
+			if(!db_path.equals("")) {
+				model = controller.getDatabase(db_path);
+				controller.setModel(model);
+				
+				String split[] = db_path.split("/");
+				frmBillcalc.setTitle("BillCalc " + split[split.length-1]);
+				
+				loadInitData();
+			}
+			} catch(IOException ex) {
+				JOptionPane.showMessageDialog(frmBillcalc, ex.getMessage());
+			}
+		}
+	}
+	
+	public class NewMenuItemActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				model = controller.createNewDatabase();
+				
+				String split[] = model.getDBPath().split("/");
+				frmBillcalc.setTitle("BillCalc " + split[split.length-1]);
+				
+				loadInitData();
+			} catch (IOException ex) {
+				JOptionPane.showMessageDialog(frmBillcalc, ex.getMessage());
+			}
+		}
+	}
+	
+	public class PrintMenuItemActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+	}
+	
+	public class ExportItemActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+						
+		}
 	}
 	
 	//table listSelectionListener
@@ -601,9 +707,8 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	public class DeleteQuotationButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Customer selected_customer = (Customer) customerList
-					.getSelectedValue();
-			if(selected_customer == null)
+			int selected = quotationTable.getSelectedRow();
+			if(selected == -1)
 				return;
 			int n = viewFactory.createDeleteDialog(frmBillcalc);
 			if (n == 0) {
@@ -645,6 +750,9 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			int selected_quot_row = quotProductTable.getSelectedRow();
 			if(selected_quot_row == -1)
 				return;
+			
+			productBox.setVisible(false);
+
 			int n = viewFactory.createDeleteDialog(frmBillcalc);
 			if (n == 0) {
 				controller.deleteSelectedQuotProduct();
@@ -680,6 +788,9 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		for(int i=0; i < custList.size(); i++) {
 			customer_list_model.set(i,custList.get(i));
 		}
+		updateCustomerLocationField(new ArrayList<CustomerLocation>());
+		updateQuotationList(new ArrayList<Quotation>());
+		updateQuotProductList(new ArrayList(),new ArrayList());
 		cancelAddDialog();
 		setSelectedCustomerButtons(false);
 	}	
@@ -723,14 +834,16 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 						"data: " + q_p_table_model.getValueAt(i, j));
 			}
 		}
-
-		JComboBox<Product> box = new JComboBox<Product>(
+		
+		
+		productBox = new JComboBox<Product>(
 				productList.toArray(products));
 
+		
 		Log.getLog(this).debug("setCellEditor");
 
 		quotProductTable.getColumnModel().getColumn(0)
-				.setCellEditor(new DefaultCellEditor(box));
+				.setCellEditor(new DefaultCellEditor(productBox));
 		quotProductTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -748,6 +861,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		p_table_model = new ProductTableModel(productList);
 		productTable.setModel(p_table_model);
 		productTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		initColumnSizes(productTable);
 		controller.updateQuotProductList();
 
 	}

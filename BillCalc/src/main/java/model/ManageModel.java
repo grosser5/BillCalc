@@ -19,10 +19,11 @@ public class ManageModel  implements ModelInterface{
 	private List<ProductObserver> product_observer = new ArrayList<ProductObserver>();
 	private List<QuotationObserver> quotation_observer = new ArrayList<QuotationObserver>();
 	private List<QuotProductObserver> quot_prod_observer = new ArrayList<QuotProductObserver>();
+	private String db_path;
 	
-	
-	public ManageModel() {
-		
+	public ManageModel(String db_path) {
+		this.db_path = db_path;
+		//ModelSingleton.getInstance().resetSessionFactory(db_path);
 	}
 	
 	//registe Observers
@@ -63,7 +64,7 @@ public class ManageModel  implements ModelInterface{
 		Thread t = new Thread(new Runnable(){
 			public void run() {
 				Log.getLog(this).debug("addCustomer called");
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				
 				manage_db.saveObj(customer);
@@ -77,7 +78,7 @@ public class ManageModel  implements ModelInterface{
 	public void removeCustomer(final Customer customer) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				manage_db.deleteObj(customer);;
 				listAllCustomers();
@@ -90,7 +91,7 @@ public class ManageModel  implements ModelInterface{
 	public void updateCustomer(final Customer customer) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				manage_db.updateObj(customer);
 				listAllCustomers();
@@ -104,7 +105,7 @@ public class ManageModel  implements ModelInterface{
 		Log.getLog(this).debug("listAllCustomers(String searchName) called");
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				List<Customer> cust_list = manage_db.getCustomer(searchName);
 				
@@ -122,7 +123,7 @@ public class ManageModel  implements ModelInterface{
 		
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				List<Customer> cust_list = manage_db.getClasses(Customer.class);
 				
@@ -142,7 +143,7 @@ public class ManageModel  implements ModelInterface{
 	public void addCustomerLocation(final CustomerLocation location) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				manage_db.saveObj(location);
 				listAllLocations(location.getCustId());
@@ -155,7 +156,7 @@ public class ManageModel  implements ModelInterface{
 	public void addCustomerLocation(Customer customer, String city,
 			String street, int postal) {
 		
-		ModelFactory factory = ModelSingleton.getModelFactory();				
+		ModelFactory factory = ModelSingleton.getInstance().getModelFactory();				
 		CustomerLocation location = factory.createCustomerLocation(customer.getCustId(),
 				city, street, postal);
 		addCustomerLocation(location);
@@ -166,7 +167,7 @@ public class ManageModel  implements ModelInterface{
 		Thread t = new Thread(new Runnable(){
 			public void run() {
 				Log.getLog(this).debug("removeCustomerLocation called");
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				
 				manage_db.deleteObj(custLocation);
@@ -190,7 +191,7 @@ public class ManageModel  implements ModelInterface{
 		Thread t = new Thread(new Runnable(){
 			public void run() {
 				Log.getLog(this).debug("listAllLocations called");
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				Customer cust = manage_db.getCustomer(custId);
 				if(cust == null) {
@@ -227,7 +228,7 @@ public class ManageModel  implements ModelInterface{
 	public void addQuotation(final Quotation quotation) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				int id = quotation.getCustId();
 				manage_db.saveObj(quotation);
@@ -242,7 +243,7 @@ public class ManageModel  implements ModelInterface{
 		Thread t = new Thread(new Runnable(){
 			public void run() {
 				Log.getLog(this).debug("listAllQuotations called");
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				Customer cust = manage_db.getCustomer(custId);
 				if(cust == null) {
@@ -263,7 +264,7 @@ public class ManageModel  implements ModelInterface{
 		Thread t = new Thread(new Runnable(){
 			public void run() {
 				Log.getLog(this).debug("removeCustomerLocation called");
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				
 				manage_db.deleteObj(quotation);
@@ -282,7 +283,7 @@ public class ManageModel  implements ModelInterface{
 	
 	@Override
 	public int getLastQuotNumber() {
-		ModelFactory factory = ModelSingleton.getModelFactory();
+		ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 		ManageDatabase manage_db = factory.createManageDatabase();
 		
 		List<Quotation> quot_list = (List<Quotation>)manage_db.getLastObj(Quotation.class,
@@ -298,7 +299,7 @@ public class ManageModel  implements ModelInterface{
 	
 	@Override
 	public boolean isUniqueQuotNumber(int quot_number) {
-		ModelFactory factory = ModelSingleton.getModelFactory();
+		ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 		ManageDatabase manage_db = factory.createManageDatabase();
 		
 		List<Quotation> quots = manage_db.getQuotations(quot_number);
@@ -314,7 +315,7 @@ public class ManageModel  implements ModelInterface{
 		Thread t = new Thread(new Runnable(){
 			public void run() {
 				Log.getLog(this).debug("updateQuotationProducts called, quotId: " + quotation.getQuotId());
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				
 				manage_db.updateObj(quotation);
@@ -332,7 +333,7 @@ public class ManageModel  implements ModelInterface{
 				Log.getLog(this).debug("listAllQuotationProducts called with"
 						+ "quotId: " + quot_id);
 
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 
 				List<Product> products = manage_db.getClasses(Product.class);
@@ -362,7 +363,7 @@ public class ManageModel  implements ModelInterface{
 	public void addQuotationProduct(final QuotationProduct quot_p) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				int id = quot_p.getQuotId();
 				manage_db.saveObj(quot_p);
@@ -376,7 +377,7 @@ public class ManageModel  implements ModelInterface{
 	public void removeQuotationProduct(final QuotationProduct quot_p) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				int id = quot_p.getQuotId();
 				manage_db.deleteObj(quot_p);
@@ -391,7 +392,7 @@ public class ManageModel  implements ModelInterface{
 	public void addProduct(final Product product) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				manage_db.saveObj(product);
 				listAllProducts();
@@ -404,7 +405,7 @@ public class ManageModel  implements ModelInterface{
 	public void removeProduct(final Product p) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				manage_db.deleteObj(p);
 				listAllProducts();
@@ -424,7 +425,7 @@ public class ManageModel  implements ModelInterface{
 		Thread t = new Thread(new Runnable(){
 			public void run() {
 				Log.getLog(this).debug("listAllProducts called");
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				List<Product> products = manage_db.getClasses(Product.class);
 				for(ProductObserver observer : product_observer) {
@@ -440,7 +441,7 @@ public class ManageModel  implements ModelInterface{
 	public void updateQuotationProduct(final QuotationProduct quotProd) {
 		Thread t = new Thread(new Runnable(){
 			public void run() {
-				ModelFactory factory = ModelSingleton.getModelFactory();
+				ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 				ManageDatabase manage_db = factory.createManageDatabase();
 				manage_db.updateObj(quotProd);
 			}
@@ -451,7 +452,7 @@ public class ManageModel  implements ModelInterface{
 	@Override
 	public int getFirstProductId() {
 
-		ModelFactory factory = ModelSingleton.getModelFactory();
+		ModelFactory factory = ModelSingleton.getInstance().getModelFactory();
 		ManageDatabase manage_db = factory.createManageDatabase();
 		List<Object> prod_list = manage_db.getFirstObject(Product.class);
 		if(prod_list.size() == 0)
@@ -459,6 +460,20 @@ public class ManageModel  implements ModelInterface{
 		Product p = (Product)prod_list.iterator().next();
 		return p.getProdId();
 	}
+
+	@Override
+	public void setOverrideShemeStructure(Boolean state) {
+		ModelSingleton.getInstance().setOverrideSheme(state);
+		ModelSingleton.getInstance().resetSessionFactory(db_path);
+	}
+
+	@Override
+	public String getDBPath() {
+		
+		return db_path;
+	}
+
+	
 
 
 

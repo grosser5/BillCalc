@@ -77,5 +77,6 @@ public class ViewFactory {
 			ControllerInterface controller) {
 		windowInstance.setAllButtons(false);
 		return new CopyQuotationDialog(controller,windowInstance);
-	}
+	}	
+	
 }

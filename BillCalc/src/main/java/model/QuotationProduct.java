@@ -1,6 +1,8 @@
 package main.java.model;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class QuotationProduct {
 
@@ -13,6 +15,11 @@ public class QuotationProduct {
 	private String place = "";
 	// not in the database 
 	private int price = 0;
+	
+	public final static String templateFieldQuantity = "QUANTITY";
+	public final static String templateFieldMWST = "MWST";
+	public final static String templateFieldPlace = "PLACE";
+	public final static String templateFieldPrice = "PRICE";
 	
 	public QuotationProduct () {	}
 	
@@ -114,4 +121,14 @@ public class QuotationProduct {
 		return "Id: " + getQuotProdId() + " Euro/Menge: " + costPerQuantity + " Menge: " + quantity 
 				+ " MWST: " + mwst + " Wo?: " + place;
 	}
+	
+	public Map<String, String> getTemplateReplacement() {
+		Map<String,String> temp_replacement= new HashMap<String,String>();
+		temp_replacement.put(templateFieldQuantity, Integer.toString(quantity) );
+		temp_replacement.put(templateFieldMWST, Integer.toString(mwst) );
+		temp_replacement.put(templateFieldPlace, place );
+		temp_replacement.put(templateFieldPrice, Integer.toString(price));
+		return temp_replacement;
+	}
+	
 }

@@ -1,8 +1,12 @@
 package main.java;
 
 import java.awt.EventQueue;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import main.java.controller.BillController;
 import main.java.controller.ControllerInterface;
@@ -26,7 +30,6 @@ public class BillCalc {
 		 
 		 Log.getLog(new BillCalc()).debug("start app");
 		 
-
 		 EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {

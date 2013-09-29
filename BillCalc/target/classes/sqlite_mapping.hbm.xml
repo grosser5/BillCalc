@@ -50,6 +50,7 @@
      <property name="quotNumber" unique="true" column="quot_number"/>
      <property name="custId" column="cust_id" type="int"/>
      <property name="date" column="date" type="date"/>
+     <property name="validUntil" column="valid_until" type="string"/>
      <bag name="quotProducts" cascade="all" lazy="false">
         <key column="quot_id"/>
         <one-to-many class="main.java.model.QuotationProduct" />
@@ -79,5 +80,6 @@
      <property name="name" column="name" type="string"/>
      <property name="defaultCostPerQuantity" column="default_cost_per_quantity" type="int"/>
      <property name="quantityUnit" column="quantity_unit" type="string"/>
+     <property name="text" column="text" type="string"/>
    </class>
 </hibernate-mapping>

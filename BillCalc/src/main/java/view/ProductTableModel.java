@@ -14,7 +14,7 @@ public class ProductTableModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = -2743140788233843965L;
 	List<Product> products;
-	String[] columnNames = {"Name","Default Kosten/Einheit", "Einheit"};
+	String[] columnNames = {"Name","Default Kosten/Einheit", "Einheit", "Text"};
 	
 	ProductTableModel(List<Product> productList) {
 		this.products = productList;
@@ -50,6 +50,7 @@ public class ProductTableModel extends AbstractTableModel {
 			case 0: return product.getName();
 			case 1: return product.getDefaultCostPerQuantity();
 			case 2: return product.getQuantityUnit();
+			case 3: return product.getText();
 			}
 		}
 		return null;

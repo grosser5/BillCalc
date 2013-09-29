@@ -46,6 +46,7 @@ public class QuotProductTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int row, int col) {
+    	//Log.getLog(this).debug("getValueAt called");
     	QuotationProduct cd = quot_products.get(row);
     	
     	Product selected_product = null;
@@ -95,6 +96,8 @@ public class QuotProductTableModel extends AbstractTableModel {
      * data can change.
      */
     public void setValueAt(Object value, int row, int col) {
+    	if(row >= quot_products.size() || col >= columnNames.length)
+    		return;
     	
     	QuotationProduct cd = quot_products.get(row);
     	Log.getLog(this).debug("set value at " + row + " " + col);

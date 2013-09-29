@@ -38,12 +38,13 @@ public class AddNewQuotationDialog extends JDialog {
 	private JFormattedTextField quotNumberField;
 	private JTextPane errorTextPane;
 	private JPanel datePannel;
+	private JTextField validUntilField;
 	
 	public AddNewQuotationDialog(ControllerInterface controller, ViewInterface mainFrame) {
 		this.mainFrame = mainFrame;
 		this.controller = controller;
 		
-		setBounds(100, 100, 320, 215);
+		setBounds(100, 100, 320, 226);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -69,6 +70,11 @@ public class AddNewQuotationDialog extends JDialog {
 		errorTextPane = new JTextPane();
 		errorTextPane.setEditable(false);
 		errorTextPane.setVisible(false);
+		
+		JLabel lblGltigBis = new JLabel("Gültig bis:");
+		
+		validUntilField = new JTextField();
+		validUntilField.setColumns(10);
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -80,8 +86,11 @@ public class AddNewQuotationDialog extends JDialog {
 							.addContainerGap()
 							.addComponent(quotNumberField, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
 						.addComponent(datePannel, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblGltigBis)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addContainerGap()
+							.addComponent(validUntilField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(82)
 							.addComponent(errorTextPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
@@ -95,8 +104,16 @@ public class AddNewQuotationDialog extends JDialog {
 					.addComponent(lblAngebot)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(quotNumberField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-					.addComponent(errorTextPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+							.addComponent(errorTextPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblGltigBis)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(validUntilField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
 		);
 		
 		yearField = new JFormattedTextField();
@@ -162,7 +179,7 @@ public class AddNewQuotationDialog extends JDialog {
 			Log.getLog(this).debug("OkButtonActionListener called");
 			try {
 			controller.addNewQuotation( yearField.getText(),monthField.getText(),
-					dayField.getText(), quotNumberField.getText() );
+					dayField.getText(), quotNumberField.getText(),validUntilField.getText() );
 			} catch(IllegalArgumentException ex) {
 				errorTextPane.setText(ex.getMessage());
 				errorTextPane.setVisible(true);

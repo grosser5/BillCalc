@@ -8,6 +8,10 @@ import main.java.model.observer.*;
 
 public interface ModelInterface {
 
+	
+
+
+
 	//observers
 	void registerCustomerObserver(CustomerObserver observer);
 	void registerCustomerLocationObserver(CustomerLocationObserver observer);
@@ -54,7 +58,12 @@ public interface ModelInterface {
 	void updateProduct(Product product);
 	void listAllProducts();
 	int getFirstProductId();
-	//view updates
+	
+	
+	
+	// model settings
+	void setOverrideShemeStructure(Boolean state);
+	String getDBPath();
 	
 	
 	

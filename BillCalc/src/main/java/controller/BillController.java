@@ -1,13 +1,24 @@
 package main.java.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 import main.java.model.Customer;
 import main.java.model.CustomerLocation;
 import main.java.model.Location;
+import main.java.model.ManageModel;
 import main.java.model.ModelInterface;
 import main.java.model.Product;
 import main.java.model.Quotation;
@@ -22,12 +33,26 @@ public class BillController implements ControllerInterface{
 	private ViewInterface view;
 	private Remote remote;
 	private ModelInterface model;
+	public static String propertiesFileName = "billcalc.properties" ;
+	public static String propertiesDBPathKey = "db_path" ;
+	public static String templateDocumentPath = "BillCalcTemplate.docx";
 	
 	public BillController(ViewInterface view, ModelInterface model) {
 		this.factory = ControllerSingleton.getControllerFactory();
 		this.view = view;
 		this.model = model;
 		this.remote = factory.createRemote(view);
+		setModel(model);
+	}
+	
+	public BillController(ViewInterface view) {
+		this.factory = ControllerSingleton.getControllerFactory();
+		this.view = view;
+		this.remote = factory.createRemote(view);
+	}
+	@Override
+	public void setModel(ModelInterface model) {
+		this.model = model;
 		
 		remote.setSlot( SearchCustomerCommand.class, 
 				factory.createSearchCustomerCommand(model, view) );
@@ -44,7 +69,7 @@ public class BillController implements ControllerInterface{
 		remote.setSlot( DeleteProductCommand.class, 
 				factory.createDeleteProductCommand(view, model));
 	}
-	
+
 	private void resetQuotationProductList() {
 		model.listAllQuotationProducts(new Quotation(), new ArrayList<Product>());
 	}
@@ -60,7 +85,7 @@ public class BillController implements ControllerInterface{
 	}
 	@Override
 	public int calcPrice(int price, int quantity, int mwst) {
-		return price*quantity + price*quantity*mwst/100;
+		return price*quantity;
 	}
 	@Override
 	public void searchCustomerEntered() {
@@ -147,8 +172,8 @@ public class BillController implements ControllerInterface{
 	}
 
 	@Override
-	public void addNewQuotation(String year, String month, String day, String quot_number) throws
-	IllegalArgumentException {
+	public void addNewQuotation(String year, String month, String day, String quot_number,
+			String validUntil) throws IllegalArgumentException {
 		
 		try {
 			int y = Integer.parseInt(year);
@@ -161,7 +186,7 @@ public class BillController implements ControllerInterface{
 				throw new IllegalArgumentException("Angebot Number ist nicht einzigartig!.");
 				
 			model.addQuotation(new Quotation(date, view.getSelectedCustomer().getCustId(),
-					quot_num ) );
+					quot_num, validUntil ) );
 				
 		} catch(NumberFormatException e) {
 			throw new IllegalArgumentException("Bitte Zahlen bei den Feldern eingeben.");
@@ -199,12 +224,7 @@ public class BillController implements ControllerInterface{
 				
 		} catch(NumberFormatException e) {
 			throw new IllegalArgumentException("Bitte Zahlen bei den Feldern eingeben.");
-		}
-		
-		
-		
-		
-		
+		}		
 	}
 
 	@Override
@@ -240,10 +260,10 @@ public class BillController implements ControllerInterface{
 	}
 
 	@Override
-	public void addProduct(String name, String costPerQuant, String unit) {
+	public void addProduct(String name, String costPerQuant, String unit, String text) {
 		
 		try{
-			Product p = new Product(name, Integer.parseInt(costPerQuant), unit);
+			Product p = new Product(name, Integer.parseInt(costPerQuant), unit, text);
 			model.addProduct(p);
 		} catch(NumberFormatException e) {
 			
@@ -266,6 +286,101 @@ public class BillController implements ControllerInterface{
 	@Override
 	public int getRecomendedQuotId() {
 		return model.getLastQuotNumber()+10;
+		
+	}
+	
+	//ask user to enter a new path to the database
+	@Override
+	public String getNewDatabasePath() throws IOException {
+		Log.getLog(this).debug("getNewDatabasePath called");
+		String file_path =  "";
+
+			Properties properties = new Properties();
+			file_path = view.getDatabasePath();
+			File db = new File(file_path);
+			//if cancel is pressed
+			if(file_path.equals(""))
+				return "";
+			// check if the file exists
+			if(!db.exists())
+				throw new IOException("Database file not found");
+			FileOutputStream prop_file_stream = new FileOutputStream(
+					BillController.propertiesFileName);
+			properties.setProperty(BillController.propertiesDBPathKey,file_path);
+			properties.store(prop_file_stream, "Billcalc properties");
+			
+
+		return file_path;
+		
+	}
+	
+	//get DatabasePath that is stored in the java .properties file
+	@Override
+	public String getStoredDatabasePath() {
+		
+		Log.getLog(this).debug("getStoredDatabasePath called");
+		
+			Properties properties = new Properties();
+			String file_path = "";
+			try {
+				BufferedInputStream stream = new BufferedInputStream(
+						new FileInputStream(BillController.propertiesFileName));
+				properties.load(stream);
+				file_path = properties.getProperty(BillController.propertiesDBPathKey);
+				if(file_path == null) {
+					Log.getLog(this).debug("getStoredDatabasePath: no property matched");
+					return "";
+				}
+			} catch (IOException e) {
+				return "";
+			}
+			File db = new File(file_path);
+			if( db.exists() ) {
+				Log.getLog(this).debug("getStoredDatabasePath: return stored path:" + file_path);
+				return file_path;
+			}
+		return "";
+	}
+
+	@Override
+	public void initialize() {
+		Log.getLog(this).debug("initialize called");
+		updateCustomerList();
+		updateProductList();
+		
+	}
+
+	@Override
+	public ModelInterface createNewDatabase() throws IOException{
+		String file_path =  "";
+			Properties properties = new Properties();
+			file_path = view.getDatabasePath();
+			if(file_path.equals(""))
+				return model;
+			getDatabase(file_path);
+			model.setOverrideShemeStructure(true);
+			
+			FileOutputStream prop_file_stream = new FileOutputStream(
+					BillController.propertiesFileName);
+			properties.setProperty(BillController.propertiesDBPathKey,file_path);
+			properties.store(prop_file_stream, "Billcalc properties");
+			
+		return model;
+	}
+
+	@Override
+	public ModelInterface getDatabase(String db_path) {
+		this.model = new ManageModel(db_path);
+		model.setOverrideShemeStructure(false);
+		setModel(model);
+		return model;
+	}
+
+	@Override
+	public void exportToDocx(String path) {
+		Customer cust = view.getSelectedCustomer();
+		CustomerLocation location = view.getSelectedCustomerLocation();
+		Quotation q = view.getSelectedQuotation();
 		
 	}
 

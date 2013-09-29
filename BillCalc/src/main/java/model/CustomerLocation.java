@@ -1,5 +1,8 @@
 package main.java.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import main.view.util.Log;
 
 public class CustomerLocation {
@@ -7,6 +10,11 @@ public class CustomerLocation {
 	private Location location;
 	private int id = 0;
 	private int custId = 0;
+	
+	public final static String templateFieldCity = "CITY";
+	public final static String templateFieldStreet = "STREET";
+	public final static String templateFieldPostal = "POSTAL";
+	
 	
 	public CustomerLocation() {}
 	
@@ -74,5 +82,13 @@ public class CustomerLocation {
 			l = location.toString();
 		}
 		return "CustomerId: " + custId + " Location: "  + l;
+	}
+	
+	public Map<String, String> getTemplateReplacement() {
+		Map<String,String> temp_replacement= new HashMap<String,String>();
+		temp_replacement.put(templateFieldCity, getCity() );
+		temp_replacement.put(templateFieldStreet, getStreet() );
+		temp_replacement.put(templateFieldPostal, Integer.toString( getPostal() ) );
+		return temp_replacement;
 	}
 }

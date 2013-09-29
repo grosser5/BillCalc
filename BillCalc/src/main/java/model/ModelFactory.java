@@ -8,7 +8,7 @@ public class ModelFactory {
 	public ModelFactory() {}
 	
 	public ManageDatabase createManageDatabase() {
-		return new ManageDatabase(null);
+		return new ManageDatabase();
 	}
 	
 	public Customer createCustomer(String name, String compType,

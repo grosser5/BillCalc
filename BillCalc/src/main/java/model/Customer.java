@@ -1,7 +1,9 @@
 package main.java.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Customer {
 
@@ -10,6 +12,10 @@ public class Customer {
 	private String compType = "";
 	private List<CustomerLocation> locations = new ArrayList();
 	private List<Quotation> quotations = new ArrayList();
+	
+	public final static String templateFieldName = "NAME";
+	public final static String templateFieldCompType = "COMPTYPE";
+	
 	
 	public Customer() {		
 	}
@@ -89,5 +95,12 @@ public class Customer {
 	
 	public String toString() {
 		return custId + " " + name + " " + compType;
+	}
+	
+	public Map<String, String> getTemplateReplacement() {
+		Map<String,String> temp_replacement= new HashMap<String,String>();
+		temp_replacement.put(templateFieldName, name);
+		temp_replacement.put(templateFieldCompType, compType);
+		return temp_replacement;
 	}
 }
