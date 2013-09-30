@@ -335,6 +335,26 @@ public class ManageDatabase  {
 	      return result;
 	}
 
+	public Quotation getQuotation(int quot_id) {
+		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
+	      Transaction tx = null;
+	      List result = new ArrayList();
+	      try{
+	         tx = session.beginTransaction();
+	         prepareDb(session);
+	         Criteria cr = session.createCriteria(Quotation.class);
+	         cr.add( Restrictions.eq("quotId", quot_id) );
+	         result = cr.list();
+	         tx.commit();
+	      }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	      return (Quotation)result.iterator().next();
+	}
+	
 	public List<Product> getProduct(int prodId) {
 		Session session = ModelSingleton.getInstance().getSessionFactory().openSession();
 	      Transaction tx = null;

@@ -14,7 +14,7 @@ public class Quotation {
 	private String validUntil = "";
 	private List<QuotationProduct> quotProducts;
 	
-	public final static String templateFieldId = "quotId";
+	public final static String templateFieldId = "QUOTNUMBER";
 	public final static String templateFieldDate = "DATE";
 	public final static String templateFieldValidUntil = "VALIDUNTIL";
 	
@@ -102,9 +102,9 @@ public class Quotation {
 	
 	public Map<String, String> getTemplateReplacement() {
 		Map<String,String> temp_replacement= new HashMap<String,String>();
-		temp_replacement.put(templateFieldId, Integer.toString(quotId) );
-		temp_replacement.put(templateFieldDate, Integer.toString(date.getDay()) + 
-				Integer.toString(date.getMonth()) + 
+		temp_replacement.put(templateFieldId, Integer.toString(quotNumber) );
+		temp_replacement.put(templateFieldDate, Integer.toString(date.getDay()) + "." +
+				Integer.toString(date.getMonth()) + "." +
 				Integer.toString(date.getYear()) );
 		temp_replacement.put(templateFieldValidUntil, validUntil );
 		

@@ -20,6 +20,8 @@ public class QuotationProduct {
 	public final static String templateFieldMWST = "MWST";
 	public final static String templateFieldPlace = "PLACE";
 	public final static String templateFieldPrice = "PRICE";
+	public final static String templateFieldCostPerQuant = "COST_PER_QUANT";
+	public final static String templateFieldAllQuotProds = "QUOTPRODUCTS";
 	
 	public QuotationProduct () {	}
 	
@@ -128,6 +130,7 @@ public class QuotationProduct {
 		temp_replacement.put(templateFieldMWST, Integer.toString(mwst) );
 		temp_replacement.put(templateFieldPlace, place );
 		temp_replacement.put(templateFieldPrice, Integer.toString(price));
+		temp_replacement.put(templateFieldCostPerQuant, Integer.toString(costPerQuantity));
 		return temp_replacement;
 	}
 	

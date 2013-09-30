@@ -37,7 +37,6 @@ import javax.swing.ImageIcon;
 /* Utils.java is used by FileChooserDemo2.java. */
 public class Utils {
     public final static String sqlite3 = "db";
-    
 
     /*
      * Get the extension of a file.

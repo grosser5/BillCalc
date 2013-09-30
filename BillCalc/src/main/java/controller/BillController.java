@@ -140,13 +140,13 @@ public class BillController implements ControllerInterface{
 
 	@Override
 	public void addLocation(String city,
-			String street, String postal) {
+			String street, String postal, String receiver) {
 		Customer selected_customer = view.getSelectedCustomer();
 		Log.getLog(this).debug("addLocation called");
 		try {
 			int postal_number = Integer.parseInt(postal);
 			model.addCustomerLocation(selected_customer, city, street,
-					postal_number);
+					postal_number, receiver);
 		} catch (NumberFormatException e) {
 			return;
 		}
@@ -377,11 +377,23 @@ public class BillController implements ControllerInterface{
 	}
 
 	@Override
-	public void exportToDocx(String path) {
-		Customer cust = view.getSelectedCustomer();
-		CustomerLocation location = view.getSelectedCustomerLocation();
-		Quotation q = view.getSelectedQuotation();
-		
+	public void exportToDocx() throws IllegalArgumentException  {
+		Customer cust = null;
+		CustomerLocation location = null;
+		Quotation q = null;
+		try {
+			cust = view.getSelectedCustomer();
+			location = view.getSelectedCustomerLocation();
+			q = view.getSelectedQuotation();
+		} catch (Exception e) {
+			view.displayMessage("Bitte wähle einen Kunden, Ort und ein Angebot aus.");
+			return;
+		}
+		String path = view.getExportPath();
+
+		if(!path.equals("") && q != null && location != null && path != null) {
+			model.saveDocument(q, location, path);
+		}
 	}
 
 

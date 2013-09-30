@@ -15,5 +15,6 @@ public interface ViewInterface {
 	public QuotationProduct getSelectedQuotProduct();
 	public Product getSelectedProduct();
 	public String getDatabasePath();
-	
+	public String getExportPath();
+	public void displayMessage(String string);
 }

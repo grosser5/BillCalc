@@ -1,5 +1,6 @@
 package main.java.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -154,11 +155,11 @@ public class ManageModel  implements ModelInterface{
 	
 	@Override
 	public void addCustomerLocation(Customer customer, String city,
-			String street, int postal) {
+			String street, int postal, String receiver) {
 		
 		ModelFactory factory = ModelSingleton.getInstance().getModelFactory();				
 		CustomerLocation location = factory.createCustomerLocation(customer.getCustId(),
-				city, street, postal);
+				city, street, postal, receiver);
 		addCustomerLocation(location);
 	}
 
@@ -467,12 +468,26 @@ public class ManageModel  implements ModelInterface{
 		ModelSingleton.getInstance().resetSessionFactory(db_path);
 	}
 
+	//other methods
 	@Override
 	public String getDBPath() {
 		
 		return db_path;
 	}
 
+	@Override
+	public void saveDocument(final Quotation q, final CustomerLocation loc, final String docx_path) throws IllegalArgumentException {
+		
+		Thread t = new Thread(new Runnable(){
+			public void run() {
+				int quot_id = q.getQuotId();
+				int cust_loc_id = loc.getId();
+				ExportToDocx export = new ExportToDocx();
+				export.exportDocx(quot_id, cust_loc_id, docx_path);
+			}
+		});
+		t.start();
+	}
 	
 
 

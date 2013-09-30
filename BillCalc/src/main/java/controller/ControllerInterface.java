@@ -20,7 +20,7 @@ public interface ControllerInterface {
 	public void quotationTableSelected();
 	public void addCustomer(String customerName, String customerCompType);
 	public void addLocation(String city, String street,
-			String postal);
+			String postal, String receiver);
 	public void cancelAddDialog();
 	public void deleteCustomer();
 	public void deleteSelectedLocation();
@@ -47,5 +47,5 @@ public interface ControllerInterface {
 	public void initialize();
 	public ModelInterface createNewDatabase() throws IOException;
 	public ModelInterface getDatabase(String db_path);
-	public void exportToDocx(String path);
+	public void exportToDocx();
 }

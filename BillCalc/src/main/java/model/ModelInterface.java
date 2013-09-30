@@ -30,7 +30,7 @@ public interface ModelInterface {
 	void updateCustomerLocationList(List<CustomerLocation> loc);
 	void addCustomerLocation(CustomerLocation location);
 	void addCustomerLocation(Customer selected_customer, String city,
-			String street, int postal);
+			String street, int postal, String receiver);
 	void removeCustomerLocation(CustomerLocation custLocation);
 	void updateCustomerLocation(CustomerLocation custLocation);
 	void listAllLocations(int custId);
@@ -64,6 +64,7 @@ public interface ModelInterface {
 	// model settings
 	void setOverrideShemeStructure(Boolean state);
 	String getDBPath();
+	void saveDocument(Quotation q, CustomerLocation loc, String docx_path) throws IllegalArgumentException;
 	
 	
 	

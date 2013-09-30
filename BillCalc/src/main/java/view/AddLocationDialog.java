@@ -32,6 +32,7 @@ public class AddLocationDialog extends JDialog {
 	private JTextField cityField;
 	private JTextField streetField;
 	private JTextField postalField;
+	private JTextField receiverField;
 	private ControllerInterface controller;
 	private ViewInterface mainFrame;
 	
@@ -58,10 +59,14 @@ public class AddLocationDialog extends JDialog {
 		JLabel lblPostalNumber = new JLabel("Postleitzahl:");
 		
 		postalField = new JFormattedTextField();
+		
+		JLabel lblEmpfnger = new JLabel("Empfänger:");
+		
+		receiverField = new JFormattedTextField();
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGap(7)
@@ -70,18 +75,17 @@ public class AddLocationDialog extends JDialog {
 								.addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblPostalNumber)))
+							.addComponent(lblPostalNumber))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblEmpfnger)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(cityField, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(streetField, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(postalField, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-							.addContainerGap())))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(cityField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+						.addComponent(streetField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+						.addComponent(postalField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+						.addComponent(receiverField, GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -98,7 +102,11 @@ public class AddLocationDialog extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPostalNumber)
 						.addComponent(postalField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(66))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEmpfnger)
+						.addComponent(receiverField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(38))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -138,7 +146,7 @@ public class AddLocationDialog extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			Log.getLog(this).debug("OkButtonActionListener called");
 			controller.addLocation(	cityField.getText(), streetField.getText(),
-					postalField.getText());
+					postalField.getText(), receiverField.getText());
 		}
 	}
 	

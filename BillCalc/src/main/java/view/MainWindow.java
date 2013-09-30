@@ -92,7 +92,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private final MainWindow windowInstance;
 	private ControllerInterface controller;
 	private ModelInterface model;
-	private JFrame frmBillcalc;
+	private JFrame mainFrame;
 	private JTextField customerSearch;
 	private JList customerList;
 	private JScrollPane customerScrollPane;
@@ -137,8 +137,6 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private JDialog addNewQuotationDialog;
 	private JDialog addProductDialog;
 	private JDialog copyQuotationDialog;
-	
-	JFileChooser fc;
 			
 	List<JButton> buttonGroupAllButtons;
 	List<JButton> buttonGroupSelectedCustomer;
@@ -185,7 +183,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		if(!db_path.equals("")) {
 			model = controller.getDatabase(db_path);
 			String split[] = db_path.split("/");
-			frmBillcalc.setTitle("BillCalc " + split[split.length-1]);
+			mainFrame.setTitle("BillCalc " + split[split.length-1]);
 			
 			Log.getLog(this).debug("constructor, call loadInitData()");
 			loadInitData();
@@ -215,20 +213,20 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	private void initialize() {
 		
 		Log.getLog(this).debug("initialize called");
-		frmBillcalc = new JFrame();
-		frmBillcalc.setTitle("BillCalc");
-		frmBillcalc.setBounds(100, 100, 1268, 1015);
-		frmBillcalc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmBillcalc.setVisible(true);
+		mainFrame = new JFrame();
+		mainFrame.setTitle("BillCalc");
+		mainFrame.setBounds(100, 100, 1268, 1015);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setVisible(true);
 		
 		
 		
-		frmBillcalc.getContentPane().setLayout(
+		mainFrame.getContentPane().setLayout(
 				new MigLayout("", "[356px][43px][22px][10px][559px]",
 						"[338px][255px][28px][330px]"));
 
 		JPanel customerPanel = new JPanel();
-		frmBillcalc.getContentPane().add(customerPanel, "cell 0 0 2 1,grow");
+		mainFrame.getContentPane().add(customerPanel, "cell 0 0 2 1,grow");
 		customerPanel.setLayout(new BorderLayout(0, 0));
 
 		JPanel customerAbovePanel = new JPanel();
@@ -303,7 +301,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 				new CustomerListSelectionListener());
 
 		locationPanel = new JPanel();
-		frmBillcalc.getContentPane().add(locationPanel, "cell 4 0,grow");
+		mainFrame.getContentPane().add(locationPanel, "cell 4 0,grow");
 		locationPanel.setLayout(new BorderLayout(0, 0));
 
 		lblRechnungsadresse = new JLabel("Rechnungsadresse:");
@@ -334,7 +332,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		locationBelowPanel.add(deleteLocationButton);
 
 		quotationPanel = new JPanel();
-		frmBillcalc.getContentPane().add(quotationPanel, "cell 0 1 2 2,grow");
+		mainFrame.getContentPane().add(quotationPanel, "cell 0 1 2 2,grow");
 		quotationPanel.setLayout(new BorderLayout(0, 0));
 
 		lblGespeicherteAngebote = new JLabel("gespeicherte Angebote:");
@@ -369,7 +367,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		quotationBelowPanel.add(deleteQuotationButton);
 
 		JPanel quotProdPanel = new JPanel();
-		frmBillcalc.getContentPane().add(quotProdPanel,
+		mainFrame.getContentPane().add(quotProdPanel,
 				"cell 4 1 1 2,growx,aligny top");
 		quotProdPanel.setLayout(new BorderLayout(0, 0));
 
@@ -406,7 +404,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
 		
 		JPanel productPanel = new JPanel();
-		frmBillcalc.getContentPane().add(productPanel, "cell 0 3 3 1,grow");
+		mainFrame.getContentPane().add(productPanel, "cell 0 3 3 1,grow");
 		productPanel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel productBelowPanel = new JPanel();
@@ -433,7 +431,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		productTable.setFillsViewportHeight(true);
 		
 		menuBar = new JMenuBar();
-		frmBillcalc.setJMenuBar(menuBar);
+		mainFrame.setJMenuBar(menuBar);
 		
 		mnFile = new JMenu("Datei");
 		menuBar.add(mnFile);
@@ -450,6 +448,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 		mnFile.add(mntmDrucken);
 		
 		mntmExportDocx = new JMenuItem("export docx");
+		mntmExportDocx.addActionListener(new ExportItemActionListener());
 		mnFile.add(mntmExportDocx);
 		
 		initButtons();
@@ -540,12 +539,11 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 	
 	//get the path of the Database from the user
 		public String getDatabasePath() {
-			if(fc == null) {
-				fc = new JFileChooser();
-			}
-			fc.addChoosableFileFilter(new DatabaseFileFilter());
+			JFileChooser fc = new JFileChooser();
+			DatabaseFileFilter db_filter = new DatabaseFileFilter();
+			fc.addChoosableFileFilter(db_filter);
 	        fc.setAcceptAllFileFilterUsed(false);
-			int returnVal = fc.showDialog(frmBillcalc,
+			int returnVal = fc.showDialog(mainFrame,
 	                "Open Database");
 			
 			if(returnVal == JFileChooser.APPROVE_OPTION){
@@ -554,6 +552,20 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			}
 			else return "";
 			
+		}
+		//Export  dialog
+		@Override
+		public String getExportPath() {
+			JFileChooser fc = new JFileChooser();
+			fc.addChoosableFileFilter(new DocxFileFilter());
+	        fc.setAcceptAllFileFilterUsed(false);
+			int returnVal = fc.showSaveDialog(mainFrame);
+			
+			if(returnVal == JFileChooser.APPROVE_OPTION){
+				File file = fc.getSelectedFile();
+				return file.getAbsolutePath();
+			}
+			else return "";
 		}
 	
 	//menue button actionlistener
@@ -568,12 +580,12 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 				controller.setModel(model);
 				
 				String split[] = db_path.split("/");
-				frmBillcalc.setTitle("BillCalc " + split[split.length-1]);
+				mainFrame.setTitle("BillCalc " + split[split.length-1]);
 				
 				loadInitData();
 			}
 			} catch(IOException ex) {
-				JOptionPane.showMessageDialog(frmBillcalc, ex.getMessage());
+				JOptionPane.showMessageDialog(mainFrame, ex.getMessage());
 			}
 		}
 	}
@@ -585,11 +597,11 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 				model = controller.createNewDatabase();
 				
 				String split[] = model.getDBPath().split("/");
-				frmBillcalc.setTitle("BillCalc " + split[split.length-1]);
+				mainFrame.setTitle("BillCalc " + split[split.length-1]);
 				
 				loadInitData();
 			} catch (IOException ex) {
-				JOptionPane.showMessageDialog(frmBillcalc, ex.getMessage());
+				JOptionPane.showMessageDialog(mainFrame, ex.getMessage());
 			}
 		}
 	}
@@ -605,7 +617,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-						
+			controller.exportToDocx();
 		}
 	}
 	
@@ -657,7 +669,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			if(selected_customer == null)
 				return;
 			
-			int n = viewFactory.createDeleteDialog(frmBillcalc);
+			int n = viewFactory.createDeleteDialog(mainFrame);
 			if (n == 0) {
 				controller.deleteCustomer();
 			}
@@ -684,7 +696,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			int selected = customerLocationTable.getSelectedRow();
 			if(selected == -1)
 				return;
-			int n = viewFactory.createDeleteDialog(frmBillcalc);
+			int n = viewFactory.createDeleteDialog(mainFrame);
 			if (n == 0) {
 				controller.deleteSelectedLocation();
 			}
@@ -710,7 +722,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			int selected = quotationTable.getSelectedRow();
 			if(selected == -1)
 				return;
-			int n = viewFactory.createDeleteDialog(frmBillcalc);
+			int n = viewFactory.createDeleteDialog(mainFrame);
 			if (n == 0) {
 				controller.deleteSelectedQuotation();
 			}
@@ -753,7 +765,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			
 			productBox.setVisible(false);
 
-			int n = viewFactory.createDeleteDialog(frmBillcalc);
+			int n = viewFactory.createDeleteDialog(mainFrame);
 			if (n == 0) {
 				controller.deleteSelectedQuotProduct();
 			}
@@ -774,7 +786,7 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			int selected = productTable.getSelectedRow();
 			if(selected == -1)
 				return;
-			int n = viewFactory.createDeleteDialog(frmBillcalc);
+			int n = viewFactory.createDeleteDialog(mainFrame);
 			if (n == 0) {
 				controller.deleteSelectedProduct();;
 			}
@@ -921,4 +933,15 @@ public class MainWindow implements ViewInterface, CustomerObserver, CustomerLoca
 			return null;
 		return p_table_model.getProduct(selected);
 	}
+
+
+
+	@Override
+	public synchronized void displayMessage(String message) {
+		viewFactory.createMessageDialog(message, mainFrame);
+	}
+
+
+
+
 }

@@ -28,8 +28,9 @@ public class ModelFactory {
 		return new CustomerLocation( custId, location );
 	}
 	
-	public CustomerLocation createCustomerLocation(int custId,String city, String street, int postal) {
+	public CustomerLocation createCustomerLocation(int custId,String city, String street, int postal, String receiver) {
 		Location loc = new Location(city,street,postal);
+		loc.setReceiver(receiver);
 		return new CustomerLocation( custId, loc );
 	}
 	

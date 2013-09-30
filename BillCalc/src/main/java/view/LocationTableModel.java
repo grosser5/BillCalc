@@ -15,7 +15,7 @@ public class LocationTableModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = -2743140788233843965L;
 	List<CustomerLocation> locations;
-	String[] columnNames = {"Ort","Straße", "Postleitzahl"};
+	String[] columnNames = {"Empfänger Name", "Ort","Straße", "Postleitzahl"};
 	
 	LocationTableModel(List<CustomerLocation> locationList) {
 		this.locations = locationList;

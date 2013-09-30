@@ -77,6 +77,11 @@ public class ViewFactory {
 			ControllerInterface controller) {
 		windowInstance.setAllButtons(false);
 		return new CopyQuotationDialog(controller,windowInstance);
+	}
+
+	public void createMessageDialog(String message, JFrame frame) {
+		JOptionPane.showMessageDialog(frame, message);
+				
 	}	
 	
 }

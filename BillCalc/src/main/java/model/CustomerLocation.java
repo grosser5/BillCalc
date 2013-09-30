@@ -14,7 +14,7 @@ public class CustomerLocation {
 	public final static String templateFieldCity = "CITY";
 	public final static String templateFieldStreet = "STREET";
 	public final static String templateFieldPostal = "POSTAL";
-	
+	public final static String templateFieldReceiver = "RECEIVER";
 	
 	public CustomerLocation() {}
 	
@@ -75,6 +75,14 @@ public class CustomerLocation {
 	public void setPostal(int postal) {
 		location.setPostal(postal);
 	}
+	
+	public String getReceiver() {
+		return location.getReceiver();
+	}
+	
+	public void setReceiver(String receiver) {
+		location.setReceiver(receiver);
+	}
 
 	public String toString() {
 		String l = "null";
@@ -89,6 +97,7 @@ public class CustomerLocation {
 		temp_replacement.put(templateFieldCity, getCity() );
 		temp_replacement.put(templateFieldStreet, getStreet() );
 		temp_replacement.put(templateFieldPostal, Integer.toString( getPostal() ) );
+		temp_replacement.put(templateFieldReceiver, getReceiver() );
 		return temp_replacement;
 	}
 }

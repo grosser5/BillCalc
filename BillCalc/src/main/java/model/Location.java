@@ -6,6 +6,7 @@ public class Location {
 	private String city = "";
 	private String street = "";
 	private int postal = 0;
+	private String receiver = "";
 	
 	public Location(){}
 	
@@ -48,6 +49,14 @@ public class Location {
 		this.locId = locId;
 	}
 	
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
 	public String toString() {
 		return getCity() + " " + getStreet()
 				+  " " + getPostal();
